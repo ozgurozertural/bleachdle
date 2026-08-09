@@ -43,9 +43,28 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
     input.disabled = false;
     input.value = '';
     await pickAnswer();
+    if (state.mode === 'daily') restoreDaily();
     updateAttempts();
     input.focus();
     // console.log('[dev] answer:', state.answer && state.answer.name);
+  }
+
+  // Aynı günün kaydedilmiş tahminlerini geri yükler. onGuess bir kez çağrılır ki
+  // moda özel ipucu durumu (splash bulanıklığı, bankai görseli) doğru seviyeye gelsin.
+  function restoreDaily() {
+    const saved = loadDaily(modeKey, dayIndex());
+    if (!saved) return;
+    for (const id of saved.guesses) {
+      const c = chars.find(x => x.id === id);
+      if (c) state.guesses.push(c);
+    }
+    if (onGuess) onGuess(state.guesses, state.answer, saved.finished);
+    if (saved.finished) endRound(saved.won, true);
+  }
+
+  function persist(finished, won) {
+    if (state.mode !== 'daily') return;
+    saveDaily(modeKey, dayIndex(), state.guesses.map(g => g.id), finished, won);
   }
 
   function updateAttempts() {
@@ -55,10 +74,14 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
     `;
   }
 
-  function endRound(won) {
+  // replay: kayıttan geri yükleme — skor yeniden işlenmez.
+  function endRound(won, replay) {
     state.finished = true;
     input.disabled = true;
-    const stats = recordGame(modeKey, won, state.guesses.length);
+    persist(true, won);
+    const stats = state.mode === 'daily' && !replay
+      ? recordGame(modeKey, won, state.guesses.length, dayIndex())
+      : getModeStats(modeKey);
     resultEl.innerHTML = `
       <div class="result-panel ${won ? 'win' : 'lose'}">
         <h2>${won ? '🎉 Bildin!' : '💀 Kaybettin'}</h2>
@@ -89,6 +112,7 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
     if (onGuess) onGuess(state.guesses, state.answer, won || state.guesses.length >= state.maxGuesses);
     if (won) return endRound(true);
     if (state.guesses.length >= state.maxGuesses) return endRound(false);
+    persist(false, false);
   }
 
   function switchMode(m) {

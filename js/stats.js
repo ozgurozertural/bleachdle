@@ -17,21 +17,42 @@ function getModeStats(mode) {
   return s[mode] || { streak: 0, maxStreak: 0, played: 0, wins: 0, guessSum: 0 };
 }
 
-function recordGame(mode, won, guesses) {
+// Yalnızca günlük oyun için çağrılır. `day` gün sayacı: seri ancak ardışık
+// günlerde büyür, gün atlanırsa baştan başlar.
+function recordGame(mode, won, guesses, day) {
   const all = loadStats();
   const m = all[mode] || { streak: 0, maxStreak: 0, played: 0, wins: 0, guessSum: 0 };
   m.played += 1;
   if (won) {
     m.wins += 1;
-    m.streak += 1;
+    m.streak = m.lastDay === day - 1 ? m.streak + 1 : 1;
     m.guessSum += guesses;
     if (m.streak > m.maxStreak) m.maxStreak = m.streak;
   } else {
     m.streak = 0;
   }
+  m.lastDay = day;
   all[mode] = m;
   saveStats(all);
   return m;
+}
+
+// Günün oyun durumu: sayfa yenilenince aynı gün kaldığı yerden devam eder,
+// bitmiş bir günlük tekrar oynanamaz.
+const DAILY_KEY = 'bleachdle-daily-v1';
+
+function loadDaily(mode, day) {
+  try {
+    const d = (JSON.parse(localStorage.getItem(DAILY_KEY)) || {})[mode];
+    return d && d.day === day ? d : null;
+  } catch { return null; }
+}
+
+function saveDaily(mode, day, guessIds, finished, won) {
+  let all;
+  try { all = JSON.parse(localStorage.getItem(DAILY_KEY)) || {}; } catch { all = {}; }
+  all[mode] = { day, guesses: guessIds, finished, won };
+  localStorage.setItem(DAILY_KEY, JSON.stringify(all));
 }
 
 function aggregateStats() {

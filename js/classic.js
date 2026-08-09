@@ -42,7 +42,27 @@
     state.answer = state.mode === 'daily'
       ? pickDaily(chars, 'classic')
       : pickRandom(chars);
+    if (state.mode === 'daily') restoreDaily();
     // console.log('[dev] answer:', state.answer.name);
+  }
+
+  // Aynı günün kaydedilmiş tahminlerini geri yükler; oyun bitmişse sonucu da gösterir
+  // (istatistik ikinci kez işlenmez).
+  function restoreDaily() {
+    const saved = loadDaily('classic', dayIndex());
+    if (!saved) return;
+    for (const id of saved.guesses) {
+      const c = chars.find(x => x.id === id);
+      if (!c) continue;
+      state.guesses.push(c);
+      guessesEl.prepend(renderGuessRow(c, state.answer, COLUMNS));
+    }
+    if (saved.finished) endRound(saved.won, true);
+  }
+
+  function persist(finished, won) {
+    if (state.mode !== 'daily') return;
+    saveDaily('classic', dayIndex(), state.guesses.map(g => g.id), finished, won);
   }
 
   function onGuess(c) {
@@ -53,12 +73,17 @@
 
     if (c.id === state.answer.id) return endRound(true);
     if (state.guesses.length >= state.maxGuesses) return endRound(false);
+    persist(false, false);
   }
 
-  function endRound(won) {
+  // replay: kayıttan geri yükleme — skor yeniden işlenmez.
+  function endRound(won, replay) {
     state.finished = true;
     input.disabled = true;
-    const stats = recordGame('classic', won, state.guesses.length);
+    persist(true, won);
+    const stats = state.mode === 'daily' && !replay
+      ? recordGame('classic', won, state.guesses.length, dayIndex())
+      : getModeStats('classic');
     resultEl.innerHTML = `
       <div class="result-panel ${won ? 'win' : 'lose'}">
         <h2>${won ? '🎉 Bildin!' : '💀 Kaybettin'}</h2>
