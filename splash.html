@@ -53,15 +53,24 @@
 <script src="js/simple-mode.js"></script>
 <script>
 const MAX = 6;
+// Splash kendi görsel setini kullanır: tahmin tablosundaki ve otomatik
+// tamamlamadaki profil görselinin aynısı gösterilince oyun tahmin olmaktan
+// çıkıp eşleştirmeye dönüyordu.
+const SPLASH = fetch('data/splash.json').then(r => r.json()).catch(() => ({}));
+
 initSimpleMode({
   modeKey: 'splash',
   maxGuesses: MAX,
-  pool: (chars) => chars.filter(c => c.image),
-  loadPrompt: (answer) => {
+  pool: async (chars) => {
+    const sp = await SPLASH;
+    return chars.filter(c => sp[c.id]);
+  },
+  loadPrompt: async (answer) => {
+    const src = (await SPLASH)[answer.id];
     const img = document.getElementById('splash-img');
-    img.src = answer.image || '';
+    img.src = src || '';
     img.style.filter = 'blur(28px)';
-    return !!answer.image;
+    return !!src;
   },
   onGuess: (guesses, answer, finished) => {
     const img = document.getElementById('splash-img');
