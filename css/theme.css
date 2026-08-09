@@ -26,6 +26,11 @@
   --hatch-opacity: 0.06;
 
   --paper-rgb: 231, 227, 214;
+  /* Aydınlıkta Soul Society: Gotei 13 kaptanları */
+  --art: url("../data/images/bg-gotei13.webp");
+  --art-pos: center 18%;
+  --art-focus: 50% 38%;
+  --art-vignette: 0.75;
   --art-scrim: 0.58;      /* eserin üstündeki perde */
   --art-panel: 0.86;      /* başlık/altlık şeridinin opaklığı */
 }
@@ -52,7 +57,14 @@
   --hatch-opacity: 0.05;
 
   --paper-rgb: 12, 12, 15;
-  --art-scrim: 0.40;
+  /* Karanlıkta Hueco Mundo: Espada toplantısı. Bu eser çok daha karanlık
+     (medyan parlaklık 0.012), o yüzden perde ince — beyaz üniformalar en
+     kötü durumda bile şerit metnini 6:1'in üstünde tutuyor. */
+  --art: url("../data/images/bg-espada.webp");
+  --art-pos: center 52%;
+  --art-focus: 50% 52%;
+  --art-vignette: 0.45;   /* kenarları az bastır: eser şeritlerden görünsün */
+  --art-scrim: 0.18;
   --art-panel: 0.82;
 }
 
@@ -91,9 +103,9 @@ html::before {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse at 50% 38%, transparent 0%, rgba(var(--paper-rgb), 0.75) 78%),
+    radial-gradient(ellipse at var(--art-focus), transparent 0%, rgba(var(--paper-rgb), var(--art-vignette)) 78%),
     linear-gradient(rgba(var(--paper-rgb), var(--art-scrim)), rgba(var(--paper-rgb), var(--art-scrim))),
-    url("../data/images/bg-gotei13.webp") center 18% / cover no-repeat;
+    var(--art) var(--art-pos) / cover no-repeat;
 }
 
 body {
