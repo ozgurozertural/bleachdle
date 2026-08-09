@@ -275,14 +275,16 @@
     "hair": "Red"
   },
   "Cang_Du": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Bambietta_Basterbine": {
     "hair": "Black",
     "age_group": "101-1000"
   },
   "Candice_Catnipp": {
-    "hair": "Green"
+    "hair": "Green",
+    "age_group": "101-1000"
   },
   "Giselle_Gewelle": {
     "hair": "Green",
@@ -293,28 +295,36 @@
     "age_group": "101-1000"
   },
   "Liltotto_Lamperd": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "age_group": "101-1000"
   },
   "PePe_Waccabrada": {
-    "hair": "Purple"
+    "hair": "Purple",
+    "age_group": "101-1000"
   },
   "Robert_Accutrone": {
-    "hair": "White"
+    "hair": "White",
+    "age_group": "101-1000"
   },
   "NaNaNa_Najahkoop": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "age_group": "101-1000"
   },
   "Berenice_Gabrielli": {
-    "hair": "Orange"
+    "hair": "Orange",
+    "age_group": "101-1000"
   },
   "Driscoll_Berci": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "BG9": {
-    "hair": "None"
+    "hair": "None",
+    "age_group": "101-1000"
   },
   "Mask_De_Masculine": {
-    "hair": "None"
+    "hair": "None",
+    "age_group": "101-1000"
   },
   "Gremmy_Thoumeaux": {
     "hair": "Blonde",
@@ -341,7 +351,8 @@
     "gender": "Male"
   },
   "Nianzol_Weizol": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "age_group": "101-1000"
   },
   "Ryūken_Ishida": {
     "hair": "White",
