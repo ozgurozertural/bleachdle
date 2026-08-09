@@ -36,7 +36,8 @@
     "age": 200
   },
   "Kon": {
-    "hair": "Yellow"
+    "hair": "Yellow",
+    "race": "Mod Soul"
   },
   "Shunsui_Kyōraku": {
     "hair": "Brown",
@@ -44,7 +45,8 @@
   },
   "Sōsuke_Aizen": {
     "hair": "Brown",
-    "age": 200
+    "age": 200,
+    "height_cm": 186
   },
   "Rōjūrō_Ōtoribashi": {
     "hair": "Blonde",
@@ -95,7 +97,8 @@
   },
   "Genryūsai_Shigekuni_Yamamoto": {
     "hair": "White",
-    "age": 2100
+    "age": 2100,
+    "height_cm": 168
   },
   "Nanao_Ise": {
     "hair": "Black",
@@ -188,7 +191,8 @@
     "hair": "Black"
   },
   "Szayelaporro_Granz": {
-    "hair": "Pink"
+    "hair": "Pink",
+    "location": "Hueco Mundo"
   },
   "Aaroniero_Arruruerie": {
     "hair": "Black"
@@ -215,7 +219,8 @@
     "hair": "Purple"
   },
   "Kūgo_Ginjō": {
-    "hair": "Black"
+    "hair": "Black",
+    "location": "Naruki City"
   },
   "Shūkurō_Tsukishima": {
     "hair": "Black"
@@ -224,13 +229,16 @@
     "hair": "Grey"
   },
   "Jackie_Tristan": {
-    "hair": "Black"
+    "hair": "Black",
+    "location": "Naruki City"
   },
   "Yukio_Hans_Vorarlberna": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "location": "Naruki City"
   },
   "Riruka_Dokugamine": {
-    "hair": "Red"
+    "hair": "Red",
+    "location": "Naruki City"
   },
   "Yhwach": {
     "hair": "Black",
@@ -336,30 +344,37 @@
     "hair": "Black"
   },
   "Ichibē_Hyōsube": {
-    "hair": "Black"
+    "hair": "Black",
+    "location": "Soul King Palace"
   },
   "Ōetsu_Nimaiya": {
-    "hair": "Black"
+    "hair": "Black",
+    "location": "Soul King Palace"
   },
   "Kirio_Hikifune": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "location": "Soul King Palace"
   },
   "Tenjirō_Kirinji": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "location": "Soul King Palace"
   },
   "Senjumaru_Shutara": {
-    "hair": "Black"
+    "hair": "Black",
+    "location": "Soul King Palace"
   },
   "Tessai_Tsukabishi": {
     "hair": "Black"
   },
   "Ururu_Tsumugiya": {
     "hair": "Black",
-    "age": 12
+    "age": 12,
+    "race": "Human"
   },
   "Jinta_Hanakari": {
     "hair": "Red",
-    "age": 12
+    "age": 12,
+    "race": "Human"
   },
   "Tatsuki_Arisawa": {
     "hair": "Black",
