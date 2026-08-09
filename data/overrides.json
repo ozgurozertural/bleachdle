@@ -154,7 +154,8 @@
     "hair": "Black"
   },
   "Kaien_Shiba": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Jidanbō_Ikkanzaka": {
     "hair": "Black"
@@ -168,7 +169,8 @@
     "age_group": "101-1000"
   },
   "Love_Aikawa": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Mashiro_Kuna": {
     "hair": "Green",
@@ -248,7 +250,8 @@
   },
   "Jackie_Tristan": {
     "hair": "Black",
-    "location": "Naruki City"
+    "location": "Naruki City",
+    "age_group": "21-40"
   },
   "Yukio_Hans_Vorarlberna": {
     "hair": "Blonde",
@@ -353,7 +356,8 @@
     "age": 11
   },
   "Sōken_Ishida": {
-    "hair": "White"
+    "hair": "White",
+    "age_group": "61-100"
   },
   "Ganryū": {
     "hair": "Black"
@@ -396,7 +400,8 @@
     "location": "Soul King Palace"
   },
   "Tessai_Tsukabishi": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Ururu_Tsumugiya": {
     "hair": "Black",
