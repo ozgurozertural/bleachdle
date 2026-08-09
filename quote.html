@@ -30,6 +30,7 @@
   </div>
 
   <div id="quote-display" class="quote-display">Yükleniyor...</div>
+  <div id="quote-hint-slot"></div>
 
   <div class="search-box">
     <input id="search" type="text" autocomplete="off" placeholder="Karakter adı yazın..." />
@@ -51,19 +52,40 @@
 <script src="js/simple-mode.js"></script>
 <script>
 const QUOTES = fetch('data/quotes.json').then(r => r.json()).catch(() => ({}));
+const SOURCES = fetch('data/quote_sources.json').then(r => r.json()).catch(() => ({}));
+const MAX = 7;
+const HINT_AT = MAX - 3;   // son 3 hak kalınca repliğin kaynağı açılır
+
 initSimpleMode({
   modeKey: 'quote',
-  maxGuesses: 4,
+  maxGuesses: MAX,
+  // Havuz yalnızca kaynağı doğrulanmış repliklerle sınırlı: ipucu her turda
+  // verilebilsin diye. Kaynağı olmayan replikler quotes.json'da duruyor.
   pool: async (chars) => {
-    const q = await QUOTES;
-    return chars.filter(c => q[c.id]);
+    const [q, src] = await Promise.all([QUOTES, SOURCES]);
+    return chars.filter(c => q[c.id] && src[c.id]);
   },
   loadPrompt: async (answer) => {
     const q = (await QUOTES)[answer.id];
+    document.getElementById('quote-hint-slot').innerHTML = '';
     document.getElementById('quote-display').innerHTML = q
       ? `“${q}”`
       : `<em>Bu karakter için replik verisi yok. Başka bir karakter seçiliyor...</em>`;
     return !!q;
+  },
+  onGuess: async (guesses, answer, finished) => {
+    // Son 3 hak kalınca repliğin hangi bölümde geçtiği açılır.
+    if (finished || guesses.length < HINT_AT) return;
+    const slot = document.getElementById('quote-hint-slot');
+    if (slot.innerHTML) return;
+    const s = (await SOURCES)[answer.id];
+    if (!s) return;
+    const kaynak = s.kind === 'anime' ? 'Anime' : 'Manga';
+    slot.innerHTML = `
+      <div class="quote-hint">
+        <span class="quote-hint-label">İpucu</span>
+        <span class="quote-hint-body">${kaynak}, bölüm <strong>${s.chapter}</strong></span>
+      </div>`;
   }
 });</script>
 </body>

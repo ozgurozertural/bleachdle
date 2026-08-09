@@ -521,6 +521,29 @@
   color: var(--ink-2);
 }
 
+.quote-hint {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 2rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--paper-2);
+  border-left: 5px solid var(--seal);
+}
+.quote-hint-label {
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--seal);
+}
+.quote-hint-body { font-size: var(--t-small); color: var(--ink-2); }
+.quote-hint-body strong {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
 .bankai-hint {
   margin: 0 0 1.5rem;
   filter: grayscale(0.35) contrast(1.1);
