@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bleachdle — Quote Mode</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><span class="kanji">言</span><h1>BLEACHDLE</h1></div>
+  <button id="theme-toggle" class="theme-toggle">🌓</button>
+</header>
+
+<main class="game-page">
+  <a class="back-link" href="index.html">← Ana menü</a>
+  <h2 class="game-title">QUOTE MODE</h2>
+  <p class="game-subtitle">Bu repliği kim söyledi?</p>
+
+  <div class="mode-switch">
+    <button class="active" data-mode="daily">Günün repliği</button>
+    <button data-mode="free">Serbest oyun</button>
+  </div>
+
+  <div id="quote-display" class="quote-display">Yükleniyor...</div>
+
+  <div class="search-box">
+    <input id="search" type="text" autocomplete="off" placeholder="Karakter adı yazın..." />
+    <div id="suggestions" class="suggestions"></div>
+  </div>
+
+  <div id="result"></div>
+  <div id="attempts" class="attempts-info"></div>
+</main>
+
+<footer class="site-footer">
+  <p>Fan proje · <a href="https://bleach.fandom.com" target="_blank" rel="noopener">Bleach Wiki</a></p>
+</footer>
+
+<script src="js/theme.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/data.js"></script>
+<script src="js/game-core.js"></script>
+<script src="js/simple-mode.js"></script>
+<script>
+const QUOTES = fetch('data/quotes.json').then(r => r.json()).catch(() => ({}));
+initSimpleMode({
+  modeKey: 'quote',
+  maxGuesses: 4,
+  pool: async (chars) => {
+    const q = await QUOTES;
+    return chars.filter(c => q[c.id]);
+  },
+  loadPrompt: async (answer) => {
+    const q = (await QUOTES)[answer.id];
+    document.getElementById('quote-display').innerHTML = q
+      ? `“${q}”`
+      : `<em>Bu karakter için replik verisi yok. Başka bir karakter seçiliyor...</em>`;
+    return !!q;
+  }
+});</script>
+</body>
+</html>

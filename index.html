@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bleachdle — Bleach karakter tahmin oyunu</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <span class="kanji">死</span>
+    <h1>BLEACHDLE</h1>
+  </div>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Tema değiştir">🌓</button>
+</header>
+
+<main class="hub">
+  <p class="tagline">Her gün yeni bir <strong>Bleach</strong> karakteri. Kaç denemede bileceksin?</p>
+
+  <div class="mode-grid">
+    <a class="mode-card" href="classic.html">
+      <div class="mode-icon">◈</div>
+      <h2>Classic</h2>
+      <p>Karakter tahmin et. Her denemede özellik ipuçları al.</p>
+    </a>
+    <a class="mode-card" href="quote.html">
+      <div class="mode-icon">❝</div>
+      <h2>Quote</h2>
+      <p>Ünlü bir replikten karakteri bul.</p>
+    </a>
+    <a class="mode-card" href="splash.html">
+      <div class="mode-icon">▦</div>
+      <h2>Splash</h2>
+      <p>Bulanık görsel her denemede biraz daha netleşir.</p>
+    </a>
+    <a class="mode-card" href="bankai.html">
+      <div class="mode-icon">卍</div>
+      <h2>Bankai</h2>
+      <p>Bankai/Shikai formundan sahibini tahmin et.</p>
+    </a>
+  </div>
+
+  <section class="stats-panel">
+    <h3>İstatistiklerin</h3>
+    <div id="stats-summary" class="stats-summary">
+      <div><span class="stat-val" data-stat="streak">0</span><span class="stat-label">Seri</span></div>
+      <div><span class="stat-val" data-stat="maxStreak">0</span><span class="stat-label">Rekor</span></div>
+      <div><span class="stat-val" data-stat="played">0</span><span class="stat-label">Oyun</span></div>
+      <div><span class="stat-val" data-stat="winRate">0%</span><span class="stat-label">Kazanma</span></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Fan proje · Karakter verisi ve görseller <a href="https://bleach.fandom.com" target="_blank" rel="noopener">Bleach Wiki</a>'den · Tite Kubo &copy; Shueisha</p>
+</footer>
+
+<script src="js/theme.js"></script>
+<script src="js/stats.js"></script>
+<script>renderStatsSummary(document.getElementById('stats-summary'));</script>
+</body>
+</html>

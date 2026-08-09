@@ -1,0 +1,258 @@
+{
+  "Ichigo_Kurosaki": {
+    "name": "Tensa Zangetsu",
+    "type": "Bankai",
+    "ability": "Shikai: Zangetsu"
+  },
+  "Rukia_Kuchiki": {
+    "name": "Hakka no Togame",
+    "type": "Bankai",
+    "ability": "Shikai: Sode no Shirayuki"
+  },
+  "Renji_Abarai": {
+    "name": "Sōō Zabimaru",
+    "type": "Bankai",
+    "ability": "Shikai: Zabimaru"
+  },
+  "Kisuke_Urahara": {
+    "name": "Kannonbiraki Benihime Aratame",
+    "type": "Bankai",
+    "ability": "Shikai: Benihime"
+  },
+  "Isshin_Kurosaki": {
+    "name": "Engetsu",
+    "type": "Shikai"
+  },
+  "Shunsui_Kyōraku": {
+    "name": "Katen Kyōkotsu: Karamatsu Shinjū",
+    "type": "Bankai",
+    "ability": "Shikai: Katen Kyōkotsu"
+  },
+  "Sōsuke_Aizen": {
+    "name": "Kyōka Suigetsu",
+    "type": "Shikai"
+  },
+  "Rōjūrō_Ōtoribashi": {
+    "name": "Kinshara Butōdan",
+    "type": "Bankai",
+    "ability": "Shikai: Kinshara"
+  },
+  "Retsu_Unohana": {
+    "name": "Minazuki",
+    "type": "Bankai",
+    "ability": "Shikai: Minazuki"
+  },
+  "Sajin_Komamura": {
+    "name": "Kokujō Tengen Myō'ō",
+    "type": "Bankai",
+    "ability": "Shikai: Tenken"
+  },
+  "Shinji_Hirako": {
+    "name": "Sakashima Yokoshima Happōfusagari",
+    "type": "Bankai",
+    "ability": "Shikai: Sakanade"
+  },
+  "Byakuya_Kuchiki": {
+    "name": "Senbonzakura Kageyoshi",
+    "type": "Bankai",
+    "ability": "Shikai: Senbonzakura"
+  },
+  "Sui_Feng": {
+    "name": "Jakuhō Raikōben",
+    "type": "Bankai",
+    "ability": "Shikai: Suzumebachi"
+  },
+  "Kaname_Tōsen": {
+    "name": "Suzumushi Tsuishiki: Enma Kōrogi",
+    "type": "Bankai",
+    "ability": "Shikai: Suzumushi"
+  },
+  "Tōshirō_Hitsugaya": {
+    "name": "Daiguren Hyōrinmaru",
+    "type": "Bankai",
+    "ability": "Shikai: Hyōrinmaru"
+  },
+  "Kenpachi_Zaraki": {
+    "name": "Nozarashi",
+    "type": "Shikai"
+  },
+  "Mayuri_Kurotsuchi": {
+    "name": "Konjiki Ashisogi Jizō",
+    "type": "Bankai",
+    "ability": "Shikai: Ashisogi Jizō"
+  },
+  "Jūshirō_Ukitake": {
+    "name": "Sōgyo no Kotowari",
+    "type": "Shikai"
+  },
+  "Kensei_Muguruma": {
+    "name": "Tekken Tachikaze",
+    "type": "Bankai",
+    "ability": "Shikai: Tachikaze"
+  },
+  "Genryūsai_Shigekuni_Yamamoto": {
+    "name": "Zanka no Tachi",
+    "type": "Bankai",
+    "ability": "Shikai: Ryūjin Jakka"
+  },
+  "Momo_Hinamori": {
+    "name": "Tobiume",
+    "type": "Shikai"
+  },
+  "Izuru_Kira": {
+    "name": "Wabisuke",
+    "type": "Shikai"
+  },
+  "Isane_Kotetsu": {
+    "name": "Itegumo",
+    "type": "Shikai"
+  },
+  "Marechiyo_Ōmaeda": {
+    "name": "Gegetsuburi",
+    "type": "Shikai"
+  },
+  "Hisagi_Shūhei": {
+    "name": "Kazeshini",
+    "type": "Shikai"
+  },
+  "Rangiku_Matsumoto": {
+    "name": "Haineko",
+    "type": "Shikai"
+  },
+  "Yachiru_Kusajishi": {
+    "name": "Sanpo Kenjū",
+    "type": "Shikai"
+  },
+  "Ikkaku_Madarame": {
+    "name": "Ryūmon Hōzukimaru",
+    "type": "Bankai",
+    "ability": "Shikai: Hōzukimaru"
+  },
+  "Yumichika_Ayasegawa": {
+    "name": "Ruri'iro Kujaku",
+    "type": "Shikai"
+  },
+  "Hanatarō_Yamada": {
+    "name": "Hisagomaru",
+    "type": "Shikai"
+  },
+  "Kaien_Shiba": {
+    "name": "Nejibana",
+    "type": "Shikai"
+  },
+  "Lisa_Yadōmaru": {
+    "name": "Haguro Tonbo",
+    "type": "Shikai"
+  },
+  "Love_Aikawa": {
+    "name": "Tengumaru",
+    "type": "Shikai"
+  },
+  "Coyote_Starrk": {
+    "name": "Los Lobos",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Baraggan_Louisenbairn": {
+    "name": "Arrogante",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Tier_Harribel": {
+    "name": "Tiburón",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Ulquiorra_Cifer": {
+    "name": "Murciélago",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Nnoitra_Gilga": {
+    "name": "Santa Teresa",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Grimmjow_Jaegerjaquez": {
+    "name": "Pantera",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Zommari_Rureaux": {
+    "name": "Brujería",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Szayelaporro_Granz": {
+    "name": "Fornicarás",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Aaroniero_Arruruerie": {
+    "name": "Glotonería",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Yammy_Llargo": {
+    "name": "Ira",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Nelliel_Tu_Odelschwanck": {
+    "name": "Gamuza",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Wonderweiss_Margela": {
+    "name": "Extinguir",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Findorr_Calius": {
+    "name": "Pinza Aguda",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Cirucci_Sanderwicci": {
+    "name": "Golondrina",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Gantenbainne_Mosqueda": {
+    "name": "Dragra",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Luppi_Antenor": {
+    "name": "Trepadora",
+    "type": "Resurrección",
+    "ability": ""
+  },
+  "Chōjirō_Sasakibe": {
+    "name": "Kōkō Gonryō Rikyū",
+    "type": "Bankai",
+    "ability": "Shikai: Gonryōmaru"
+  },
+  "Gin_Ichimaru": {
+    "name": "Kamishini no Yari",
+    "type": "Bankai",
+    "ability": "Shikai: Shinsō"
+  },
+  "Dordoni_Alessandro_Del_Socaccio": {
+    "name": "Giralda",
+    "type": "Resurrección"
+  },
+  "Ichibē_Hyōsube": {
+    "name": "Ichimonji",
+    "type": "Shikai"
+  },
+  "Tenjirō_Kirinji": {
+    "name": "Kinpika",
+    "type": "Shikai"
+  },
+  "Senjumaru_Shutara": {
+    "name": "Shatatsu Karagara Shigarami no Tsuji",
+    "type": "Bankai",
+    "ability": "Shikai: Shigarami"
+  }
+}

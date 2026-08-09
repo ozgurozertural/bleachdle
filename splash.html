@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bleachdle — Splash Mode</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><span class="kanji">影</span><h1>BLEACHDLE</h1></div>
+  <button id="theme-toggle" class="theme-toggle">🌓</button>
+</header>
+
+<main class="game-page">
+  <a class="back-link" href="index.html">← Ana menü</a>
+  <h2 class="game-title">SPLASH MODE</h2>
+  <p class="game-subtitle">Bulanık görsel her denemede biraz daha netleşir.</p>
+
+  <div class="mode-switch">
+    <button class="active" data-mode="daily">Günün görseli</button>
+    <button data-mode="free">Serbest oyun</button>
+  </div>
+
+  <div class="splash-image-wrap">
+    <img id="splash-img" class="splash-image" src="" alt="" style="filter: blur(28px)">
+  </div>
+
+  <div class="search-box">
+    <input id="search" type="text" autocomplete="off" placeholder="Karakter adı yazın..." />
+    <div id="suggestions" class="suggestions"></div>
+  </div>
+
+  <div id="result"></div>
+  <div id="attempts" class="attempts-info"></div>
+</main>
+
+<footer class="site-footer">
+  <p>Fan proje · <a href="https://bleach.fandom.com" target="_blank" rel="noopener">Bleach Wiki</a></p>
+</footer>
+
+<script src="js/theme.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/data.js"></script>
+<script src="js/game-core.js"></script>
+<script src="js/simple-mode.js"></script>
+<script>
+const MAX = 6;
+initSimpleMode({
+  modeKey: 'splash',
+  maxGuesses: MAX,
+  pool: (chars) => chars.filter(c => c.image),
+  loadPrompt: (answer) => {
+    const img = document.getElementById('splash-img');
+    img.src = answer.image || '';
+    img.style.filter = 'blur(28px)';
+    return !!answer.image;
+  },
+  onGuess: (guesses, answer, finished) => {
+    const img = document.getElementById('splash-img');
+    if (finished) { img.style.filter = 'blur(0)'; return; }
+    // her yanlış tahminde bulanıklık azalır: 28 -> 22 -> 16 -> 10 -> 5 -> 0
+    const blur = Math.max(0, 28 - guesses.length * 5);
+    img.style.filter = `blur(${blur}px)`;
+  }
+});
+</script>
+</body>
+</html>

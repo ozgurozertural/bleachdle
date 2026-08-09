@@ -1,0 +1,387 @@
+{
+  "Ichigo_Kurosaki": {
+    "hair": "Orange",
+    "age": 15
+  },
+  "Rukia_Kuchiki": {
+    "hair": "Black",
+    "age": 150
+  },
+  "Renji_Abarai": {
+    "hair": "Red",
+    "age": 170
+  },
+  "Orihime_Inoue": {
+    "hair": "Orange",
+    "age": 15
+  },
+  "Uryū_Ishida": {
+    "hair": "Black",
+    "age": 15
+  },
+  "Yasutora_Sado": {
+    "hair": "Brown",
+    "age": 15
+  },
+  "Kisuke_Urahara": {
+    "hair": "Blonde",
+    "age": 200
+  },
+  "Yoruichi_Shihōin": {
+    "hair": "Purple",
+    "age": 200
+  },
+  "Isshin_Kurosaki": {
+    "hair": "Black",
+    "age": 200
+  },
+  "Kon": {
+    "hair": "Yellow"
+  },
+  "Shunsui_Kyōraku": {
+    "hair": "Brown",
+    "age": 400
+  },
+  "Sōsuke_Aizen": {
+    "hair": "Brown",
+    "age": 200
+  },
+  "Rōjūrō_Ōtoribashi": {
+    "hair": "Blonde",
+    "age": 200
+  },
+  "Retsu_Unohana": {
+    "hair": "Black",
+    "age": 800
+  },
+  "Sajin_Komamura": {
+    "hair": "Brown"
+  },
+  "Shinji_Hirako": {
+    "hair": "Blonde",
+    "age": 200
+  },
+  "Byakuya_Kuchiki": {
+    "hair": "Black",
+    "age": 150
+  },
+  "Sui_Feng": {
+    "hair": "Black",
+    "age": 200
+  },
+  "Kaname_Tōsen": {
+    "hair": "Purple",
+    "age": 200
+  },
+  "Tōshirō_Hitsugaya": {
+    "hair": "White",
+    "age": 100
+  },
+  "Kenpachi_Zaraki": {
+    "hair": "Black",
+    "age": 200
+  },
+  "Mayuri_Kurotsuchi": {
+    "hair": "Blue",
+    "age": 300
+  },
+  "Jūshirō_Ukitake": {
+    "hair": "White",
+    "age": 400
+  },
+  "Kensei_Muguruma": {
+    "hair": "Grey",
+    "age": 200
+  },
+  "Genryūsai_Shigekuni_Yamamoto": {
+    "hair": "White",
+    "age": 2100
+  },
+  "Nanao_Ise": {
+    "hair": "Black",
+    "age": 100
+  },
+  "Momo_Hinamori": {
+    "hair": "Black",
+    "age": 150
+  },
+  "Izuru_Kira": {
+    "hair": "Blonde",
+    "age": 150
+  },
+  "Isane_Kotetsu": {
+    "hair": "White"
+  },
+  "Iba_Tetsuzaemon": {
+    "hair": "Black"
+  },
+  "Marechiyo_Ōmaeda": {
+    "hair": "Black"
+  },
+  "Hisagi_Shūhei": {
+    "hair": "Black",
+    "age": 100
+  },
+  "Rangiku_Matsumoto": {
+    "hair": "Orange",
+    "age": 100
+  },
+  "Yachiru_Kusajishi": {
+    "hair": "Pink"
+  },
+  "Nemu_Kurotsuchi": {
+    "hair": "Black"
+  },
+  "Ikkaku_Madarame": {
+    "hair": "None",
+    "age": 100
+  },
+  "Yumichika_Ayasegawa": {
+    "hair": "Black"
+  },
+  "Hanatarō_Yamada": {
+    "hair": "Black"
+  },
+  "Ganju_Shiba": {
+    "hair": "Black"
+  },
+  "Kūkaku_Shiba": {
+    "hair": "Black"
+  },
+  "Kaien_Shiba": {
+    "hair": "Black"
+  },
+  "Jidanbō_Ikkanzaka": {
+    "hair": "Black"
+  },
+  "Hachigen_Ushōda": {
+    "hair": "Blonde"
+  },
+  "Lisa_Yadōmaru": {
+    "hair": "Black"
+  },
+  "Love_Aikawa": {
+    "hair": "Black"
+  },
+  "Mashiro_Kuna": {
+    "hair": "Green"
+  },
+  "Coyote_Starrk": {
+    "hair": "Brown"
+  },
+  "Baraggan_Louisenbairn": {
+    "hair": "None"
+  },
+  "Tier_Harribel": {
+    "hair": "Blonde"
+  },
+  "Ulquiorra_Cifer": {
+    "hair": "Black"
+  },
+  "Nnoitra_Gilga": {
+    "hair": "Black"
+  },
+  "Grimmjow_Jaegerjaquez": {
+    "hair": "Blue"
+  },
+  "Zommari_Rureaux": {
+    "hair": "Black"
+  },
+  "Szayelaporro_Granz": {
+    "hair": "Pink"
+  },
+  "Aaroniero_Arruruerie": {
+    "hair": "Black"
+  },
+  "Yammy_Llargo": {
+    "hair": "Black"
+  },
+  "Nelliel_Tu_Odelschwanck": {
+    "hair": "Green"
+  },
+  "Wonderweiss_Margela": {
+    "hair": "Blonde"
+  },
+  "Findorr_Calius": {
+    "hair": "Blonde"
+  },
+  "Cirucci_Sanderwicci": {
+    "hair": "Purple"
+  },
+  "Gantenbainne_Mosqueda": {
+    "hair": "Orange"
+  },
+  "Luppi_Antenor": {
+    "hair": "Purple"
+  },
+  "Kūgo_Ginjō": {
+    "hair": "Black"
+  },
+  "Shūkurō_Tsukishima": {
+    "hair": "Black"
+  },
+  "Giriko_Kutsuzawa": {
+    "hair": "Grey"
+  },
+  "Jackie_Tristan": {
+    "hair": "Black"
+  },
+  "Yukio_Hans_Vorarlberna": {
+    "hair": "Blonde"
+  },
+  "Riruka_Dokugamine": {
+    "hair": "Red"
+  },
+  "Yhwach": {
+    "hair": "Black",
+    "age": 1200
+  },
+  "Jugram_Haschwalth": {
+    "hair": "Blonde",
+    "age": 1000
+  },
+  "Bazz_B": {
+    "hair": "Red"
+  },
+  "Cang_Du": {
+    "hair": "Black"
+  },
+  "Bambietta_Basterbine": {
+    "hair": "Black"
+  },
+  "Candice_Catnipp": {
+    "hair": "Green"
+  },
+  "Giselle_Gewelle": {
+    "hair": "Green"
+  },
+  "Meninas_McAllon": {
+    "hair": "Pink"
+  },
+  "Liltotto_Lamperd": {
+    "hair": "Blonde"
+  },
+  "PePe_Waccabrada": {
+    "hair": "Purple"
+  },
+  "Robert_Accutrone": {
+    "hair": "White"
+  },
+  "NaNaNa_Najahkoop": {
+    "hair": "Blonde"
+  },
+  "Berenice_Gabrielli": {
+    "hair": "Orange"
+  },
+  "Driscoll_Berci": {
+    "hair": "Black"
+  },
+  "BG9": {
+    "hair": "None"
+  },
+  "Mask_De_Masculine": {
+    "hair": "None"
+  },
+  "Gremmy_Thoumeaux": {
+    "hair": "Blonde"
+  },
+  "Quilge_Opie": {
+    "hair": "Blonde"
+  },
+  "Gerard_Valkyrie": {
+    "hair": "Blonde"
+  },
+  "Askin_Nakk_Le_Vaar": {
+    "hair": "White"
+  },
+  "Lille_Barro": {
+    "hair": "White"
+  },
+  "Pernida_Parnkgjas": {
+    "hair": "None"
+  },
+  "Nianzol_Weizol": {
+    "hair": "Blonde"
+  },
+  "Ryūken_Ishida": {
+    "hair": "White",
+    "age": 45
+  },
+  "Karin_Kurosaki": {
+    "hair": "Black",
+    "age": 11
+  },
+  "Yuzu_Kurosaki": {
+    "hair": "Blonde",
+    "age": 11
+  },
+  "Sōken_Ishida": {
+    "hair": "White"
+  },
+  "Ganryū": {
+    "hair": "Black"
+  },
+  "Chōjirō_Sasakibe": {
+    "hair": "Brown"
+  },
+  "Äs_Nödt": {
+    "hair": "White"
+  },
+  "Gin_Ichimaru": {
+    "hair": "White",
+    "race": "Shinigami",
+    "location": "Soul Society"
+  },
+  "Dordoni_Alessandro_Del_Socaccio": {
+    "hair": "Black"
+  },
+  "Ichibē_Hyōsube": {
+    "hair": "Black"
+  },
+  "Ōetsu_Nimaiya": {
+    "hair": "Black"
+  },
+  "Kirio_Hikifune": {
+    "hair": "Blonde"
+  },
+  "Tenjirō_Kirinji": {
+    "hair": "Blonde"
+  },
+  "Senjumaru_Shutara": {
+    "hair": "Black"
+  },
+  "Tessai_Tsukabishi": {
+    "hair": "Black"
+  },
+  "Ururu_Tsumugiya": {
+    "hair": "Black",
+    "age": 12
+  },
+  "Jinta_Hanakari": {
+    "hair": "Red",
+    "age": 12
+  },
+  "Tatsuki_Arisawa": {
+    "hair": "Black",
+    "age": 15
+  },
+  "Keigo_Asano": {
+    "hair": "Brown",
+    "age": 15
+  },
+  "Mizuiro_Kojima": {
+    "hair": "Black",
+    "age": 15
+  },
+  "Chizuru_Honshō": {
+    "hair": "Red",
+    "age": 16
+  },
+  "Don_Kanonji": {
+    "hair": "Black"
+  },
+  "Masaki_Kurosaki": {
+    "hair": "Orange",
+    "age": 28
+  }
+}

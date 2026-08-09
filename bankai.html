@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bleachdle — Bankai Mode</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><span class="kanji">卍</span><h1>BLEACHDLE</h1></div>
+  <button id="theme-toggle" class="theme-toggle">🌓</button>
+</header>
+
+<main class="game-page">
+  <a class="back-link" href="index.html">← Ana menü</a>
+  <h2 class="game-title">BANKAI MODE</h2>
+  <p class="game-subtitle">Bu Bankai / Shikai / Resurrección kime ait?</p>
+
+  <div class="mode-switch">
+    <button class="active" data-mode="daily">Günün bankai'si</button>
+    <button data-mode="free">Serbest oyun</button>
+  </div>
+
+  <div id="quote-display" class="quote-display">Yükleniyor...</div>
+
+  <div id="bankai-hint-slot"></div>
+
+  <div class="search-box">
+    <input id="search" type="text" autocomplete="off" placeholder="Karakter adı yazın..." />
+    <div id="suggestions" class="suggestions"></div>
+  </div>
+
+  <div id="result"></div>
+  <div id="attempts" class="attempts-info"></div>
+</main>
+
+<footer class="site-footer">
+  <p>Fan proje · <a href="https://bleach.fandom.com" target="_blank" rel="noopener">Bleach Wiki</a></p>
+</footer>
+
+<script src="js/theme.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/data.js"></script>
+<script src="js/game-core.js"></script>
+<script src="js/simple-mode.js"></script>
+<script>
+const HINT_AT = 5;
+const BANKAI = fetch('data/bankai.json').then(r => r.json()).catch(() => ({}));
+initSimpleMode({
+  modeKey: 'bankai',
+  maxGuesses: 8,
+  pool: async (chars) => {
+    const b = await BANKAI;
+    return chars.filter(c => b[c.id]);
+  },
+  loadPrompt: async (answer) => {
+    const b = (await BANKAI)[answer.id];
+    const el = document.getElementById('quote-display');
+    document.getElementById('bankai-hint-slot').innerHTML = '';
+    if (!b) { el.innerHTML = `<em>Bu karakter için bankai verisi yok.</em>`; return false; }
+    el.innerHTML = `
+      <div style="font-family:var(--font-display);letter-spacing:0.15em;font-size:1.6rem;color:var(--accent);margin-bottom:0.5rem;text-shadow:0 0 20px var(--accent-glow)">
+        ${b.name || '???'}
+      </div>
+      <div style="font-size:0.95rem;color:var(--text-muted);font-style:normal">
+        ${b.type || ''}${b.ability ? ' · ' + b.ability : ''}
+      </div>`;
+    return true;
+  },
+  onGuess: (guesses, answer, finished) => {
+    // 5. yanlış tahminden sonra karakterin görseli ipucu olarak açılır (finish değilse)
+    if (!finished && guesses.length >= HINT_AT && answer.image) {
+      const slot = document.getElementById('bankai-hint-slot');
+      if (!slot.innerHTML) {
+        slot.innerHTML = `
+          <div class="bankai-hint-label">◈ SON İPUCU ◈</div>
+          <div class="bankai-hint">
+            <img src="${answer.image}" alt="hint" style="filter:blur(4px)">
+          </div>
+        `;
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>

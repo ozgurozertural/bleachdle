@@ -1,0 +1,121 @@
+/* Bleachdle - iki tema: Soul Society (light) ve Hueco Mundo (dark) */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;500;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root, [data-theme="light"] {
+  /* Soul Society: sumi ink, seireitei white, kimono red */
+  --bg: #efe9dc;
+  --bg-alt: #fdfaf3;
+  --bg-panel: rgba(255, 253, 247, 0.85);
+  --bg-panel-solid: #fbf7ed;
+  --border: #d8ceb5;
+  --border-strong: #b09979;
+  --text: #1a1410;
+  --text-muted: #6c6154;
+  --accent: #c8102e;
+  --accent-2: #7a0a1c;
+  --accent-hover: #a50c25;
+  --accent-glow: rgba(200, 16, 46, 0.35);
+  --kanji: #c8102e;
+  --shadow-sm: 0 2px 6px rgba(90, 60, 30, 0.08);
+  --shadow: 0 8px 24px rgba(90, 60, 30, 0.12);
+  --shadow-lg: 0 20px 50px rgba(90, 60, 30, 0.18);
+
+  --correct: #3aa964;
+  --correct-bg: linear-gradient(135deg, #a3e2b8 0%, #74cc93 100%);
+  --correct-border: #2e8e51;
+
+  --partial: #e0a020;
+  --partial-bg: linear-gradient(135deg, #ffde9e 0%, #f5c85a 100%);
+  --partial-border: #b17d10;
+
+  --wrong: #c14040;
+  --wrong-bg: linear-gradient(135deg, #f3b6b6 0%, #e88585 100%);
+  --wrong-border: #9c2828;
+
+  --bg-image:
+    radial-gradient(ellipse at top left, rgba(200,16,46,0.06), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(200,16,46,0.04), transparent 55%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='%23c8102e' fill-opacity='0.045' font-family='serif' font-size='90'><text x='30' y='90'>死</text><text x='240' y='150'>神</text><text x='80' y='260'>斬</text><text x='260' y='340'>魄</text><text x='40' y='400'>刀</text></g></svg>");
+
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-jp: 'Noto Sans JP', 'Zen Kaku Gothic Antique', sans-serif;
+}
+
+[data-theme="dark"] {
+  /* Hueco Mundo: void black, arrancar white, blood purple */
+  --bg: #08050d;
+  --bg-alt: #120a1c;
+  --bg-panel: rgba(23, 15, 34, 0.7);
+  --bg-panel-solid: #17102a;
+  --border: #3d2a52;
+  --border-strong: #5a3d78;
+  --text: #ece0f5;
+  --text-muted: #a08db8;
+  --accent: #b666ff;
+  --accent-2: #6b1fb3;
+  --accent-hover: #d094ff;
+  --accent-glow: rgba(182, 102, 255, 0.5);
+  --kanji: #d4a5ff;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow: 0 8px 30px rgba(107, 31, 179, 0.35);
+  --shadow-lg: 0 20px 60px rgba(107, 31, 179, 0.5);
+
+  --correct: #4ade80;
+  --correct-bg: linear-gradient(135deg, #1b4d2b 0%, #2d7c47 100%);
+  --correct-border: #4ade80;
+
+  --partial: #fbbf24;
+  --partial-bg: linear-gradient(135deg, #4a380a 0%, #a97c1c 100%);
+  --partial-border: #fbbf24;
+
+  --wrong: #f87171;
+  --wrong-bg: linear-gradient(135deg, #4a1616 0%, #8a2828 100%);
+  --wrong-border: #f87171;
+
+  --bg-image:
+    radial-gradient(ellipse at top left, rgba(182,102,255,0.15), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(107,31,179,0.15), transparent 55%),
+    radial-gradient(circle at 20% 60%, rgba(182,102,255,0.08), transparent 40%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='%23b666ff' fill-opacity='0.06' font-family='serif' font-size='90'><text x='30' y='90'>虚</text><text x='240' y='150'>圏</text><text x='80' y='260'>破</text><text x='260' y='340'>面</text><text x='40' y='400'>王</text></g></svg>");
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  background-image: var(--bg-image);
+  background-attachment: fixed;
+  background-size: auto, auto, 420px 420px;
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  transition: background 0.4s, color 0.4s;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Selection */
+::selection { background: var(--accent); color: #fff; }
