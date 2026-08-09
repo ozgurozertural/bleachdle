@@ -1,63 +1,69 @@
-/* Bleachdle — sumi-e teması.
-   İki tema aynı iki maddeden kurulu: kağıt ve mürekkep. Aydınlıkta washi
-   üstünde sumi, karanlıkta lake üstünde kireç. Rol adları ikisinde de aynı,
-   yalnızca hangi maddenin zemin olduğu değişiyor. */
+/* Bleachdle — mürekkep ve kan.
+   Zemin hâlâ kağıt/mürekkep ikilisi, ama bu bir dövüş serisi: kontrast sert,
+   tipografi ağır, doğru/yanlış renkleri tam doygunlukta. */
 
-@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
 :root, [data-theme="light"] {
-  /* 墨 — washi kağıdı üstünde sumi mürekkebi */
-  --paper: #e5e2d5;
-  --paper-2: #efede3;
-  --paper-3: #f6f4ec;
-  --ink: #15171b;
-  --ink-2: #585b60;
+  /* 昼 — beyazlatılmış kağıt üstünde sumi */
+  --paper: #e7e3d6;
+  --paper-2: #f2efe6;
+  --paper-3: #faf8f1;
+  --ink: #0b0b0d;
+  --ink-2: #4a4c50;
   --ink-3: #65635b;
-  --rule: #c7c2b0;
-  --rule-soft: #d8d3c3;
+  --rule: #b8b2a0;
+  --rule-soft: #cdc7b6;
 
-  --seal: #b32d22;
-  --moss: #4c6b3c;
-  --moss-wash: rgba(76, 107, 60, 0.16);
+  --seal: #c41e15;
+  --correct: #17773a;
+  --correct-ink: #ffffff;
+  --wrong: #b81420;
+  --wrong-ink: #ffffff;
 
-  --grain-opacity: 0.28;
+  --grain-opacity: 0.3;
   --grain-blend: multiply;
-  --avatar-blend: multiply;
+  --hatch-opacity: 0.06;
 }
 
 [data-theme="dark"] {
-  /* 夜 — lake zemin üstünde kireç mürekkebi; roller aynı, maddeler yer değiştirdi */
-  --paper: #101319;
-  --paper-2: #191d26;
-  --paper-3: #212630;
-  --ink: #e7e3d6;
-  --ink-2: #9c9d93;
+  /* 夜 — mürekkep zemin, kireç yazı. Roller aynı, maddeler yer değiştirdi. */
+  --paper: #0c0c0f;
+  --paper-2: #16161b;
+  --paper-3: #1e1e25;
+  --ink: #f4f1e6;
+  --ink-2: #b0aea4;
   --ink-3: #7c7f84;
-  --rule: #2c313c;
-  --rule-soft: #232833;
+  --rule: #34343d;
+  --rule-soft: #26262e;
 
-  --seal: #dd5642;
-  --moss: #8fb267;
-  --moss-wash: rgba(143, 178, 103, 0.15);
+  --seal: #ff3b2f;
+  --correct: #14b85a;
+  --correct-ink: #06210f;
+  --wrong: #e01f2d;
+  --wrong-ink: #ffffff;
 
-  --grain-opacity: 0.16;
+  --grain-opacity: 0.2;
   --grain-blend: screen;
-  --avatar-blend: normal;
+  --hatch-opacity: 0.05;
 }
 
 :root {
-  --font-display: 'Shippori Mincho B1', 'Times New Roman', serif;
+  --font-display: 'Dela Gothic One', 'Arial Black', sans-serif;
   --font-body: 'Zen Kaku Gothic New', system-ui, sans-serif;
 
-  /* Ölçek: başlık ile etiket arası kasten sert — araya ara boy koymuyoruz */
-  --t-hero: clamp(2.3rem, 7vw, 3.7rem);
-  --t-title: 1.55rem;
+  /* Sert sıçrama: dev başlık, küçük etiket, arada hiçbir şey yok */
+  --t-hero: clamp(2.6rem, 8.5vw, 5rem);
+  --t-title: 1.5rem;
   --t-body: 0.95rem;
-  --t-small: 0.82rem;
+  --t-small: 0.84rem;
   --t-label: 0.68rem;
 
-  --tr-label: 0.24em;
-  --measure: 62ch;
+  --tr-label: 0.22em;
+  --measure: 60ch;
+
+  /* Eğik kesim — panellerin ve hücrelerin köşesini kırpan darbe açısı */
+  --slash: 10px;
 }
 
 * { box-sizing: border-box; }
@@ -69,22 +75,32 @@ html, body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-/* Kağıt lifi. Sabit katman, tıklamayı engellemez. */
-body::before {
+/* İki katman: kağıt lifi + eğik tarama (screen-tone). */
+body::before,
+body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
+}
+body::before {
   opacity: var(--grain-opacity);
   mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+body::after {
+  opacity: var(--hatch-opacity);
+  background-image: repeating-linear-gradient(
+    118deg,
+    var(--seal) 0 1px,
+    transparent 1px 7px
+  );
 }
 body > * { position: relative; z-index: 1; }
 
@@ -100,26 +116,25 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--seal);
-  outline-offset: 3px;
+  outline: 3px solid var(--seal);
+  outline-offset: 2px;
 }
 
-::selection { background: var(--seal); color: var(--paper-3); }
+::selection { background: var(--seal); color: #fff; }
 
-::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--rule); }
-::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+::-webkit-scrollbar-thumb:hover { background: var(--seal); }
 
-/* Fırça darbesi ayırıcı — düz çizgi yerine, uçları incelen mürekkep izi */
+/* Yırtık kenar ayırıcı — düz çizgi değil, kesilmiş kağıt payı */
 .brush-rule {
-  height: 3px;
+  height: 5px;
   border: 0;
   margin: 0;
-  background: var(--ink);
-  opacity: 0.5;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='6' viewBox='0 0 1200 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3.4 C 120 1.2, 260 4.6, 420 2.6 S 700 4.9, 860 2.2 S 1080 4.4, 1200 2.8 L 1200 3.6 C 1080 5.2, 900 2.6, 760 4.2 S 460 2.1, 300 4.4 S 90 2.4, 0 4.1 Z' fill='%23000'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='6' viewBox='0 0 1200 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3.4 C 120 1.2, 260 4.6, 420 2.6 S 700 4.9, 860 2.2 S 1080 4.4, 1200 2.8 L 1200 3.6 C 1080 5.2, 900 2.6, 760 4.2 S 460 2.1, 300 4.4 S 90 2.4, 0 4.1 Z' fill='%23000'/%3E%3C/svg%3E");
+  background: var(--seal);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E");
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
 }

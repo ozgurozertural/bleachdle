@@ -18,12 +18,11 @@
 /* Hanko: markanın tamamı bu mühür. Sayfadaki tek doygun kızıl. */
 .brand .kanji {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 800;
+  font-size: 1.3rem;
   line-height: 1;
-  color: var(--seal);
-  border: 2px solid var(--seal);
-  padding: 0.34em 0.3em 0.28em;
+  color: #fff;
+  background: var(--seal);
+  padding: 0.32em 0.34em 0.26em;
   display: inline-block;
 }
 
@@ -69,16 +68,13 @@
 .tagline {
   font-family: var(--font-display);
   font-size: var(--t-hero);
-  font-weight: 400;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin: 0 0 3.5rem;
-  max-width: 16ch;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 3rem;
+  max-width: 14ch;
 }
-.tagline strong {
-  font-weight: 800;
-  color: var(--seal);
-}
+.tagline strong { color: var(--seal); }
 
 .mode-grid {
   display: flex;
@@ -108,7 +104,7 @@
   background: var(--paper-2);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.42s cubic-bezier(0.22, 0.75, 0.2, 1);
+  transition: transform 0.26s cubic-bezier(0.16, 1.1, 0.3, 1);
 }
 .mode-card:hover::before, .mode-card:focus-visible::before { transform: scaleX(1); }
 
@@ -129,8 +125,8 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--t-title);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 .mode-card p {
   margin: 0.25rem 0 0;
@@ -165,8 +161,7 @@
 .stats-summary > div:first-child { padding-left: 0; border-left: none; }
 .stat-val {
   font-family: var(--font-display);
-  font-size: 2.1rem;
-  font-weight: 600;
+  font-size: 2.4rem;
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
@@ -196,9 +191,10 @@
 .game-title {
   font-family: var(--font-display);
   font-size: var(--t-hero);
-  font-weight: 400;
-  line-height: 1.1;
-  margin: 0 0 0.6rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
 }
 .game-subtitle {
   margin: 0 0 2.75rem;
@@ -216,7 +212,7 @@
   position: relative;
   padding: 0 0 0.5rem;
   font-size: var(--t-label);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: var(--tr-label);
   text-transform: uppercase;
   color: var(--ink-3);
@@ -226,11 +222,11 @@
   content: '';
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  height: 2px;
-  background: var(--ink);
+  height: 3px;
+  background: var(--seal);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.28s cubic-bezier(0.22, 0.75, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1.1, 0.3, 1);
 }
 .mode-switch button:hover { color: var(--ink-2); }
 .mode-switch button.active { color: var(--ink); }
@@ -245,15 +241,16 @@
 .search-box input {
   width: 100%;
   padding: 0.7rem 0.1rem;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--ink);
   background: none;
   border: none;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 3px solid var(--rule);
   transition: border-color 0.24s;
 }
-.search-box input::placeholder { color: var(--ink-3); font-family: var(--font-body); font-size: 0.95rem; }
+.search-box input::placeholder { color: var(--ink-3); font-weight: 400; font-size: 0.95rem; }
 .search-box input:focus {
   outline: none;
   border-bottom-color: var(--seal);
@@ -287,7 +284,7 @@
   object-fit: cover;
   filter: grayscale(0.35);
 }
-.suggestion .sname { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+.suggestion .sname { font-weight: 700; font-size: 0.95rem; }
 .suggestion .saff { font-size: var(--t-label); color: var(--ink-3); }
 .img-placeholder {
   width: 40px; height: 40px;
@@ -296,98 +293,113 @@
 }
 
 /* ---------- Tahmin tablosu ----------
-   İmza öğesi. Kutu yok, dolgulu hücre yok: satırlar ince mürekkep
-   çizgileriyle ayrılıyor, doğru sütun yosun mürekkebiyle yıkanıp
-   Japon işaretleme geleneğindeki ○ ile mühürleniyor. */
+   İmza öğesi. Her hücre eğik kesilmiş bir blok: doğru tam doygun yeşil,
+   yanlış kan kırmızısı, ikisi de köşesinde ○ / × taşıyor — renk tek
+   başına anlam taşımıyor. Satır soldan bir darbe gibi giriyor. */
 .guess-table-wrap {
   overflow-x: auto;
   margin-top: 0.5rem;
 }
 .guess-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 4px 4px;
   min-width: 940px;
 }
 .guess-table th {
   font-family: var(--font-body);
   font-size: var(--t-label);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: var(--tr-label);
   text-transform: uppercase;
   color: var(--ink-3);
-  text-align: left;
-  padding: 0 0.7rem 0.7rem;
-  border-bottom: 1px solid var(--rule);
+  text-align: center;
+  padding: 0 0.4rem 0.6rem;
   white-space: nowrap;
 }
-.guess-table th:first-child { padding-left: 0; }
 
 .guess-table td {
   position: relative;
-  padding: 0.9rem 0.7rem;
-  border-bottom: 1px solid var(--rule-soft);
+  padding: 0.55rem 0.5rem;
+  text-align: center;
   font-size: var(--t-small);
+  font-weight: 500;
+  line-height: 1.25;
   color: var(--ink-2);
+  height: 76px;
   vertical-align: middle;
   font-variant-numeric: tabular-nums;
-  animation: inkBleed 0.44s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(var(--col, 0) * 55ms);
+  background: var(--paper-2);
+  clip-path: polygon(var(--slash) 0, 100% 0, 100% calc(100% - var(--slash)), calc(100% - var(--slash)) 100%, 0 100%, 0 var(--slash));
+  animation: strike 0.26s cubic-bezier(0.16, 1.1, 0.3, 1) both;
+  animation-delay: calc(var(--col, 0) * 45ms);
 }
-.guess-table td:first-child { padding-left: 0; }
 
-@keyframes inkBleed {
-  from { opacity: 0; filter: blur(7px); transform: translateY(7px); }
-  to   { opacity: 1; filter: blur(0);   transform: none; }
+/* Darbe: hücre eğik bir kesikten içeri girer, hafif aşar ve oturur */
+@keyframes strike {
+  0%   { opacity: 0; transform: translateX(-14px) skewX(-14deg); }
+  70%  { opacity: 1; transform: translateX(2px)   skewX(2deg); }
+  100% { opacity: 1; transform: none; }
 }
 
 .guess-table td.correct {
-  background: var(--moss-wash);
-  color: var(--ink);
+  background: var(--correct);
+  color: var(--correct-ink);
   font-weight: 700;
 }
-.guess-table td.correct::after {
-  content: '○';
-  position: absolute;
-  top: 0.35rem;
-  right: 0.4rem;
-  font-size: 0.6rem;
-  line-height: 1;
-  color: var(--moss);
+.guess-table td.wrong {
+  background: var(--wrong);
+  color: var(--wrong-ink);
+  font-weight: 700;
 }
-.guess-table td.wrong { color: var(--ink-2); }
+
+/* Renk tek başına anlam taşımasın: köşede ○ / × */
+.guess-table td.correct::after,
+.guess-table td.wrong::after {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.75;
+}
+.guess-table td.correct::after { content: '○'; }
+.guess-table td.wrong::after   { content: '×'; }
 
 .guess-table td.name-cell {
-  font-family: var(--font-display);
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.25;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
-.guess-table td.image-cell { padding-left: 0; width: 76px; }
+.guess-table td.image-cell {
+  background: none;
+  clip-path: none;
+  padding: 0;
+  width: 72px;
+}
 .guess-table td .char-avatar {
-  width: 64px; height: 64px;
+  width: 68px; height: 68px;
   object-fit: cover;
   display: block;
-  filter: grayscale(0.45) contrast(1.05);
-  mix-blend-mode: var(--avatar-blend);
-  transition: filter 0.3s;
+  border: 2px solid var(--ink);
+  transition: transform 0.18s;
 }
-.guess-table tr:hover .char-avatar { filter: grayscale(0) contrast(1); }
+.guess-table tr:hover .char-avatar { transform: scale(1.06); }
 .guess-table td .char-avatar.img-missing {
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--paper-2);
-  border: 1px solid var(--rule-soft);
   color: var(--ink-3);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .guess-table td .arrow {
-  margin-left: 0.35rem;
-  font-size: 0.9rem;
-  color: var(--seal);
+  margin-left: 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 /* ---------- Sonuç ---------- */
@@ -397,15 +409,19 @@
   margin: 2.5rem 0 0;
   padding: 2rem 2.25rem;
   background: var(--paper-2);
-  border: 1px solid var(--rule);
-  animation: inkBleed 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  border-left: 6px solid var(--seal);
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  animation: strike 0.32s cubic-bezier(0.16, 1.1, 0.3, 1) both;
 }
 .result-panel h2 {
   margin: 0 0 0.6rem;
   font-family: var(--font-display);
-  font-size: var(--t-title);
-  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1;
+  text-transform: uppercase;
 }
+.result-panel.win h2 { color: var(--correct); }
+.result-panel.lose h2 { color: var(--wrong); }
 .result-panel p { margin: 0 0 0.35rem; color: var(--ink-2); font-size: var(--t-small); }
 .result-panel strong { color: var(--ink); font-weight: 700; }
 .result-panel .result-stats {
@@ -421,12 +437,11 @@
   top: 1.5rem;
   right: 1.75rem;
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 1.15rem;
   line-height: 1;
-  padding: 0.34em 0.3em 0.28em;
-  border: 2px solid currentColor;
-  transform: rotate(-7deg);
+  padding: 0.32em 0.3em 0.26em;
+  border: 3px solid currentColor;
+  transform: rotate(-8deg);
 }
 .result-panel.win::after { content: '正'; color: var(--seal); }
 .result-panel.lose::after { content: '終'; color: var(--ink-3); }
@@ -486,20 +501,19 @@
   max-width: var(--measure);
   margin: 0 0 2.5rem;
   padding: 0 0 0 1.75rem;
-  border-left: 2px solid var(--seal);
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 400;
-  line-height: 1.55;
+  border-left: 5px solid var(--seal);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 .quote-display em { color: var(--ink-3); font-size: 0.95rem; }
 
 /* ---------- Bankai ---------- */
 .release-name {
   font-family: var(--font-display);
-  font-size: 1.9rem;
-  font-weight: 600;
-  line-height: 1.2;
+  font-size: 2rem;
+  line-height: 1.15;
+  text-transform: uppercase;
   margin-bottom: 0.3rem;
 }
 .release-meta {
@@ -509,8 +523,8 @@
 
 .bankai-hint {
   margin: 0 0 1.5rem;
-  filter: grayscale(0.5);
-  animation: inkBleed 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  filter: grayscale(0.35) contrast(1.1);
+  animation: strike 0.3s cubic-bezier(0.16, 1.1, 0.3, 1) both;
 }
 .bankai-hint img {
   max-width: 220px;
@@ -532,9 +546,8 @@
 }
 .attempts-info strong {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--ink);
+  font-size: 1.3rem;
+  color: var(--seal);
 }
 
 /* ---------- Dar ekran ---------- */
