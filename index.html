@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bleachdle — Bleach karakter tahmin oyunu</title>
+<title data-i18n="title.index">Bleachdle — Bleach karakter tahmin oyunu</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon.ico" sizes="any">
 <link rel="manifest" href="manifest.json">
@@ -13,59 +13,68 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="index.html" aria-label="Ana sayfa">
+  <a class="brand" href="index.html" data-i18n-aria="brand.aria">
     <span class="kanji">死</span><h1>BLEACHDLE</h1>
   </a>
-  <nav class="mode-nav" aria-label="Modlar">
+  <nav class="mode-nav" data-i18n-aria="nav.aria">
     <a href="classic.html"><span lang="en">Classic</span></a>
     <a href="quote.html"><span lang="en">Quote</span></a>
     <a href="splash.html"><span lang="en">Splash</span></a>
     <a href="bankai.html"><span lang="en">Bankai</span></a>
   </nav>
-  <button id="theme-toggle" class="theme-toggle" aria-label="Tema değiştir">🌓</button>
+  <div class="lang-select">
+    <button class="lang-btn" aria-haspopup="listbox" aria-expanded="false"
+            data-i18n="lang.short" data-i18n-aria="lang.aria">TR</button>
+    <ul class="lang-menu" role="listbox">
+      <li><button role="option" data-lang="tr" data-i18n="lang.tr">Türkçe</button></li>
+      <li><button role="option" data-lang="en" data-i18n="lang.en">English</button></li>
+    </ul>
+  </div>
+  <button id="theme-toggle" class="theme-toggle" data-i18n-aria="theme.aria">🌓</button>
 </header>
 
 <main class="hub">
-  <p class="tagline">Her gün yeni bir <strong>Bleach</strong> karakteri. Kaç denemede bileceksin?</p>
+  <p class="tagline" data-i18n-html="tagline"></p>
 
   <div class="mode-grid">
     <a class="mode-card" href="classic.html">
       <div class="mode-icon">名</div>
       <h2 lang="en">Classic</h2>
-      <p>Karakter tahmin et. Her denemede özellik ipuçları al.</p>
+      <p data-i18n="card.classic"></p>
     </a>
     <a class="mode-card" href="quote.html">
       <div class="mode-icon">言</div>
       <h2 lang="en">Quote</h2>
-      <p>Ünlü bir replikten karakteri bul.</p>
+      <p data-i18n="card.quote"></p>
     </a>
     <a class="mode-card" href="splash.html">
       <div class="mode-icon">影</div>
       <h2 lang="en">Splash</h2>
-      <p>Bulanık görsel her denemede biraz daha netleşir.</p>
+      <p data-i18n="card.splash"></p>
     </a>
     <a class="mode-card" href="bankai.html">
       <div class="mode-icon">卍</div>
       <h2 lang="en">Bankai</h2>
-      <p>Bankai/Shikai formundan sahibini tahmin et.</p>
+      <p data-i18n="card.bankai"></p>
     </a>
   </div>
 
   <section class="stats-panel">
-    <h3>İstatistiklerin</h3>
+    <h3 data-i18n="stats.title"></h3>
     <div id="stats-summary" class="stats-summary">
-      <div><span class="stat-val" data-stat="streak">0</span><span class="stat-label">Seri</span></div>
-      <div><span class="stat-val" data-stat="maxStreak">0</span><span class="stat-label">Rekor</span></div>
-      <div><span class="stat-val" data-stat="played">0</span><span class="stat-label">Oyun</span></div>
-      <div><span class="stat-val" data-stat="winRate">0%</span><span class="stat-label">Kazanma</span></div>
+      <div><span class="stat-val" data-stat="streak">0</span><span class="stat-label" data-i18n="stats.streak"></span></div>
+      <div><span class="stat-val" data-stat="maxStreak">0</span><span class="stat-label" data-i18n="stats.best"></span></div>
+      <div><span class="stat-val" data-stat="played">0</span><span class="stat-label" data-i18n="stats.played"></span></div>
+      <div><span class="stat-val" data-stat="winRate">0%</span><span class="stat-label" data-i18n="stats.winrate"></span></div>
     </div>
   </section>
 </main>
 
 <footer class="site-footer">
-  <p>Fan proje · Karakter verisi ve görseller <a href="https://bleach.fandom.com" target="_blank" rel="noopener">Bleach Wiki</a>'den · Tite Kubo &copy; Shueisha</p>
+  <p data-i18n-html="footer.long"></p>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/stats.js"></script>
 <script>renderStatsSummary(document.getElementById('stats-summary'));</script>

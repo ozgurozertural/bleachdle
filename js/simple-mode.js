@@ -68,10 +68,11 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
   }
 
   function updateAttempts() {
-    attemptsEl.innerHTML = `
-      Kalan hak: <strong>${state.maxGuesses - state.guesses.length}</strong> / ${state.maxGuesses}
-      ${state.guesses.length ? '· Denemeler: ' + state.guesses.map(g => g.name).join(', ') : ''}
-    `;
+    attemptsEl.innerHTML =
+      t('attempts', { left: state.maxGuesses - state.guesses.length, max: state.maxGuesses }) +
+      (state.guesses.length
+        ? ' ' + t('attempts.tried', { names: state.guesses.map(g => g.name).join(', ') })
+        : '');
   }
 
   // replay: kayıttan geri yükleme — skor yeniden işlenmez.
@@ -84,16 +85,16 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
       : getModeStats(modeKey);
     resultEl.innerHTML = `
       <div class="result-panel ${won ? 'win' : 'lose'}">
-        <h2>${won ? 'Bildin' : 'Kaybettin'}</h2>
+        <h2>${won ? t('result.win') : t('result.lose')}</h2>
         <p>${won
-          ? `<strong>${state.answer.name}</strong>'i <strong>${state.guesses.length}</strong> denemede buldun.`
-          : `Doğru cevap: <strong>${state.answer.name}</strong>`}</p>
+          ? t('result.found', { name: state.answer.name, n: state.guesses.length })
+          : t('result.answer', { name: state.answer.name })}</p>
         <p class="result-stats">
-          Seri: ${stats.streak} · Rekor: ${stats.maxStreak} · Oyun: ${stats.played}
+          ${t('result.stats', { streak: stats.streak, best: stats.maxStreak, played: stats.played })}
         </p>
         <div class="result-actions">
-          <button id="again">${state.mode === 'daily' ? 'Serbest oyuna geç' : 'Yeni oyun'}</button>
-          <a class="secondary" href="index.html">Ana menü</a>
+          <button id="again">${state.mode === 'daily' ? t('result.free') : t('result.again')}</button>
+          <a class="secondary" href="index.html">${t('result.home')}</a>
         </div>
       </div>
     `;

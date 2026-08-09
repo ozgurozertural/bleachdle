@@ -3,19 +3,14 @@
   const chars = window.CHARACTERS;
   if (!chars.length) {
     document.getElementById('result').innerHTML =
-      '<div class="result-panel lose"><h2>Karakter verisi yok</h2><p>data/characters.json bulunamadı. Scraper çalıştı mı?</p></div>';
+      `<div class="result-panel lose"><h2>${t('data.none.title')}</h2><p>${t('data.none.body')}</p></div>`;
     return;
   }
 
+  // Sıra classic.html'deki <thead> ile eşleşmeli; başlık metinleri orada.
   const COLUMNS = [
-    { key: 'İsim',      field: 'name'      },
-    { key: 'Cinsiyet',  field: 'gender'    },
-    { key: 'Irk',       field: 'race'      },
-    { key: 'Yaş',       field: 'age_group' },
-    { key: 'Boy',       field: 'height_cm' },
-    { key: 'Saç Rengi', field: 'hair'      },
-    { key: 'Bölge',     field: 'location'  },
-    { key: 'İlk Arc',   field: 'first_arc' },
+    { field: 'name' }, { field: 'gender' }, { field: 'race' }, { field: 'age_group' },
+    { field: 'height_cm' }, { field: 'hair' }, { field: 'location' }, { field: 'first_arc' },
   ];
 
   const state = {
@@ -86,18 +81,18 @@
       : getModeStats('classic');
     resultEl.innerHTML = `
       <div class="result-panel ${won ? 'win' : 'lose'}">
-        <h2>${won ? 'Bildin' : 'Kaybettin'}</h2>
+        <h2>${won ? t('result.win') : t('result.lose')}</h2>
         <p>${won
-          ? `<strong>${state.answer.name}</strong>'i <strong>${state.guesses.length}</strong> denemede buldun.`
-          : `Doğru cevap: <strong>${state.answer.name}</strong>`}</p>
+          ? t('result.found', { name: state.answer.name, n: state.guesses.length })
+          : t('result.answer', { name: state.answer.name })}</p>
         <p class="result-stats">
-          Seri: ${stats.streak} · Rekor: ${stats.maxStreak} · Oyun: ${stats.played}
+          ${t('result.stats', { streak: stats.streak, best: stats.maxStreak, played: stats.played })}
         </p>
         <div class="result-actions">
           ${state.mode === 'free'
-            ? `<button id="again">Yeni oyun</button>`
-            : `<button id="again" class="secondary">Serbest oyuna geç</button>`}
-          <a class="secondary" href="index.html">Ana menü</a>
+            ? `<button id="again">${t('result.again')}</button>`
+            : `<button id="again" class="secondary">${t('result.free')}</button>`}
+          <a class="secondary" href="index.html">${t('result.home')}</a>
         </div>
       </div>
     `;

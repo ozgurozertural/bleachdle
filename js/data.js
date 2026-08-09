@@ -22,6 +22,6 @@ window.CHARACTERS_READY = Promise.all([
     return list;
   })
   .catch(e => {
-    console.error('Karakter verisi yüklenemedi:', e);
+    console.error(t('data.error'), e);
     return [];
   });

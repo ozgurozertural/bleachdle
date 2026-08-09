@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bleachdle — Quote Mode</title>
+<title data-i18n="title.quote">Bleachdle — Quote Mode</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon.ico" sizes="any">
 <link rel="manifest" href="manifest.json">
@@ -13,33 +13,41 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="index.html" aria-label="Ana sayfa">
+  <a class="brand" href="index.html" data-i18n-aria="brand.aria">
     <span class="kanji">言</span><h1>BLEACHDLE</h1>
   </a>
-  <nav class="mode-nav" aria-label="Modlar">
+  <nav class="mode-nav" data-i18n-aria="nav.aria">
     <a href="classic.html"><span lang="en">Classic</span></a>
     <a href="quote.html" aria-current="page"><span lang="en">Quote</span></a>
     <a href="splash.html"><span lang="en">Splash</span></a>
     <a href="bankai.html"><span lang="en">Bankai</span></a>
   </nav>
-  <button id="theme-toggle" class="theme-toggle" aria-label="Tema değiştir">🌓</button>
+  <div class="lang-select">
+    <button class="lang-btn" aria-haspopup="listbox" aria-expanded="false"
+            data-i18n="lang.short" data-i18n-aria="lang.aria">TR</button>
+    <ul class="lang-menu" role="listbox">
+      <li><button role="option" data-lang="tr" data-i18n="lang.tr">Türkçe</button></li>
+      <li><button role="option" data-lang="en" data-i18n="lang.en">English</button></li>
+    </ul>
+  </div>
+  <button id="theme-toggle" class="theme-toggle" data-i18n-aria="theme.aria">🌓</button>
 </header>
 
 <main class="game-page">
-  <a class="back-link" href="index.html">← Ana menü</a>
+  <a class="back-link" href="index.html" data-i18n="back">← Ana menü</a>
   <h2 class="game-title">QUOTE MODE</h2>
-  <p class="game-subtitle">Bu repliği kim söyledi?</p>
+  <p class="game-subtitle" data-i18n="sub.quote"></p>
 
   <div class="mode-switch">
-    <button class="active" data-mode="daily">Günün repliği</button>
-    <button data-mode="free">Serbest oyun</button>
+    <button class="active" data-mode="daily" data-i18n="daily.quote">Günün repliği</button>
+    <button data-mode="free" data-i18n="free">Serbest oyun</button>
   </div>
 
-  <div id="quote-display" class="quote-display">Yükleniyor...</div>
+  <div id="quote-display" class="quote-display" data-i18n="quote.loading"></div>
   <div id="quote-hint-slot"></div>
 
   <div class="search-box">
-    <input id="search" type="text" autocomplete="off" placeholder="Karakter adı yazın..." />
+    <input id="search" type="text" autocomplete="off" data-i18n-placeholder="search.placeholder" placeholder="Karakter adı yazın..." />
     <div id="suggestions" class="suggestions"></div>
   </div>
 
@@ -48,9 +56,10 @@
 </main>
 
 <footer class="site-footer">
-  <p>Fan proje · <a href="https://bleach.fandom.com" target="_blank" rel="noopener">Bleach Wiki</a></p>
+  <p data-i18n-html="footer.short"></p>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/stats.js"></script>
 <script src="js/game-core.js"></script>
@@ -72,12 +81,14 @@ initSimpleMode({
     return chars.filter(c => q[c.id] && src[c.id]);
   },
   loadPrompt: async (answer) => {
-    const q = (await QUOTES)[answer.id];
+    // İngilizcede repliğin wiki'deki aslı gösterilir; Türkçe çeviri quotes.json'da.
+    const [q, src] = await Promise.all([QUOTES, SOURCES]);
+    const text = LANG === 'en' ? (src[answer.id] || {}).en : q[answer.id];
     document.getElementById('quote-hint-slot').innerHTML = '';
-    document.getElementById('quote-display').innerHTML = q
-      ? `“${q}”`
-      : `<em>Bu karakter için replik verisi yok. Başka bir karakter seçiliyor...</em>`;
-    return !!q;
+    document.getElementById('quote-display').innerHTML = text
+      ? `“${text}”`
+      : `<em>${t('quote.none')}</em>`;
+    return !!text;
   },
   onGuess: async (guesses, answer, finished) => {
     // Son 3 hak kalınca repliğin hangi bölümde geçtiği açılır.
@@ -86,11 +97,10 @@ initSimpleMode({
     if (slot.innerHTML) return;
     const s = (await SOURCES)[answer.id];
     if (!s) return;
-    const kaynak = s.kind === 'anime' ? 'Anime' : 'Manga';
     slot.innerHTML = `
       <div class="quote-hint">
-        <span class="quote-hint-label">İpucu</span>
-        <span class="quote-hint-body">${kaynak}, bölüm <strong>${s.chapter}</strong></span>
+        <span class="quote-hint-label">${t('hint')}</span>
+        <span class="quote-hint-body">${t(s.kind === 'anime' ? 'hint.anime' : 'hint.manga', { ch: s.chapter })}</span>
       </div>`;
   }
 });</script>

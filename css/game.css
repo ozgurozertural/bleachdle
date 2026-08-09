@@ -86,6 +86,50 @@
   color: var(--ink-2);
 }
 
+/* Dil seçici — sağ üstte açılır liste */
+.lang-select { position: relative; }
+.lang-btn {
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.7rem;
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  transition: color 0.16s, border-color 0.16s;
+}
+.lang-btn::after { content: ' ▾'; opacity: 0.6; }
+.lang-btn:hover, .lang-select.open .lang-btn { color: var(--ink); border-color: var(--ink-3); }
+
+.lang-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 5px);
+  z-index: 60;
+  display: none;
+  min-width: 9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+}
+.lang-select.open .lang-menu { display: block; }
+.lang-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  font-size: var(--t-small);
+  color: var(--ink-2);
+  transition: color 0.14s, background 0.14s;
+}
+.lang-menu button:hover { background: var(--paper-3); color: var(--ink); }
+.lang-menu button[aria-selected="true"] {
+  color: var(--on-seal);
+  background: var(--seal);
+}
+
 .theme-toggle {
   font-family: var(--font-display);
   font-size: 0;
