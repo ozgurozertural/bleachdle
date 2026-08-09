@@ -334,7 +334,8 @@
   },
   "Pernida_Parnkgjas": {
     "hair": "None",
-    "age_group": "1000+"
+    "age_group": "1000+",
+    "gender": "Male"
   },
   "Nianzol_Weizol": {
     "hair": "Blonde"
@@ -361,7 +362,8 @@
     "hair": "Brown"
   },
   "Äs_Nödt": {
-    "hair": "White"
+    "hair": "White",
+    "age_group": "101-1000"
   },
   "Gin_Ichimaru": {
     "hair": "White",
