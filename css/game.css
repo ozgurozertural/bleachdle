@@ -40,8 +40,7 @@
 .mode-nav a {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   font-size: var(--t-label);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -56,21 +55,6 @@
   color: var(--on-seal);
   background: var(--seal);
   border-color: var(--seal);
-}
-.mode-nav kbd {
-  font-family: var(--font-body);
-  font-size: 0.62rem;
-  font-weight: 700;
-  line-height: 1;
-  padding: 0.22em 0.36em;
-  color: var(--ink-2);      /* --ink-3 şerit üstünde 3.44:1'de kalıyordu */
-  border: 1px solid var(--rule);
-}
-.mode-nav a:hover kbd { color: var(--ink); border-color: var(--ink-3); }
-.mode-nav a[aria-current] kbd {
-  color: var(--on-seal);
-  border-color: currentColor;
-  opacity: 0.75;
 }
 
 .brand {
@@ -648,17 +632,4 @@
   .site-header { gap: 0.6rem 0.9rem; margin-bottom: 1.75rem; }
   .brand h1 { display: none; }          /* dar ekranda mühür markayı taşır */
   .mode-nav a { padding: 0.35rem 0.5rem; letter-spacing: 0.06em; }
-  .mode-nav kbd { display: none; }      /* dokunmatikte klavye kısayolu yok */
-  .hub, .game-page { padding: 1.75rem 1.1rem 2.5rem; margin-bottom: 2rem; }
-  .tagline { margin-bottom: 2.5rem; }
-  .mode-card { grid-template-columns: 2.4rem 1fr; gap: 0 1rem; padding: 1.2rem 0.5rem 1.2rem 0.25rem; }
-  .mode-card .mode-icon { font-size: 1.9rem; }
-  .stats-summary { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 0; }
-  .stats-summary > div:nth-child(3) { padding-left: 0; border-left: none; }
-  .stat-val { font-size: 1.7rem; }
-  .guess-table { min-width: 760px; }
-  .guess-table td { padding: 0.7rem 0.5rem; }
-  .guess-table td .char-avatar { width: 52px; height: 52px; }
-  .result-panel { padding: 1.5rem 1.4rem; }
-  .result-panel::after { top: 1.1rem; right: 1.1rem; }
-}
+  
