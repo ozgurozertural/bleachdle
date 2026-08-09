@@ -1,84 +1,63 @@
-/* Bleachdle - iki tema: Soul Society (light) ve Hueco Mundo (dark) */
+/* Bleachdle — sumi-e teması.
+   İki tema aynı iki maddeden kurulu: kağıt ve mürekkep. Aydınlıkta washi
+   üstünde sumi, karanlıkta lake üstünde kireç. Rol adları ikisinde de aynı,
+   yalnızca hangi maddenin zemin olduğu değişiyor. */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;500;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
 
 :root, [data-theme="light"] {
-  /* Soul Society: sumi ink, seireitei white, kimono red */
-  --bg: #efe9dc;
-  --bg-alt: #fdfaf3;
-  --bg-panel: rgba(255, 253, 247, 0.85);
-  --bg-panel-solid: #fbf7ed;
-  --border: #d8ceb5;
-  --border-strong: #b09979;
-  --text: #1a1410;
-  --text-muted: #6c6154;
-  --accent: #c8102e;
-  --accent-2: #7a0a1c;
-  --accent-hover: #a50c25;
-  --accent-glow: rgba(200, 16, 46, 0.35);
-  --kanji: #c8102e;
-  --shadow-sm: 0 2px 6px rgba(90, 60, 30, 0.08);
-  --shadow: 0 8px 24px rgba(90, 60, 30, 0.12);
-  --shadow-lg: 0 20px 50px rgba(90, 60, 30, 0.18);
+  /* 墨 — washi kağıdı üstünde sumi mürekkebi */
+  --paper: #e5e2d5;
+  --paper-2: #efede3;
+  --paper-3: #f6f4ec;
+  --ink: #15171b;
+  --ink-2: #585b60;
+  --ink-3: #65635b;
+  --rule: #c7c2b0;
+  --rule-soft: #d8d3c3;
 
-  --correct: #3aa964;
-  --correct-bg: linear-gradient(135deg, #a3e2b8 0%, #74cc93 100%);
-  --correct-border: #2e8e51;
+  --seal: #b32d22;
+  --moss: #4c6b3c;
+  --moss-wash: rgba(76, 107, 60, 0.16);
 
-  --partial: #e0a020;
-  --partial-bg: linear-gradient(135deg, #ffde9e 0%, #f5c85a 100%);
-  --partial-border: #b17d10;
-
-  --wrong: #c14040;
-  --wrong-bg: linear-gradient(135deg, #f3b6b6 0%, #e88585 100%);
-  --wrong-border: #9c2828;
-
-  --bg-image:
-    radial-gradient(ellipse at top left, rgba(200,16,46,0.06), transparent 55%),
-    radial-gradient(ellipse at bottom right, rgba(200,16,46,0.04), transparent 55%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='%23c8102e' fill-opacity='0.045' font-family='serif' font-size='90'><text x='30' y='90'>死</text><text x='240' y='150'>神</text><text x='80' y='260'>斬</text><text x='260' y='340'>魄</text><text x='40' y='400'>刀</text></g></svg>");
-
-  --font-display: 'Cinzel', 'Times New Roman', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-jp: 'Noto Sans JP', 'Zen Kaku Gothic Antique', sans-serif;
+  --grain-opacity: 0.28;
+  --grain-blend: multiply;
+  --avatar-blend: multiply;
 }
 
 [data-theme="dark"] {
-  /* Hueco Mundo: void black, arrancar white, blood purple */
-  --bg: #08050d;
-  --bg-alt: #120a1c;
-  --bg-panel: rgba(23, 15, 34, 0.7);
-  --bg-panel-solid: #17102a;
-  --border: #3d2a52;
-  --border-strong: #5a3d78;
-  --text: #ece0f5;
-  --text-muted: #a08db8;
-  --accent: #b666ff;
-  --accent-2: #6b1fb3;
-  --accent-hover: #d094ff;
-  --accent-glow: rgba(182, 102, 255, 0.5);
-  --kanji: #d4a5ff;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
-  --shadow: 0 8px 30px rgba(107, 31, 179, 0.35);
-  --shadow-lg: 0 20px 60px rgba(107, 31, 179, 0.5);
+  /* 夜 — lake zemin üstünde kireç mürekkebi; roller aynı, maddeler yer değiştirdi */
+  --paper: #101319;
+  --paper-2: #191d26;
+  --paper-3: #212630;
+  --ink: #e7e3d6;
+  --ink-2: #9c9d93;
+  --ink-3: #7c7f84;
+  --rule: #2c313c;
+  --rule-soft: #232833;
 
-  --correct: #4ade80;
-  --correct-bg: linear-gradient(135deg, #1b4d2b 0%, #2d7c47 100%);
-  --correct-border: #4ade80;
+  --seal: #dd5642;
+  --moss: #8fb267;
+  --moss-wash: rgba(143, 178, 103, 0.15);
 
-  --partial: #fbbf24;
-  --partial-bg: linear-gradient(135deg, #4a380a 0%, #a97c1c 100%);
-  --partial-border: #fbbf24;
+  --grain-opacity: 0.16;
+  --grain-blend: screen;
+  --avatar-blend: normal;
+}
 
-  --wrong: #f87171;
-  --wrong-bg: linear-gradient(135deg, #4a1616 0%, #8a2828 100%);
-  --wrong-border: #f87171;
+:root {
+  --font-display: 'Shippori Mincho B1', 'Times New Roman', serif;
+  --font-body: 'Zen Kaku Gothic New', system-ui, sans-serif;
 
-  --bg-image:
-    radial-gradient(ellipse at top left, rgba(182,102,255,0.15), transparent 55%),
-    radial-gradient(ellipse at bottom right, rgba(107,31,179,0.15), transparent 55%),
-    radial-gradient(circle at 20% 60%, rgba(182,102,255,0.08), transparent 40%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='%23b666ff' fill-opacity='0.06' font-family='serif' font-size='90'><text x='30' y='90'>虚</text><text x='240' y='150'>圏</text><text x='80' y='260'>破</text><text x='260' y='340'>面</text><text x='40' y='400'>王</text></g></svg>");
+  /* Ölçek: başlık ile etiket arası kasten sert — araya ara boy koymuyoruz */
+  --t-hero: clamp(2.3rem, 7vw, 3.7rem);
+  --t-title: 1.55rem;
+  --t-body: 0.95rem;
+  --t-small: 0.82rem;
+  --t-label: 0.68rem;
+
+  --tr-label: 0.24em;
+  --measure: 62ch;
 }
 
 * { box-sizing: border-box; }
@@ -86,36 +65,69 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  background-image: var(--bg-image);
-  background-attachment: fixed;
-  background-size: auto, auto, 420px 420px;
-  color: var(--text);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
   min-height: 100vh;
-  transition: background 0.4s, color 0.4s;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-hover); }
+/* Kağıt lifi. Sabit katman, tıklamayı engellemez. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+body > * { position: relative; z-index: 1; }
+
+a { color: inherit; text-decoration: none; }
 
 button {
   font-family: inherit;
+  font-size: inherit;
   cursor: pointer;
   border: none;
   background: none;
   color: inherit;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 10px;
+:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 3px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* Selection */
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--seal); color: var(--paper-3); }
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--rule); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+/* Fırça darbesi ayırıcı — düz çizgi yerine, uçları incelen mürekkep izi */
+.brush-rule {
+  height: 3px;
+  border: 0;
+  margin: 0;
+  background: var(--ink);
+  opacity: 0.5;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='6' viewBox='0 0 1200 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3.4 C 120 1.2, 260 4.6, 420 2.6 S 700 4.9, 860 2.2 S 1080 4.4, 1200 2.8 L 1200 3.6 C 1080 5.2, 900 2.6, 760 4.2 S 460 2.1, 300 4.4 S 90 2.4, 0 4.1 Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='6' viewBox='0 0 1200 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3.4 C 120 1.2, 260 4.6, 420 2.6 S 700 4.9, 860 2.2 S 1080 4.4, 1200 2.8 L 1200 3.6 C 1080 5.2, 900 2.6, 760 4.2 S 460 2.1, 300 4.4 S 90 2.4, 0 4.1 Z' fill='%23000'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
