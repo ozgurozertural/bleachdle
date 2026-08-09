@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon.ico" sizes="any">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#08050d">
+<meta name="theme-color" content="#e5e2d5">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/game.css">
 </head>
@@ -16,6 +16,8 @@
   <div class="brand"><span class="kanji">影</span><h1>BLEACHDLE</h1></div>
   <button id="theme-toggle" class="theme-toggle">🌓</button>
 </header>
+
+<div class="header-rule"><hr class="brush-rule"></div>
 
 <main class="game-page">
   <a class="back-link" href="index.html">← Ana menü</a>
@@ -51,15 +53,24 @@
 <script src="js/simple-mode.js"></script>
 <script>
 const MAX = 6;
+// Splash kendi görsel setini kullanır: tahmin tablosundaki ve otomatik
+// tamamlamadaki profil görselinin aynısı gösterilince oyun tahmin olmaktan
+// çıkıp eşleştirmeye dönüyordu.
+const SPLASH = fetch('data/splash.json').then(r => r.json()).catch(() => ({}));
+
 initSimpleMode({
   modeKey: 'splash',
   maxGuesses: MAX,
-  pool: (chars) => chars.filter(c => c.image),
-  loadPrompt: (answer) => {
+  pool: async (chars) => {
+    const sp = await SPLASH;
+    return chars.filter(c => sp[c.id]);
+  },
+  loadPrompt: async (answer) => {
+    const src = (await SPLASH)[answer.id];
     const img = document.getElementById('splash-img');
-    img.src = answer.image || '';
+    img.src = src || '';
     img.style.filter = 'blur(28px)';
-    return !!answer.image;
+    return !!src;
   },
   onGuess: (guesses, answer, finished) => {
     const img = document.getElementById('splash-img');

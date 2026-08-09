@@ -1,121 +1,176 @@
-/* Bleachdle - iki tema: Soul Society (light) ve Hueco Mundo (dark) */
+/* Bleachdle — mürekkep ve kan.
+   Zemin hâlâ kağıt/mürekkep ikilisi, ama bu bir dövüş serisi: kontrast sert,
+   tipografi ağır, doğru/yanlış renkleri tam doygunlukta. */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;500;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
 :root, [data-theme="light"] {
-  /* Soul Society: sumi ink, seireitei white, kimono red */
-  --bg: #efe9dc;
-  --bg-alt: #fdfaf3;
-  --bg-panel: rgba(255, 253, 247, 0.85);
-  --bg-panel-solid: #fbf7ed;
-  --border: #d8ceb5;
-  --border-strong: #b09979;
-  --text: #1a1410;
-  --text-muted: #6c6154;
-  --accent: #c8102e;
-  --accent-2: #7a0a1c;
-  --accent-hover: #a50c25;
-  --accent-glow: rgba(200, 16, 46, 0.35);
-  --kanji: #c8102e;
-  --shadow-sm: 0 2px 6px rgba(90, 60, 30, 0.08);
-  --shadow: 0 8px 24px rgba(90, 60, 30, 0.12);
-  --shadow-lg: 0 20px 50px rgba(90, 60, 30, 0.18);
+  /* 昼 — beyazlatılmış kağıt üstünde sumi */
+  --paper: #e7e3d6;
+  --paper-2: #f2efe6;
+  --paper-3: #faf8f1;
+  --ink: #0b0b0d;
+  --ink-2: #4a4c50;
+  --ink-3: #65635b;
+  --rule: #b8b2a0;
+  --rule-soft: #cdc7b6;
 
-  --correct: #3aa964;
-  --correct-bg: linear-gradient(135deg, #a3e2b8 0%, #74cc93 100%);
-  --correct-border: #2e8e51;
+  --seal: #c41e15;
+  --correct: #17773a;
+  --correct-ink: #ffffff;
+  --wrong: #b81420;
+  --wrong-ink: #ffffff;
 
-  --partial: #e0a020;
-  --partial-bg: linear-gradient(135deg, #ffde9e 0%, #f5c85a 100%);
-  --partial-border: #b17d10;
+  --grain-opacity: 0.3;
+  --grain-blend: multiply;
+  --hatch-opacity: 0.06;
 
-  --wrong: #c14040;
-  --wrong-bg: linear-gradient(135deg, #f3b6b6 0%, #e88585 100%);
-  --wrong-border: #9c2828;
-
-  --bg-image:
-    radial-gradient(ellipse at top left, rgba(200,16,46,0.06), transparent 55%),
-    radial-gradient(ellipse at bottom right, rgba(200,16,46,0.04), transparent 55%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='%23c8102e' fill-opacity='0.045' font-family='serif' font-size='90'><text x='30' y='90'>死</text><text x='240' y='150'>神</text><text x='80' y='260'>斬</text><text x='260' y='340'>魄</text><text x='40' y='400'>刀</text></g></svg>");
-
-  --font-display: 'Cinzel', 'Times New Roman', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-jp: 'Noto Sans JP', 'Zen Kaku Gothic Antique', sans-serif;
+  --paper-rgb: 231, 227, 214;
+  --art-scrim: 0.58;      /* eserin üstündeki perde */
+  --art-panel: 0.86;      /* başlık/altlık şeridinin opaklığı */
 }
 
 [data-theme="dark"] {
-  /* Hueco Mundo: void black, arrancar white, blood purple */
-  --bg: #08050d;
-  --bg-alt: #120a1c;
-  --bg-panel: rgba(23, 15, 34, 0.7);
-  --bg-panel-solid: #17102a;
-  --border: #3d2a52;
-  --border-strong: #5a3d78;
-  --text: #ece0f5;
-  --text-muted: #a08db8;
-  --accent: #b666ff;
-  --accent-2: #6b1fb3;
-  --accent-hover: #d094ff;
-  --accent-glow: rgba(182, 102, 255, 0.5);
-  --kanji: #d4a5ff;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
-  --shadow: 0 8px 30px rgba(107, 31, 179, 0.35);
-  --shadow-lg: 0 20px 60px rgba(107, 31, 179, 0.5);
+  /* 夜 — mürekkep zemin, kireç yazı. Roller aynı, maddeler yer değiştirdi. */
+  --paper: #0c0c0f;
+  --paper-2: #16161b;
+  --paper-3: #1e1e25;
+  --ink: #f4f1e6;
+  --ink-2: #b0aea4;
+  --ink-3: #7c7f84;
+  --rule: #34343d;
+  --rule-soft: #26262e;
 
-  --correct: #4ade80;
-  --correct-bg: linear-gradient(135deg, #1b4d2b 0%, #2d7c47 100%);
-  --correct-border: #4ade80;
+  --seal: #ff3b2f;
+  --correct: #14b85a;
+  --correct-ink: #06210f;
+  --wrong: #e01f2d;
+  --wrong-ink: #ffffff;
 
-  --partial: #fbbf24;
-  --partial-bg: linear-gradient(135deg, #4a380a 0%, #a97c1c 100%);
-  --partial-border: #fbbf24;
+  --grain-opacity: 0.13;
+  --grain-blend: screen;
+  --hatch-opacity: 0.05;
 
-  --wrong: #f87171;
-  --wrong-bg: linear-gradient(135deg, #4a1616 0%, #8a2828 100%);
-  --wrong-border: #f87171;
+  --paper-rgb: 12, 12, 15;
+  --art-scrim: 0.40;
+  --art-panel: 0.82;
+}
 
-  --bg-image:
-    radial-gradient(ellipse at top left, rgba(182,102,255,0.15), transparent 55%),
-    radial-gradient(ellipse at bottom right, rgba(107,31,179,0.15), transparent 55%),
-    radial-gradient(circle at 20% 60%, rgba(182,102,255,0.08), transparent 40%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='%23b666ff' fill-opacity='0.06' font-family='serif' font-size='90'><text x='30' y='90'>虚</text><text x='240' y='150'>圏</text><text x='80' y='260'>破</text><text x='260' y='340'>面</text><text x='40' y='400'>王</text></g></svg>");
+:root {
+  --font-display: 'Dela Gothic One', 'Arial Black', sans-serif;
+  --font-body: 'Zen Kaku Gothic New', system-ui, sans-serif;
+
+  /* Sert sıçrama: dev başlık, küçük etiket, arada hiçbir şey yok */
+  --t-hero: clamp(2.6rem, 8.5vw, 5rem);
+  --t-title: 1.5rem;
+  --t-body: 0.95rem;
+  --t-small: 0.84rem;
+  --t-label: 0.68rem;
+
+  --tr-label: 0.22em;
+  --measure: 60ch;
+
+  /* Eğik kesim — panellerin ve hücrelerin köşesini kırpan darbe açısı */
+  --slash: 10px;
 }
 
 * { box-sizing: border-box; }
 
-html, body {
+html {
+  background: var(--paper);
+}
+
+/* Gotei 13 eseri: sabit zemin katmanı. İçerik onun üstüne serilen kağıt
+   tabakanın üstünde durduğu için metin kontrastı eserden etkilenmiyor;
+   eser başlık şeridinde, altlıkta ve geniş ekranda tabakanın yanlarında
+   görünüyor. background-attachment yerine sabit sözde eleman: mobil
+   tarayıcılarda fixed arka plan kaydırmada titriyor. */
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 38%, transparent 0%, rgba(var(--paper-rgb), 0.75) 78%),
+    linear-gradient(rgba(var(--paper-rgb), var(--art-scrim)), rgba(var(--paper-rgb), var(--art-scrim))),
+    url("../data/images/bg-gotei13.webp") center 18% / cover no-repeat;
+}
+
+body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  background-image: var(--bg-image);
-  background-attachment: fixed;
-  background-size: auto, auto, 420px 420px;
-  color: var(--text);
+  background: transparent;
+  color: var(--ink);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
   min-height: 100vh;
-  transition: background 0.4s, color 0.4s;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-hover); }
+/* İki katman: kağıt lifi + eğik tarama (screen-tone). */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+body::before {
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+body::after {
+  opacity: var(--hatch-opacity);
+  background-image: repeating-linear-gradient(
+    118deg,
+    var(--seal) 0 1px,
+    transparent 1px 7px
+  );
+}
+body > * { position: relative; z-index: 1; }
+
+a { color: inherit; text-decoration: none; }
 
 button {
   font-family: inherit;
+  font-size: inherit;
   cursor: pointer;
   border: none;
   background: none;
   color: inherit;
 }
 
-/* Scrollbar */
+:focus-visible {
+  outline: 3px solid var(--seal);
+  outline-offset: 2px;
+}
+
+::selection { background: var(--seal); color: #fff; }
+
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+::-webkit-scrollbar-thumb { background: var(--rule); }
+::-webkit-scrollbar-thumb:hover { background: var(--seal); }
 
-/* Selection */
-::selection { background: var(--accent); color: #fff; }
+/* Yırtık kenar ayırıcı — düz çizgi değil, kesilmiş kağıt payı */
+.brush-rule {
+  height: 5px;
+  border: 0;
+  margin: 0;
+  background: var(--seal);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

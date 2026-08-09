@@ -84,16 +84,16 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
       : getModeStats(modeKey);
     resultEl.innerHTML = `
       <div class="result-panel ${won ? 'win' : 'lose'}">
-        <h2>${won ? '🎉 Bildin!' : '💀 Kaybettin'}</h2>
+        <h2>${won ? 'Bildin' : 'Kaybettin'}</h2>
         <p>${won
           ? `<strong>${state.answer.name}</strong>'i <strong>${state.guesses.length}</strong> denemede buldun.`
           : `Doğru cevap: <strong>${state.answer.name}</strong>`}</p>
-        <p style="color:var(--text-muted);font-size:0.9rem">
+        <p class="result-stats">
           Seri: ${stats.streak} · Rekor: ${stats.maxStreak} · Oyun: ${stats.played}
         </p>
         <div class="result-actions">
           <button id="again">${state.mode === 'daily' ? 'Serbest oyuna geç' : 'Yeni oyun'}</button>
-          <a class="secondary" href="index.html" style="padding:0.6rem 1.2rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text)">Ana menü</a>
+          <a class="secondary" href="index.html">Ana menü</a>
         </div>
       </div>
     `;

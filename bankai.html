@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon.ico" sizes="any">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#08050d">
+<meta name="theme-color" content="#e5e2d5">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/game.css">
 </head>
@@ -16,6 +16,8 @@
   <div class="brand"><span class="kanji">卍</span><h1>BLEACHDLE</h1></div>
   <button id="theme-toggle" class="theme-toggle">🌓</button>
 </header>
+
+<div class="header-rule"><hr class="brush-rule"></div>
 
 <main class="game-page">
   <a class="back-link" href="index.html">← Ana menü</a>
@@ -65,10 +67,10 @@ initSimpleMode({
     document.getElementById('bankai-hint-slot').innerHTML = '';
     if (!b) { el.innerHTML = `<em>Bu karakter için bankai verisi yok.</em>`; return false; }
     el.innerHTML = `
-      <div style="font-family:var(--font-display);letter-spacing:0.15em;font-size:1.6rem;color:var(--accent);margin-bottom:0.5rem;text-shadow:0 0 20px var(--accent-glow)">
+      <div class="release-name">
         ${b.name || '???'}
       </div>
-      <div style="font-size:0.95rem;color:var(--text-muted);font-style:normal">
+      <div class="release-meta">
         ${b.type || ''}${b.ability ? ' · ' + b.ability : ''}
       </div>`;
     return true;
@@ -79,7 +81,7 @@ initSimpleMode({
       const slot = document.getElementById('bankai-hint-slot');
       if (!slot.innerHTML) {
         slot.innerHTML = `
-          <div class="bankai-hint-label">◈ SON İPUCU ◈</div>
+          <div class="bankai-hint-label">Son ipucu</div>
           <div class="bankai-hint">
             <img src="${answer.image}" alt="hint" style="filter:blur(4px)">
           </div>

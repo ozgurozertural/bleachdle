@@ -235,7 +235,7 @@ function renderGuessRow(guess, answer, columns) {
   imgTd.style.setProperty('--col', 0);
   imgTd.innerHTML = guess.image
     ? `<img class="char-avatar" src="${guess.image}" alt="${guess.name}">`
-    : '<div class="char-avatar" style="background:var(--bg-panel-solid);display:flex;align-items:center;justify-content:center;color:var(--text-muted)">?</div>';
+    : '<div class="char-avatar img-missing">?</div>';
   tr.appendChild(imgTd);
 
   columns.forEach((col, i) => {
