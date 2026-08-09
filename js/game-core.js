@@ -164,6 +164,29 @@ function arcPartial(a, g) {
   return Math.abs(ai - gi) === 1;
 }
 
+// Yaş kovaları. Karakterlerin yarısından fazlasının kanonik sayısal yaşı yok;
+// sayısal yaş yerine aralık karşılaştırılır. Sıralı liste, ↑↓ oku için de kullanılır.
+const AGE_BUCKETS = ['1-20', '21-40', '41-60', '61-100', '101-1000', '1000+'];
+
+// Sayısal yaşı kovaya çevirir. Yaş yoksa null (overrides'taki age_group devreye girer).
+function ageBucket(age) {
+  if (age == null) return null;
+  if (age <= 20) return '1-20';
+  if (age <= 40) return '21-40';
+  if (age <= 60) return '41-60';
+  if (age <= 100) return '61-100';
+  if (age <= 1000) return '101-1000';
+  return '1000+';
+}
+
+// Sıralı liste üzerinden karşılaştırma: eşitse yeşil, değilse ok yönü.
+function ordinalCompare(order, a, g) {
+  if (a === g && a) return { cls: 'correct', display: g };
+  const ai = order.indexOf(a), gi = order.indexOf(g);
+  if (ai < 0 || gi < 0) return { cls: 'wrong', display: g || '?' };
+  return { cls: 'wrong', display: g, arrow: gi < ai ? '↑' : '↓' };
+}
+
 // Sayısal alanlar: yakınsa sarı + ok göster.
 function numericCompare(a, g /* tolerance kaldırıldı: sarı yok */) {
   if (a == null || g == null) return { cls: 'wrong', display: g == null ? '?' : String(g) };
@@ -178,7 +201,7 @@ function compareField(field, answer, guess) {
   if (field === 'name') {
     return { cls: a === g ? 'correct' : 'wrong', display: g };
   }
-  if (field === 'age')       return numericCompare(a, g);
+  if (field === 'age_group') return ordinalCompare(AGE_BUCKETS, a, g);
   if (field === 'height_cm') return numericCompare(a, g);
   if (field === 'division')  return numericCompare(a, g);
 

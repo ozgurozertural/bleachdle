@@ -14,6 +14,10 @@ window.CHARACTERS_READY = Promise.all([
         if (v != null) c[k] = v;
       }
     }
+    // Yaş kovası: sayısal yaştan türetilir, yoksa override'daki age_group kullanılır.
+    for (const c of list) {
+      c.age_group = ageBucket(c.age) || c.age_group || null;
+    }
     window.CHARACTERS = list;
     return list;
   })

@@ -11,7 +11,7 @@
     { key: 'İsim',      field: 'name'      },
     { key: 'Cinsiyet',  field: 'gender'    },
     { key: 'Irk',       field: 'race'      },
-    { key: 'Yaş',       field: 'age'       },
+    { key: 'Yaş',       field: 'age_group' },
     { key: 'Boy',       field: 'height_cm' },
     { key: 'Saç Rengi', field: 'hair'      },
     { key: 'Bölge',     field: 'location'  },
