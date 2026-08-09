@@ -16,6 +16,7 @@
   --rule-soft: #cdc7b6;
 
   --seal: #c41e15;
+  --on-seal: #ffffff;
   --correct: #17773a;
   --correct-ink: #ffffff;
   --wrong: #b81420;
@@ -47,6 +48,7 @@
   --rule-soft: #26262e;
 
   --seal: #ff3b2f;
+  --on-seal: #0c0c0f;
   --correct: #14b85a;
   --correct-ink: #06210f;
   --wrong: #e01f2d;
@@ -160,24 +162,12 @@ button {
   outline-offset: 2px;
 }
 
-::selection { background: var(--seal); color: #fff; }
+::selection { background: var(--seal); color: var(--on-seal); }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--rule); }
 ::-webkit-scrollbar-thumb:hover { background: var(--seal); }
-
-/* Yırtık kenar ayırıcı — düz çizgi değil, kesilmiş kağıt payı */
-.brush-rule {
-  height: 5px;
-  border: 0;
-  margin: 0;
-  background: var(--seal);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

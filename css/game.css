@@ -1,29 +1,92 @@
 /* ---------- Başlık ---------- */
 /* Başlık ve altlık yarı saydam: eser bu iki şeritten görünüyor. Buradaki
-   metin --ink-2, en kötü durumda bile 4.5:1'in üstünde kalıyor. */
+   metin --ink-2, en kötü durumda bile 4.5:1'in üstünde kalıyor.
+   Başlık yapışkan; yırtık kenar onun ::after'ı, ayrı bir öğe olsaydı
+   kaydırırken bardan kopardı. */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  padding: 1.4rem max(1.5rem, calc((100% - 1180px) / 2)) 1rem;
+  gap: 1rem 1.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  padding: 0.9rem max(1.5rem, calc((100% - 1180px) / 2));
   background: rgba(var(--paper-rgb), var(--art-panel));
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -5px;
+  height: 5px;
+  background: var(--seal);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E") 100% 100% / 100% 100%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='10' viewBox='0 0 1200 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1200 V4 L1130 9 L1040 3 L960 8 L870 2 L760 7 L640 2 L520 8 L410 3 L300 9 L190 3 L90 8 L0 3 Z' fill='%23000'/%3E%3C/svg%3E") 100% 100% / 100% 100%;
+}
+
+/* Mod kısayolları: ad + tuş rozeti. Bulunduğun mod mühür kızılıyla dolu. */
+.mode-nav {
+  display: flex;
+  gap: 0.4rem;
+  margin-right: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.mode-nav::-webkit-scrollbar { display: none; }
+.mode-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  transition: color 0.16s, border-color 0.16s, background 0.16s;
+}
+.mode-nav a:hover { color: var(--ink); border-color: var(--ink-3); }
+.mode-nav a[aria-current] {
+  color: var(--on-seal);
+  background: var(--seal);
+  border-color: var(--seal);
+}
+.mode-nav kbd {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.22em 0.36em;
+  color: var(--ink-2);      /* --ink-3 şerit üstünde 3.44:1'de kalıyordu */
+  border: 1px solid var(--rule);
+}
+.mode-nav a:hover kbd { color: var(--ink); border-color: var(--ink-3); }
+.mode-nav a[aria-current] kbd {
+  color: var(--on-seal);
+  border-color: currentColor;
+  opacity: 0.75;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.75rem;
 }
+.brand:hover .kanji { background: var(--ink); }
+.brand:hover h1 { color: var(--ink); }
 
 /* Hanko: markanın tamamı bu mühür. Sayfadaki tek doygun kızıl. */
 .brand .kanji {
   font-family: var(--font-display);
   font-size: 1.3rem;
   line-height: 1;
-  color: #fff;
+  color: var(--on-seal);
   background: var(--seal);
   padding: 0.32em 0.34em 0.26em;
   display: inline-block;
@@ -55,10 +118,7 @@
 [data-theme="dark"] .theme-toggle::after { content: '日'; }
 .theme-toggle:hover { color: var(--seal); border-color: var(--seal); }
 
-.header-rule {
-  margin: 0 0 2.5rem;
-  padding: 0;
-}
+
 
 /* ---------- Ana sayfa ---------- */
 /* Kağıt tabaka — eserin üstüne serilmiş sayfa. Metin daima bunun üstünde. */
@@ -585,8 +645,11 @@
 @media (max-width: 640px) {
   .site-header { padding: 1rem 1.1rem 0.8rem; }
   .site-header, .site-footer { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .site-header { gap: 0.6rem 0.9rem; margin-bottom: 1.75rem; }
+  .brand h1 { display: none; }          /* dar ekranda mühür markayı taşır */
+  .mode-nav a { padding: 0.35rem 0.5rem; letter-spacing: 0.06em; }
+  .mode-nav kbd { display: none; }      /* dokunmatikte klavye kısayolu yok */
   .hub, .game-page { padding: 1.75rem 1.1rem 2.5rem; margin-bottom: 2rem; }
-  .header-rule { margin-bottom: 1.75rem; }
   .tagline { margin-bottom: 2.5rem; }
   .mode-card { grid-template-columns: 2.4rem 1fr; gap: 0 1rem; padding: 1.2rem 0.5rem 1.2rem 0.25rem; }
   .mode-card .mode-icon { font-size: 1.9rem; }
