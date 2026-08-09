@@ -1,12 +1,15 @@
 /* ---------- Başlık ---------- */
+/* Başlık ve altlık yarı saydam: eser bu iki şeritten görünüyor. Buradaki
+   metin --ink-2, en kötü durumda bile 4.5:1'in üstünde kalıyor. */
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 1.4rem 1.5rem 1rem;
+  padding: 1.4rem max(1.5rem, calc((100% - 1180px) / 2)) 1rem;
+  background: rgba(var(--paper-rgb), var(--art-panel));
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .brand {
@@ -53,16 +56,21 @@
 .theme-toggle:hover { color: var(--seal); border-color: var(--seal); }
 
 .header-rule {
-  max-width: 1180px;
-  margin: 0 auto 2.5rem;
-  padding: 0 1.5rem;
+  margin: 0 0 2.5rem;
+  padding: 0;
 }
 
 /* ---------- Ana sayfa ---------- */
+/* Kağıt tabaka — eserin üstüne serilmiş sayfa. Metin daima bunun üstünde. */
+.hub, .game-page {
+  background: var(--paper);
+  box-shadow: 0 0 0 1px var(--rule-soft), 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
 .hub {
   max-width: 780px;
-  margin: 0 auto;
-  padding: 0 1.5rem 5rem;
+  margin: 0 auto 4rem;
+  padding: 3rem 2.5rem 4rem;
 }
 
 .tagline {
@@ -175,8 +183,8 @@
 /* ---------- Oyun sayfası ---------- */
 .game-page {
   max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 1.5rem 5rem;
+  margin: 0 auto 4rem;
+  padding: 2.5rem 2.5rem 4rem;
 }
 
 .back-link {
@@ -472,15 +480,15 @@
 
 /* ---------- Alt bilgi ---------- */
 .site-footer {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 1.75rem 1.5rem 2.5rem;
-  border-top: 1px solid var(--rule-soft);
+  padding: 1.75rem max(1.5rem, calc((100% - 1180px) / 2)) 2.5rem;
+  background: rgba(var(--paper-rgb), var(--art-panel));
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   font-size: var(--t-label);
-  color: var(--ink-3);
+  color: var(--ink-2);
 }
 .site-footer a { color: var(--ink-2); border-bottom: 1px solid var(--rule); }
-.site-footer a:hover { color: var(--seal); border-bottom-color: var(--seal); }
+.site-footer a:hover { color: var(--ink); border-bottom-color: var(--seal); }
 
 /* ---------- Splash ---------- */
 /* Bulanıklık satır içi stille sürülüyor (oyun mantığı), o yüzden mürekkep
@@ -576,7 +584,8 @@
 /* ---------- Dar ekran ---------- */
 @media (max-width: 640px) {
   .site-header { padding: 1rem 1.1rem 0.8rem; }
-  .header-rule, .hub, .game-page, .site-footer { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .site-header, .site-footer { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .hub, .game-page { padding: 1.75rem 1.1rem 2.5rem; margin-bottom: 2rem; }
   .header-rule { margin-bottom: 1.75rem; }
   .tagline { margin-bottom: 2.5rem; }
   .mode-card { grid-template-columns: 2.4rem 1fr; gap: 0 1rem; padding: 1.2rem 0.5rem 1.2rem 0.25rem; }

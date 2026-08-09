@@ -24,6 +24,10 @@
   --grain-opacity: 0.3;
   --grain-blend: multiply;
   --hatch-opacity: 0.06;
+
+  --paper-rgb: 231, 227, 214;
+  --art-scrim: 0.58;      /* eserin üstündeki perde */
+  --art-panel: 0.86;      /* başlık/altlık şeridinin opaklığı */
 }
 
 [data-theme="dark"] {
@@ -43,9 +47,13 @@
   --wrong: #e01f2d;
   --wrong-ink: #ffffff;
 
-  --grain-opacity: 0.2;
+  --grain-opacity: 0.13;
   --grain-blend: screen;
   --hatch-opacity: 0.05;
+
+  --paper-rgb: 12, 12, 15;
+  --art-scrim: 0.40;
+  --art-panel: 0.82;
 }
 
 :root {
@@ -68,10 +76,30 @@
 
 * { box-sizing: border-box; }
 
-html, body {
+html {
+  background: var(--paper);
+}
+
+/* Gotei 13 eseri: sabit zemin katmanı. İçerik onun üstüne serilen kağıt
+   tabakanın üstünde durduğu için metin kontrastı eserden etkilenmiyor;
+   eser başlık şeridinde, altlıkta ve geniş ekranda tabakanın yanlarında
+   görünüyor. background-attachment yerine sabit sözde eleman: mobil
+   tarayıcılarda fixed arka plan kaydırmada titriyor. */
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 38%, transparent 0%, rgba(var(--paper-rgb), 0.75) 78%),
+    linear-gradient(rgba(var(--paper-rgb), var(--art-scrim)), rgba(var(--paper-rgb), var(--art-scrim))),
+    url("../data/images/bg-gotei13.webp") center 18% / cover no-repeat;
+}
+
+body {
   margin: 0;
   padding: 0;
-  background: var(--paper);
+  background: transparent;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
