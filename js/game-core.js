@@ -92,7 +92,7 @@ function setupAutocomplete({input, suggestBox, chars, onPick, excludeIds}) {
         ${c.image ? `<img src="${c.image}" alt="">` : `<div class="suggestion img-placeholder"></div>`}
         <div>
           <div class="sname">${c.name}</div>
-          <div class="saff">${c.affiliation || ''}</div>
+          <div class="saff">${c.affiliation ? tv('affiliation', c.affiliation) : ''}</div>
         </div>
       </div>
     `).join('');
@@ -243,7 +243,9 @@ function renderGuessRow(guess, answer, columns) {
     const cmp = compareField(col.field, answer, guess);
     td.className = cmp.cls + (col.field === 'name' ? ' name-cell' : '');
     td.style.setProperty('--col', i + 1);
-    td.innerHTML = (cmp.display == null ? '—' : cmp.display) +
+    // Değer çevirisi tek noktada: compareField karşılaştırmayı hep İngilizce
+    // veri üstünde yapar, dile çeviri sadece ekrana basarken olur.
+    td.innerHTML = (cmp.display == null ? '—' : tv(col.field, cmp.display)) +
       (cmp.arrow ? `<span class="arrow">${cmp.arrow}</span>` : '');
     tr.appendChild(td);
   });

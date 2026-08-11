@@ -123,6 +123,51 @@ const DICT = {
 };
 
 const LANG = DICT[localStorage.getItem(LANG_KEY)] ? localStorage.getItem(LANG_KEY) : 'tr';
+
+// Veri değerleri (cinsiyet, ırk, saç, bölge, arc, aidiyet) characters.json'da
+// İngilizce duruyor — kazıma kaynağı wiki İngilizce. Çeviri veriye değil buraya
+// yazılıyor: veri dosyaları scraper'la yeniden üretilebilir olmalı.
+//
+// Alan bazlı sözlük, çünkü aynı değer alana göre başka şey demek:
+// "Soul Society" bölge olarak yer, arc olarak kavis adı.
+// Sözlükte olmayan değer olduğu gibi gösterilir (yeni veri geldiğinde
+// çeviri eksik kalır ama tablo bozulmaz).
+const VALUES = {
+  tr: {
+    gender: { Male: 'Erkek', Female: 'Kadın', Unknown: 'Bilinmiyor' },
+    race: {
+      Human: 'İnsan', 'Mod Soul': 'Mod Ruh', Unknown: 'Bilinmiyor',
+      // Shinigami / Quincy / Arrancar / Visored / Fullbringer: Türkçe kaynaklarda
+      // da özel ad gibi kullanılıyor, çevrilmiyor.
+    },
+    hair: {
+      Black: 'Siyah', Blonde: 'Sarışın', White: 'Beyaz', Brown: 'Kahverengi',
+      Orange: 'Turuncu', Red: 'Kızıl', Purple: 'Mor', Green: 'Yeşil',
+      Pink: 'Pembe', Blue: 'Mavi', Grey: 'Gri', Yellow: 'Sarı',
+      None: 'Yok', Other: 'Diğer',
+    },
+    location: {
+      'Soul Society': 'Ruh Toplumu', 'Karakura Town': 'Karakura Kasabası',
+      'Naruki City': 'Naruki Şehri', 'Soul King Palace': 'Ruh Kralı Sarayı',
+      Other: 'Diğer',
+      // Hueco Mundo, Wandenreich: özel ad.
+    },
+    first_arc: {
+      Substitute: 'Vekil Shinigami', 'Soul Society': 'Ruh Toplumu',
+      'Fake Karakura': 'Sahte Karakura', TYBW: 'Bin Yıllık Kan Savaşı',
+      // Arrancar, Fullbring: özel ad.
+    },
+    affiliation: { Other: 'Diğer' },
+  },
+  en: {},
+};
+
+// Bir veri değerini arayüz diline çevirir. Bilinmeyen alan/değer olduğu gibi döner.
+function tv(field, value) {
+  const table = VALUES[LANG][field];
+  return (table && table[value]) || value;
+}
+
 document.documentElement.lang = LANG;
 
 function t(key, vars) {
