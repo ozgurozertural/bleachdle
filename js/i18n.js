@@ -146,17 +146,11 @@ const VALUES = {
       Pink: 'Pembe', Blue: 'Mavi', Grey: 'Gri', Yellow: 'Sarı',
       None: 'Yok', Other: 'Diğer',
     },
-    location: {
-      'Soul Society': 'Ruh Toplumu', 'Karakura Town': 'Karakura Kasabası',
-      'Naruki City': 'Naruki Şehri', 'Soul King Palace': 'Ruh Kralı Sarayı',
-      Other: 'Diğer',
-      // Hueco Mundo, Wandenreich: özel ad.
-    },
-    first_arc: {
-      Substitute: 'Vekil Shinigami', 'Soul Society': 'Ruh Toplumu',
-      'Fake Karakura': 'Sahte Karakura', TYBW: 'Bin Yıllık Kan Savaşı',
-      // Arrancar, Fullbring: özel ad.
-    },
+    // Bölge ve ilk-arc çevrilmiyor: Karakura Town, Soul Society, Fake Karakura
+    // birer özel ad — Türkçeleştirilince ("Karakura Kasabası", "Sahte Karakura")
+    // seriyi Türkçe takip eden birinin tanıdığı adlar olmaktan çıkıyorlar.
+    // Yalnızca gerçekten sözcük olan "Other" çevriliyor.
+    location: { Other: 'Diğer' },
     affiliation: { Other: 'Diğer' },
   },
   en: {},
