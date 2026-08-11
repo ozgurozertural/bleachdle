@@ -589,6 +589,7 @@
   max-width: 300px;
   max-height: 300px;
   display: block;
+  filter: blur(28px);   /* başlangıç seviyesi; JS her tahminde azaltıyor */
   transition: filter 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -650,6 +651,10 @@
   max-height: 220px;
   display: block;
 }
+/* Başlangıç bulanıklığı: eskiden satır içi style özniteliğiydi, CSP
+   style-src 'self' altında çalışmıyor. Sonraki kademeleri JS zaten
+   element.style üzerinden veriyor — o yol CSP'ye takılmıyor. */
+.hint-blur { filter: blur(4px); }
 .bankai-hint-label {
   font-size: var(--t-label);
   letter-spacing: var(--tr-label);

@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Satır içi script ve stil yok: hepsi ayrı dosyada, o yüzden 'unsafe-inline'
+     gerekmiyor. Dış kaynak da yok (fontlar kendi barındırmamızda), o yüzden
+     her şey 'self'. Kazınan veri innerHTML'e giriyor — bu, js/i18n.js'teki
+     esc() kaçışının arkasındaki ikinci savunma hattı. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title data-i18n="title.quote">Bleachdle — Quote Mode</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon.ico" sizes="any">
@@ -83,44 +89,6 @@
 <script src="js/game-core.js"></script>
 <script src="js/data.js"></script>
 <script src="js/simple-mode.js"></script>
-<script>
-const QUOTES = fetch('data/quotes.json').then(r => r.json()).catch(() => ({}));
-const SOURCES = fetch('data/quote_sources.json').then(r => r.json()).catch(() => ({}));
-const MAX = 7;
-const HINT_AT = MAX - 3;   // son 3 hak kalınca repliğin kaynağı açılır
-
-initSimpleMode({
-  modeKey: 'quote',
-  maxGuesses: MAX,
-  // Havuz yalnızca kaynağı doğrulanmış repliklerle sınırlı: ipucu her turda
-  // verilebilsin diye. Kaynağı olmayan replikler quotes.json'da duruyor.
-  pool: async (chars) => {
-    const [q, src] = await Promise.all([QUOTES, SOURCES]);
-    return chars.filter(c => q[c.id] && src[c.id]);
-  },
-  loadPrompt: async (answer) => {
-    // İngilizcede repliğin wiki'deki aslı gösterilir; Türkçe çeviri quotes.json'da.
-    const [q, src] = await Promise.all([QUOTES, SOURCES]);
-    const text = LANG === 'en' ? (src[answer.id] || {}).en : q[answer.id];
-    document.getElementById('quote-hint-slot').innerHTML = '';
-    document.getElementById('quote-display').innerHTML = text
-      ? `“${text}”`
-      : `<em>${t('quote.none')}</em>`;
-    return !!text;
-  },
-  onGuess: async (guesses, answer, finished) => {
-    // Son 3 hak kalınca repliğin hangi bölümde geçtiği açılır.
-    if (finished || guesses.length < HINT_AT) return;
-    const slot = document.getElementById('quote-hint-slot');
-    if (slot.innerHTML) return;
-    const s = (await SOURCES)[answer.id];
-    if (!s) return;
-    slot.innerHTML = `
-      <div class="quote-hint">
-        <span class="quote-hint-label">${t('hint')}</span>
-        <span class="quote-hint-body">${t(s.kind === 'anime' ? 'hint.anime' : 'hint.manga', { ch: s.chapter })}</span>
-      </div>`;
-  }
-});</script>
+<script src="js/quote.js"></script>
 </body>
 </html>

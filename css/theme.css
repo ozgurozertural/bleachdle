@@ -2,7 +2,34 @@
    Zemin hâlâ kağıt/mürekkep ikilisi, ama bu bir dövüş serisi: kontrast sert,
    tipografi ağır, doğru/yanlış renkleri tam doygunlukta. */
 
-@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+/* Fontlar kendi barındırmamızda. Google Fonts'tan çekilirken her ziyaretçinin
+   IP'si Google'a gidiyordu; ayrıca @import zinciri font indirmesini bu CSS
+   inene kadar geciktiriyordu. scripts/build_fonts.py üretiyor — sitede geçen
+   11 kanji ve Latin Ext-A ile sınırlı alt küme, dördü toplam 49 KB. */
+@font-face {
+  font-family: 'Dela Gothic One';
+  src: url('../fonts/dela.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zen Kaku Gothic New';
+  src: url('../fonts/zen-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zen Kaku Gothic New';
+  src: url('../fonts/zen-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zen Kaku Gothic New';
+  src: url('../fonts/zen-700.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
 
 :root, [data-theme="light"] {
   /* 昼 — beyazlatılmış kağıt üstünde sumi */

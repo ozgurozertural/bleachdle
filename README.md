@@ -38,14 +38,22 @@ js/game-core.js    günlük seçim, autocomplete, sütun karşılaştırma
 js/data.js         characters.json + overrides.json birleştirme
 js/classic.js      Classic modu
 js/simple-mode.js  Quote/Splash/Bankai için ortak iskelet
+js/quote.js js/splash.js js/bankai.js js/index.js
 data/              karakter verisi ve görseller
+fonts/             alt kümelenmiş woff2 (kendi barındırmamızda)
 scripts/           veri kazıma ve üretim betikleri (Python)
 ```
+
+Sayfalarda satır içi `<script>` ya da `style` özniteliği yok; her sayfa
+`default-src 'none'` temelli bir CSP taşıyor ve dış kaynağa hiç istek atmıyor.
+Kazınan veri `innerHTML`'e girdiği için `js/i18n.js`'teki `esc()` üzerinden
+kaçırılıyor.
 
 `scripts/` altındakiler tek seferlik araçlar: `scrape.py` karakter verisini,
 `scrape_quotes.py` replikleri, `scrape_splash.py` ikinci görsel setini Bleach
 Wiki'den çeker; `build_bankai.py` bankai havuzunu üretir; `make_og.py` paylaşım
-görselini çizer. Oyunun çalışması için hiçbiri gerekmiyor.
+görselini, `build_fonts.py` da `fonts/` altındaki alt kümelenmiş woff2'leri
+çizer/üretir. Oyunun çalışması için hiçbiri gerekmiyor.
 
 Kazınan veriye elle yapılan düzeltmeler `data/overrides.json`'da tutuluyor —
 kazıma yeniden çalıştırıldığında kaybolmasınlar diye. Saç rengi ve yaş kovası

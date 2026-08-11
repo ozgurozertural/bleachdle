@@ -164,10 +164,23 @@ function tv(field, value) {
 
 document.documentElement.lang = LANG;
 
+// HTML kaçışı. Sayfadaki metinlerin çoğu innerHTML ile basılıyor ve veri
+// herkesin düzenleyebildiği bir wiki'den kazınıyor: scrape.py'nin etiket
+// temizleyicisi kara liste mantığında (kapanmayan bir etiket ondan sızar), o
+// yüzden güvenlik verinin geldiği yerde değil basıldığı yerde sağlanıyor.
+// Öznitelik içine de girildiği için tırnaklar da kaçırılıyor.
+function esc(v) {
+  return String(v == null ? '' : v)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// Şablonun kendisi biçimli olabilir (sözlükte <strong> var), ama yerine
+// konan değerler her zaman düz metin — hepsi kaçırılarak giriyor.
 function t(key, vars) {
   let s = DICT[LANG][key];
   if (s == null) return key;
-  if (vars) for (const [k, v] of Object.entries(vars)) s = s.split('{' + k + '}').join(v);
+  if (vars) for (const [k, v] of Object.entries(vars)) s = s.split('{' + k + '}').join(esc(v));
   return s;
 }
 

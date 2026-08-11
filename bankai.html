@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Satır içi script ve stil yok: hepsi ayrı dosyada, o yüzden 'unsafe-inline'
+     gerekmiyor. Dış kaynak da yok (fontlar kendi barındırmamızda), o yüzden
+     her şey 'self'. Kazınan veri innerHTML'e giriyor — bu, js/i18n.js'teki
+     esc() kaçışının arkasındaki ikinci savunma hattı. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title data-i18n="title.bankai">Bleachdle — Bankai Mode</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon.ico" sizes="any">
@@ -84,45 +90,6 @@
 <script src="js/game-core.js"></script>
 <script src="js/data.js"></script>
 <script src="js/simple-mode.js"></script>
-<script>
-const HINT_AT = 5;
-const BANKAI = fetch('data/bankai.json').then(r => r.json()).catch(() => ({}));
-initSimpleMode({
-  modeKey: 'bankai',
-  maxGuesses: 8,
-  pool: async (chars) => {
-    const b = await BANKAI;
-    return chars.filter(c => b[c.id]);
-  },
-  loadPrompt: async (answer) => {
-    const b = (await BANKAI)[answer.id];
-    const el = document.getElementById('quote-display');
-    document.getElementById('bankai-hint-slot').innerHTML = '';
-    if (!b) { el.innerHTML = `<em>${t('bankai.none')}</em>`; return false; }
-    el.innerHTML = `
-      <div class="release-name">
-        ${b.name || '???'}
-      </div>
-      <div class="release-meta">
-        ${b.type || ''}${b.ability ? ' · ' + b.ability : ''}
-      </div>`;
-    return true;
-  },
-  onGuess: (guesses, answer, finished) => {
-    // 5. yanlış tahminden sonra karakterin görseli ipucu olarak açılır (finish değilse)
-    if (!finished && guesses.length >= HINT_AT && answer.image) {
-      const slot = document.getElementById('bankai-hint-slot');
-      if (!slot.innerHTML) {
-        slot.innerHTML = `
-          <div class="bankai-hint-label">${t('hint.last')}</div>
-          <div class="bankai-hint">
-            <img src="${answer.image}" alt="hint" style="filter:blur(4px)">
-          </div>
-        `;
-      }
-    }
-  }
-});
-</script>
+<script src="js/bankai.js"></script>
 </body>
 </html>

@@ -88,11 +88,11 @@ function setupAutocomplete({input, suggestBox, chars, onPick, excludeIds}) {
   function render() {
     if (!filtered.length) { suggestBox.classList.remove('open'); return; }
     suggestBox.innerHTML = filtered.slice(0, 8).map((c, i) => `
-      <div class="suggestion${i === cursor ? ' active' : ''}" data-id="${c.id}">
-        ${c.image ? `<img src="${c.image}" alt="">` : `<div class="suggestion img-placeholder"></div>`}
+      <div class="suggestion${i === cursor ? ' active' : ''}" data-id="${esc(c.id)}">
+        ${c.image ? `<img src="${esc(c.image)}" alt="">` : `<div class="suggestion img-placeholder"></div>`}
         <div>
-          <div class="sname">${c.name}</div>
-          <div class="saff">${c.affiliation ? tv('affiliation', c.affiliation) : ''}</div>
+          <div class="sname">${esc(c.name)}</div>
+          <div class="saff">${c.affiliation ? esc(tv('affiliation', c.affiliation)) : ''}</div>
         </div>
       </div>
     `).join('');
@@ -234,7 +234,7 @@ function renderGuessRow(guess, answer, columns) {
   imgTd.className = 'image-cell';
   imgTd.style.setProperty('--col', 0);
   imgTd.innerHTML = guess.image
-    ? `<img class="char-avatar" src="${guess.image}" alt="${guess.name}">`
+    ? `<img class="char-avatar" src="${esc(guess.image)}" alt="${esc(guess.name)}">`
     : '<div class="char-avatar img-missing">?</div>';
   tr.appendChild(imgTd);
 
@@ -245,7 +245,7 @@ function renderGuessRow(guess, answer, columns) {
     td.style.setProperty('--col', i + 1);
     // Değer çevirisi tek noktada: compareField karşılaştırmayı hep İngilizce
     // veri üstünde yapar, dile çeviri sadece ekrana basarken olur.
-    td.innerHTML = (cmp.display == null ? '—' : tv(col.field, cmp.display)) +
+    td.innerHTML = (cmp.display == null ? '—' : esc(tv(col.field, cmp.display))) +
       (cmp.arrow ? `<span class="arrow">${cmp.arrow}</span>` : '');
     tr.appendChild(td);
   });
