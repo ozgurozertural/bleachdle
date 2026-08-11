@@ -115,13 +115,16 @@
     "age": 150
   },
   "Isane_Kotetsu": {
-    "hair": "White"
+    "hair": "White",
+    "age_group": "61-100"
   },
   "Iba_Tetsuzaemon": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "61-100"
   },
   "Marechiyo_Ōmaeda": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "61-100"
   },
   "Hisagi_Shūhei": {
     "hair": "Black",
@@ -132,33 +135,40 @@
     "age": 100
   },
   "Yachiru_Kusajishi": {
-    "hair": "Pink"
+    "hair": "Pink",
+    "age_group": "61-100"
   },
   "Nemu_Kurotsuchi": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Ikkaku_Madarame": {
     "hair": "None",
     "age": 100
   },
   "Yumichika_Ayasegawa": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "61-100"
   },
   "Hanatarō_Yamada": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "61-100"
   },
   "Ganju_Shiba": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Kūkaku_Shiba": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Kaien_Shiba": {
     "hair": "Black",
     "age_group": "101-1000"
   },
   "Jidanbō_Ikkanzaka": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Hachigen_Ushōda": {
     "hair": "Blonde",
@@ -222,16 +232,20 @@
     "age_group": "101-1000"
   },
   "Wonderweiss_Margela": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "age_group": "1-20"
   },
   "Findorr_Calius": {
-    "hair": "Blonde"
+    "hair": "Blonde",
+    "age_group": "101-1000"
   },
   "Cirucci_Sanderwicci": {
-    "hair": "Purple"
+    "hair": "Purple",
+    "age_group": "101-1000"
   },
   "Gantenbainne_Mosqueda": {
-    "hair": "Orange"
+    "hair": "Orange",
+    "age_group": "101-1000"
   },
   "Luppi_Antenor": {
     "hair": "Purple",
@@ -246,7 +260,8 @@
     "age_group": "21-40"
   },
   "Giriko_Kutsuzawa": {
-    "hair": "Grey"
+    "hair": "Grey",
+    "age_group": "41-60"
   },
   "Jackie_Tristan": {
     "hair": "Black",
@@ -371,7 +386,8 @@
     "age_group": "61-100"
   },
   "Ganryū": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Chōjirō_Sasakibe": {
     "hair": "Brown"
@@ -387,7 +403,8 @@
     "age_group": "101-1000"
   },
   "Dordoni_Alessandro_Del_Socaccio": {
-    "hair": "Black"
+    "hair": "Black",
+    "age_group": "101-1000"
   },
   "Ichibē_Hyōsube": {
     "hair": "Black",
