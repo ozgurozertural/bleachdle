@@ -71,6 +71,51 @@ def fetch(rel, dest):
     return dest
 
 
+# gasp bitleri: 1 GRIDFIT, 2 DOGRAY, 4 SYMMETRIC_GRIDFIT, 8 SYMMETRIC_SMOOTHING
+SMOOTH_BITS = 2 | 8
+
+
+def smooth(path):
+    """Her gasp aralığına gri tonlama + simetrik yumuşatma bitlerini ekler ve
+    işlevsiz hinting tablolarını atar.
+
+    M PLUS 1p `gasp = 2` ile geliyor: yalnız gri tonlamalı AA, SYMMETRIC_SMOOTHING
+    biti kapalı. Windows'ta Chromium DirectWrite'a bu biti sorup kip seçiyor;
+    kapalıysa ızgaraya oturan sert bir kipe düşüyor — yazılar küçük boyutta
+    pikselleşiyor, yakınlaştırınca düzeliyor. Zen Kaku'da bit açıktı (10), sorun
+    bu yüzden gövde fontu değişiminde ortaya çıktı.
+
+    Değer 15'e sabitlenmiyor, eksik bitler mevcut değerin üstüne ekleniyor:
+    Dela zaten 10'daydı ve iyi görünüyordu, GRIDFIT bitlerini ona bulaştırmanın
+    bir kazancı yok. Önemli olan tek bit SYMMETRIC_SMOOTHING.
+
+    fpgm/prep/cvt yalnızca fontun hiçbir glifinde hinting komutu yoksa atılıyor —
+    ikisinde de yok, tablolar boşa duruyor.
+    """
+    from fontTools.ttLib import TTFont, newTable
+    f = TTFont(path)
+    if "gasp" in f:
+        f["gasp"].gaspRange = {ppem: b | SMOOTH_BITS for ppem, b in f["gasp"].gaspRange.items()}
+    else:
+        g = newTable("gasp")
+        g.version = 1
+        g.gaspRange = {0xFFFF: SMOOTH_BITS}
+        f["gasp"] = g
+
+    glyf = f["glyf"]
+    hinted = any(
+        getattr(glyf[n], "program", None) and glyf[n].program.getBytecode()
+        for n in f.getGlyphOrder()
+    )
+    if not hinted:
+        for tag in ("fpgm", "prep", "cvt "):
+            if tag in f:
+                del f[tag]
+
+    f.flavor = "woff2"
+    f.save(path)
+
+
 def check(path):
     """Üretilen yüzde REQUIRED'daki her harf var mı?"""
     from fontTools.ttLib import TTFont
@@ -92,6 +137,7 @@ def main():
             "--unicodes=" + UNICODES,
             "--text=" + KANJI,
         ], check=True)
+        smooth(dst)
         missing = check(dst)
         if missing:
             sys.exit(f"HATA: {name} alt kümesinde eksik glif: {missing}")
