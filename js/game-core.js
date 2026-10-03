@@ -141,28 +141,8 @@ function setupAutocomplete({input, suggestBox, chars, onPick, excludeIds}) {
   });
 }
 
-// Sütun karşılaştırma. answer alanı ile guess alanını karşılaştırır.
-// Döner: {cls: 'correct'|'partial'|'wrong', display: '...', arrow?: '↑'|'↓'}
-// Yakın ırklar (Loldle'daki "kısmi" sarı için).
-const RACE_GROUPS = [
-  new Set(['Shinigami', 'Visored']),
-  new Set(['Hollow', 'Arrancar']),
-  new Set(['Human', 'Fullbringer', 'Quincy']),
-];
-
-function racePartial(a, g) {
-  if (!a || !g) return false;
-  return RACE_GROUPS.some(gr => gr.has(a) && gr.has(g));
-}
-
-// Bleach ana kavis sırası — "İlk Arc" için yakınlık karşılaştırması.
+// Bleach ana kavis sırası — "İlk Arc" sütununda yakınlık oku için.
 const ARC_ORDER = ['Substitute','Soul Society','Arrancar','Fake Karakura','Fullbring','TYBW'];
-
-function arcPartial(a, g) {
-  const ai = ARC_ORDER.indexOf(a), gi = ARC_ORDER.indexOf(g);
-  if (ai < 0 || gi < 0) return false;
-  return Math.abs(ai - gi) === 1;
-}
 
 // Yaş kovaları. Karakterlerin yarısından fazlasının kanonik sayısal yaşı yok;
 // sayısal yaş yerine aralık karşılaştırılır. Sıralı liste, ↑↓ oku için de kullanılır.
@@ -187,13 +167,15 @@ function ordinalCompare(order, a, g) {
   return { cls: 'wrong', display: g, arrow: gi < ai ? '↑' : '↓' };
 }
 
-// Sayısal alanlar: yakınsa sarı + ok göster.
-function numericCompare(a, g /* tolerance kaldırıldı: sarı yok */) {
+// Sayısal alanlar: eşitse yeşil, değilse ok yönü. Kısmi eşleşme (sarı) yok.
+function numericCompare(a, g) {
   if (a == null || g == null) return { cls: 'wrong', display: g == null ? '?' : String(g) };
   if (a === g) return { cls: 'correct', display: String(g) };
   return { cls: 'wrong', display: String(g), arrow: g < a ? '↑' : '↓' };
 }
 
+// Sütun karşılaştırma. answer alanı ile guess alanını karşılaştırır.
+// Döner: {cls: 'correct'|'wrong', display: '...', arrow?: '↑'|'↓'}
 function compareField(field, answer, guess) {
   const a = answer[field];
   const g = guess[field];
@@ -203,12 +185,6 @@ function compareField(field, answer, guess) {
   }
   if (field === 'age_group') return ordinalCompare(AGE_BUCKETS, a, g);
   if (field === 'height_cm') return numericCompare(a, g);
-  if (field === 'division')  return numericCompare(a, g);
-
-  if (field === 'has_bankai') {
-    const av = !!a, gv = !!g;
-    return { cls: av === gv ? 'correct' : 'wrong', display: gv ? '✓' : '✗' };
-  }
 
   if (field === 'race') {
     if (a === g && a) return { cls: 'correct', display: g };
