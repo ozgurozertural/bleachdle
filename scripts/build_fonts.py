@@ -10,6 +10,15 @@ Tam Japonca fontlar 2,5 MB'ın üstünde; sitede yalnızca 11 kanji geçtiği i�
 alt küme alınıyor. Latin tarafı Türkçe + karakter adlarındaki makronlar
 (Ōetsu, Jūshirō) ve aksanlar için Latin Extended-A'ya kadar tutuluyor.
 
+Gövde fontu neden M PLUS 1p: önceki Zen Kaku Gothic New Türkçeyi TAŞIMIYORDU —
+kaynak TTF'de 7792 glif var ama Ğ ğ İ Ş ş ve makronlar (Ō ō ū ē) yok. Bu harfler
+kelime ortasında system-ui'ye düşüyor, "Jūshirō" ve "BAĞLILIK" iki ayrı tasarımla
+basılıyordu. Aday fontlar ölçüldü: Noto Sans JP ve Zen Maru Gothic de Türkçe
+taşımıyor; M PLUS 1p, BIZ UDPGothic, M PLUS Rounded 1c ve Sawarabi Gothic tam
+kapsıyor. M PLUS 1p seçildi — aynı geometrik ekran-gotik ailesinden, yani
+görünürdeki değişim en az; ayrıca 100-900 arası tüm ağırlıkları ayrı dosya
+olduğu için 400/500/700 kurulumu birebir korunuyor.
+
     python3 scripts/build_fonts.py
 """
 
@@ -35,15 +44,20 @@ UNICODES = (
 
 FACES = [
     ("dela", "ofl/delagothicone/DelaGothicOne-Regular.ttf"),
-    ("zen-400", "ofl/zenkakugothicnew/ZenKakuGothicNew-Regular.ttf"),
-    ("zen-500", "ofl/zenkakugothicnew/ZenKakuGothicNew-Medium.ttf"),
-    ("zen-700", "ofl/zenkakugothicnew/ZenKakuGothicNew-Bold.ttf"),
+    ("mplus-400", "ofl/mplus1p/MPLUS1p-Regular.ttf"),
+    ("mplus-500", "ofl/mplus1p/MPLUS1p-Medium.ttf"),
+    ("mplus-700", "ofl/mplus1p/MPLUS1p-Bold.ttf"),
 ]
 
 LICENSES = [
     ("DelaGothicOne-OFL.txt", "ofl/delagothicone/OFL.txt"),
-    ("ZenKakuGothicNew-OFL.txt", "ofl/zenkakugothicnew/OFL.txt"),
+    ("MPLUS1p-OFL.txt", "ofl/mplus1p/OFL.txt"),
 ]
+
+# Alt küme alındıktan sonra bu harflerin HEPSİ her yüzde bulunmalı. Zen Kaku
+# sessizce Türkçesiz geldiği için denetim yapıma gömüldü: bir daha fark
+# edilmeden geçmesin.
+REQUIRED = "ĞğİıŞşÇçÖöÜüŌōŪūēāī○×↑↓—·“”" + "卍名夜影日昼月正死終言"
 
 RAW = "https://github.com/google/fonts/raw/main/"
 
@@ -55,6 +69,13 @@ def fetch(rel, dest):
     print("indiriliyor:", rel)
     urllib.request.urlretrieve(RAW + rel, dest)
     return dest
+
+
+def check(path):
+    """Üretilen yüzde REQUIRED'daki her harf var mı?"""
+    from fontTools.ttLib import TTFont
+    cmap = TTFont(path).getBestCmap()
+    return "".join(c for c in REQUIRED if ord(c) not in cmap)
 
 
 def main():
@@ -71,6 +92,9 @@ def main():
             "--unicodes=" + UNICODES,
             "--text=" + KANJI,
         ], check=True)
+        missing = check(dst)
+        if missing:
+            sys.exit(f"HATA: {name} alt kümesinde eksik glif: {missing}")
         kb = dst.stat().st_size // 1024
         total += kb
         print(f"  {dst.relative_to(ROOT)}  {kb} KB  ({src.stat().st_size // 1024} KB kaynaktan)")

@@ -30,8 +30,8 @@ ON_SEAL = (12, 12, 15)     # --on-seal
 
 FONTS = {
     "dela": "ofl/delagothicone/DelaGothicOne-Regular.ttf",
-    "zen": "ofl/zenkakugothicnew/ZenKakuGothicNew-Bold.ttf",
-    "zen-reg": "ofl/zenkakugothicnew/ZenKakuGothicNew-Regular.ttf",
+    "body-bold": "ofl/mplus1p/MPLUS1p-Bold.ttf",
+    "body": "ofl/mplus1p/MPLUS1p-Regular.ttf",
 }
 
 
@@ -80,15 +80,15 @@ def main():
 
     # Alt başlık
     d.text((seal_x + 4, seal_y + seal_px + 168),
-           "Her gün yeni bir Bleach karakteri.", font=font("zen", 34), fill=INK)
+           "Her gün yeni bir Bleach karakteri.", font=font("body-bold", 34), fill=INK)
     d.text((seal_x + 4, seal_y + seal_px + 214),
-           "Kaç denemede bileceksin?", font=font("zen-reg", 34), fill=INK_2)
+           "Kaç denemede bileceksin?", font=font("body", 34), fill=INK_2)
 
     # Dört mod — ana sayfadaki kartların kanjileri. Metnin tamamı tek bir sol
     # sütunda: sağ yarı eserin kendisine bırakıldı, orası açık renkli
     # üniformalarla dolu ve yazıyı taşımıyor.
     f_mode = font("dela", 26)
-    f_label = font("zen", 14)
+    f_label = font("body-bold", 14)
     x = seal_x + 4
     for kanji, label in [("名", "CLASSIC"), ("言", "QUOTE"), ("影", "SPLASH"), ("卍", "BANKAI")]:
         d.text((x, H - 132), kanji, font=f_mode, fill=INK)

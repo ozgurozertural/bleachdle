@@ -5,7 +5,12 @@
 /* Fontlar kendi barındırmamızda. Google Fonts'tan çekilirken her ziyaretçinin
    IP'si Google'a gidiyordu; ayrıca @import zinciri font indirmesini bu CSS
    inene kadar geciktiriyordu. scripts/build_fonts.py üretiyor — sitede geçen
-   11 kanji ve Latin Ext-A ile sınırlı alt küme, dördü toplam 49 KB. */
+   11 kanji ve Latin Ext-A ile sınırlı alt küme, dördü toplam 96 KB.
+
+   Gövde fontu M PLUS 1p: önceki Zen Kaku Gothic New'de Ğ ğ İ Ş ş ve makronlar
+   (Ō ō ū ē) hiç yoktu, kelime ortasında system-ui'ye düşüyorlardı. M PLUS 1p
+   aynı geometrik ekran-gotik ailesinden ve hepsini taşıyor; yapım betiği
+   üretilen her yüzü bu harfler için denetliyor. */
 @font-face {
   font-family: 'Dela Gothic One';
   src: url('../fonts/dela.woff2') format('woff2');
@@ -13,20 +18,20 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Zen Kaku Gothic New';
-  src: url('../fonts/zen-400.woff2') format('woff2');
+  font-family: 'M PLUS 1p';
+  src: url('../fonts/mplus-400.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Zen Kaku Gothic New';
-  src: url('../fonts/zen-500.woff2') format('woff2');
+  font-family: 'M PLUS 1p';
+  src: url('../fonts/mplus-500.woff2') format('woff2');
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Zen Kaku Gothic New';
-  src: url('../fonts/zen-700.woff2') format('woff2');
+  font-family: 'M PLUS 1p';
+  src: url('../fonts/mplus-700.woff2') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -99,7 +104,7 @@
 
 :root {
   --font-display: 'Dela Gothic One', 'Arial Black', sans-serif;
-  --font-body: 'Zen Kaku Gothic New', system-ui, sans-serif;
+  --font-body: 'M PLUS 1p', system-ui, sans-serif;
 
   /* Sert sıçrama: dev başlık, küçük etiket, arada hiçbir şey yok */
   --t-hero: clamp(2.6rem, 8.5vw, 5rem);
@@ -109,7 +114,11 @@
   --t-label: 0.68rem;
 
   --tr-label: 0.22em;
-  --measure: 60ch;
+  /* ch = '0' karakterinin genişliği, ve M PLUS 1p'de '0' gövde harflerine
+     göre Zen Kaku'dakinden epey geniş (0.620em'e karşı 0.504em). Aynı ch
+     değeri bırakılsaydı satır 57 değil 65 karakter olurdu; ölçü satır başına
+     düşen karakter sayısı sabit kalacak şekilde yeniden hesaplandı. */
+  --measure: 52ch;
 
   /* Eğik kesim — panellerin ve hücrelerin köşesini kırpan darbe açısı */
   --slash: 10px;

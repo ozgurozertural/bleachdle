@@ -229,7 +229,7 @@
   grid-column: 2;
   font-size: var(--t-small);
   color: var(--ink-2);
-  max-width: 46ch;
+  max-width: 40ch; /* bkz. --measure: ch, font değişiminde yeniden ölçüldü */
 }
 
 /* İstatistikler: panel değil, kağıda yazılmış dört sayı */
