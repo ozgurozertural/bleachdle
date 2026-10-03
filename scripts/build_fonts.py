@@ -33,7 +33,7 @@ OUT = ROOT / "fonts"
 
 # Sitede gerçekten basılan CJK karakterleri (scripts/build_fonts.py --scan ile
 # yeniden çıkarılabilir): mühür, mod ikonları, sonuç paneli, tema jetonları.
-KANJI = "卍名夜影日昼月正死終言"
+KANJI = "卍名夜影昼正死終言"
 
 # Latin-1 + Latin Ext-A (makronlar, ş/ğ/ı), birleşen aksanlar, tipografik
 # noktalama (“ ” · —), oklar (↑ ↓ ←), geometrik şekiller (○) ve ×/✓/✗.
@@ -57,7 +57,7 @@ LICENSES = [
 # Alt küme alındıktan sonra bu harflerin HEPSİ her yüzde bulunmalı. Zen Kaku
 # sessizce Türkçesiz geldiği için denetim yapıma gömüldü: bir daha fark
 # edilmeden geçmesin.
-REQUIRED = "ĞğİıŞşÇçÖöÜüŌōŪūēāī○×↑↓—·“”" + "卍名夜影日昼月正死終言"
+REQUIRED = "ĞğİıŞşÇçÖöÜüŌōŪūēāī○×↑↓—·“”" + "卍名夜影昼正死終言"
 
 RAW = "https://github.com/google/fonts/raw/main/"
 

@@ -11,7 +11,8 @@ const WIKI = '<a href="https://bleach.fandom.com" target="_blank" rel="noopener"
 const DICT = {
   tr: {
     'lang.short': 'TR', 'lang.aria': 'Dil seç', 'lang.tr': 'Türkçe', 'lang.en': 'English',
-    'theme.aria': 'Tema değiştir', 'brand.aria': 'Ana sayfa', 'nav.aria': 'Modlar',
+    'theme.aria': 'Tema', 'theme.light': 'Aydınlık tema', 'theme.dark': 'Karanlık tema',
+    'brand.aria': 'Ana sayfa', 'nav.aria': 'Modlar',
     'back': '← Ana menü',
 
     'title.index': 'Bleachdle — Bleach karakter tahmin oyunu',
@@ -67,7 +68,8 @@ const DICT = {
 
   en: {
     'lang.short': 'ENG', 'lang.aria': 'Choose language', 'lang.tr': 'Türkçe', 'lang.en': 'English',
-    'theme.aria': 'Toggle theme', 'brand.aria': 'Home', 'nav.aria': 'Modes',
+    'theme.aria': 'Theme', 'theme.light': 'Light theme', 'theme.dark': 'Dark theme',
+    'brand.aria': 'Home', 'nav.aria': 'Modes',
     'back': '← Home',
 
     'title.index': 'Bleachdle — Bleach character guessing game',

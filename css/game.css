@@ -130,21 +130,31 @@
   background: var(--seal);
 }
 
-.theme-toggle {
+/* Tema seçici: tek düğme değil, iki durumlu segment — 昼 gündüz, 夜 gece.
+   Eskiden tek düğmeydi ve geçilecek temanın kanjisini gösteriyordu (aydınlıkta
+   月, karanlıkta 日). Durumu gösteriyordu ama tek başına duran bir kanjiden
+   bunun tema denetimi olduğu anlaşılmıyordu — üstelik "hedefi mi gösteriyor,
+   mevcut durumu mu" ikircikliydi. İki hücre yan yana durunca bunun bir seçim
+   olduğu kendiliğinden belli oluyor, etkin olanı mühür dolgusu söylüyor:
+   .mode-nav'ın aria-current dolgusunun aynısı, yeni bir dil icat edilmiyor.
+   Kanji olduğu için çeviri de gerektirmiyor. */
+.theme-toggle { display: inline-flex; }
+.theme-toggle button {
   font-family: var(--font-display);
-  font-size: 0;
-  color: var(--ink-2);
-  padding: 0.4rem 0.55rem;
-  border: 1px solid var(--rule);
-  transition: color 0.2s, border-color 0.2s;
-}
-.theme-toggle::after {
-  content: '月';
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1;
+  padding: 0.4rem 0.55rem;
+  color: var(--ink-2);          /* .mode-nav'ın pasif rengiyle aynı */
+  border: 1px solid var(--rule);
+  transition: color 0.16s, border-color 0.16s, background 0.16s;
 }
-[data-theme="dark"] .theme-toggle::after { content: '日'; }
-.theme-toggle:hover { color: var(--seal); border-color: var(--seal); }
+.theme-toggle button + button { border-left: none; }
+.theme-toggle button:hover { color: var(--ink); border-color: var(--ink-3); }
+.theme-toggle button[aria-pressed="true"] {
+  color: var(--on-seal);
+  background: var(--seal);
+  border-color: var(--seal);
+}
 
 
 

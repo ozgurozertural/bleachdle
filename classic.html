@@ -54,7 +54,10 @@
       <li><button role="option" data-lang="en" data-i18n="lang.en">English</button></li>
     </ul>
   </div>
-  <button id="theme-toggle" class="theme-toggle" data-i18n-aria="theme.aria">🌓</button>
+  <div class="theme-toggle" role="group" data-i18n-aria="theme.aria">
+    <button data-set-theme="light" data-i18n-aria="theme.light">昼</button>
+    <button data-set-theme="dark" data-i18n-aria="theme.dark">夜</button>
+  </div>
 </header>
 
 <main class="game-page">
