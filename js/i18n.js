@@ -46,7 +46,6 @@ const DICT = {
     'th.location': 'Bölge', 'th.arc': 'İlk Arc',
 
     'attempts': 'Kalan hak: <strong>{left}</strong> / {max}',
-    'attempts.tried': '· Denemeler: {names}',
 
     'result.win': 'Bildin', 'result.lose': 'Kaybettin',
     'result.found': "<strong>{name}</strong>'i <strong>{n}</strong> denemede buldun.",
@@ -103,7 +102,6 @@ const DICT = {
     'th.location': 'Location', 'th.arc': 'First Arc',
 
     'attempts': 'Guesses left: <strong>{left}</strong> / {max}',
-    'attempts.tried': '· Tried: {names}',
 
     'result.win': 'You got it', 'result.lose': 'You lost',
     'result.found': 'You found <strong>{name}</strong> in <strong>{n}</strong> guesses.',

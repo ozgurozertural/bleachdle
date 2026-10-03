@@ -21,6 +21,7 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
 
   const resultEl = document.getElementById('result');
   const attemptsEl = document.getElementById('attempts');
+  const guessListEl = document.getElementById('guess-list');
   const input = document.getElementById('search');
   const suggestBox = document.getElementById('suggestions');
 
@@ -40,6 +41,7 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
     state.guesses = [];
     state.finished = false;
     resultEl.innerHTML = '';
+    if (guessListEl) guessListEl.innerHTML = '';
     input.disabled = false;
     input.value = '';
     await pickAnswer();
@@ -69,10 +71,26 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
 
   function updateAttempts() {
     attemptsEl.innerHTML =
-      t('attempts', { left: state.maxGuesses - state.guesses.length, max: state.maxGuesses }) +
-      (state.guesses.length
-        ? ' ' + t('attempts.tried', { names: state.guesses.map(g => g.name).join(', ') })
-        : '');
+      t('attempts', { left: state.maxGuesses - state.guesses.length, max: state.maxGuesses });
+    renderGuesses();
+  }
+
+  // Denenen karakterler ad listesi yerine görselli kartlar. En yeni üstte —
+  // classic'teki tahmin tablosunun sırasıyla aynı. Liste her seferinde baştan
+  // çiziliyor: kayıttan geri yükleme de aynı yoldan geçsin diye.
+  function renderGuesses() {
+    if (!guessListEl) return;
+    guessListEl.innerHTML = state.guesses.map((g, i) => {
+      const hit = state.answer && g.id === state.answer.id;
+      const col = state.guesses.length - 1 - i;
+      return `
+        <li class="guess-item ${hit ? 'correct' : 'wrong'}" style="--col:${col}">
+          ${g.image
+            ? `<img class="char-avatar" src="${esc(g.image)}" alt="">`
+            : '<span class="char-avatar img-missing">?</span>'}
+          <span class="guess-name">${esc(g.name)}</span>
+        </li>`;
+    }).reverse().join('');
   }
 
   // replay: kayıttan geri yükleme — skor yeniden işlenmez.
@@ -86,12 +104,19 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
     resultEl.innerHTML = `
       <div class="result-panel ${won ? 'win' : 'lose'}">
         <h2>${won ? t('result.win') : t('result.lose')}</h2>
-        <p>${won
-          ? t('result.found', { name: state.answer.name, n: state.guesses.length })
-          : t('result.answer', { name: state.answer.name })}</p>
-        <p class="result-stats">
-          ${t('result.stats', { streak: stats.streak, best: stats.maxStreak, played: stats.played })}
-        </p>
+        <div class="answer-reveal">
+          ${state.answer.image
+            ? `<img class="char-avatar" src="${esc(state.answer.image)}" alt="${esc(state.answer.name)}">`
+            : '<span class="char-avatar img-missing">?</span>'}
+          <div>
+            <p>${won
+              ? t('result.found', { name: state.answer.name, n: state.guesses.length })
+              : t('result.answer', { name: state.answer.name })}</p>
+            <p class="result-stats">
+              ${t('result.stats', { streak: stats.streak, best: stats.maxStreak, played: stats.played })}
+            </p>
+          </div>
+        </div>
         <div class="result-actions">
           <button id="again">${state.mode === 'daily' ? t('result.free') : t('result.again')}</button>
           <a class="secondary" href="index.html">${t('result.home')}</a>

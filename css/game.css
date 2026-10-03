@@ -552,6 +552,79 @@
   font-weight: 700;
 }
 
+/* ---------- Denenen karakterler (Quote / Splash / Bankai) ----------
+   Bu modlarda özellik tablosu yok, önceden denenenler sadece virgülle ayrılmış
+   bir ad dizisiydi. Artık görselli kart: tablonun imza dilini küçük ölçekte
+   tekrar ediyor — eğik kesim, doğru yeşil / yanlış kırmızı, köşede ○ / × (renk
+   tek başına anlam taşımasın) ve soldan giren strike animasyonu. En yeni üstte,
+   classic'teki tahmin tablosuyla aynı sıra. */
+.guess-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.guess-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 5px 0.85rem 5px 5px;
+  font-size: var(--t-small);
+  font-weight: 700;
+  line-height: 1.2;
+  clip-path: polygon(var(--slash) 0, 100% 0, 100% calc(100% - var(--slash)), calc(100% - var(--slash)) 100%, 0 100%, 0 var(--slash));
+  animation: strike 0.26s cubic-bezier(0.16, 1.1, 0.3, 1) both;
+  animation-delay: calc(var(--col, 0) * 45ms);
+}
+.guess-item.correct { background: var(--correct); color: var(--correct-ink); }
+.guess-item.wrong   { background: var(--wrong);   color: var(--wrong-ink); }
+.guess-item::after {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-size: 0.62rem;
+  line-height: 1;
+  opacity: 0.75;
+}
+.guess-item.correct::after { content: '○'; }
+.guess-item.wrong::after   { content: '×'; }
+.guess-item .char-avatar {
+  width: 44px; height: 44px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid var(--ink);
+}
+
+/* Cevabın görseli — sonuç panelinde, kazansan da kaybetsen de. */
+.answer-reveal {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0 0 0.2rem;
+}
+.answer-reveal .char-avatar {
+  flex: none;
+  width: 84px; height: 84px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid var(--ink);
+}
+.answer-reveal > div { min-width: 0; }
+
+/* Görseli olmayan karakter: aynı kutu, soru işareti. */
+.guess-item .char-avatar.img-missing,
+.answer-reveal .char-avatar.img-missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-2);
+  color: var(--ink-3);
+  font-size: 1.2rem;
+}
+
 /* ---------- Sonuç ---------- */
 .result-panel {
   position: relative;
