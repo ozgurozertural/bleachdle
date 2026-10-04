@@ -104,7 +104,7 @@ const DICT = {
     'attempts': 'Guesses left: <strong>{left}</strong> / {max}',
 
     'result.win': 'You got it', 'result.lose': 'You lost',
-    'result.found': 'You found <strong>{name}</strong> in <strong>{n}</strong> guesses.',
+    'result.found': 'You found <strong>{name}</strong> in <strong>{n}</strong> guess{es}.',
     'result.answer': 'The answer was <strong>{name}</strong>',
     'result.stats': 'Streak: {streak} · Best: {best} · Played: {played}',
     'result.free': 'Switch to free play', 'result.again': 'New game', 'result.home': 'Home',

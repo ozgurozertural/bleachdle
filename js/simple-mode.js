@@ -110,7 +110,8 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
             : '<span class="char-avatar img-missing">?</span>'}
           <div>
             <p>${won
-              ? t('result.found', { name: state.answer.name, acc: trAccusative(state.answer), n: state.guesses.length })
+              ? t('result.found', { name: state.answer.name, acc: trAccusative(state.answer),
+                n: state.guesses.length, es: state.guesses.length === 1 ? '' : 'es' })
               : t('result.answer', { name: state.answer.name })}</p>
             <p class="result-stats">
               ${t('result.stats', { streak: stats.streak, best: stats.maxStreak, played: stats.played })}
