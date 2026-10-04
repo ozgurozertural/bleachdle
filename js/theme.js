@@ -120,8 +120,23 @@
     return { body: path(1), halo: path(1.15), drops };
   }
 
-  const svg = inner => 'url("data:image/svg+xml,' + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -1.5 3 3">${inner}</svg>`) + '")';
+  // Ham data: adresi; CSS'e url("...") ile sarılıp giriyor (css()), ön yükleme
+  // için de çıplak hâli lazım (warm()).
+  const svg = inner => 'data:image/svg+xml,' + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -1.5 3 3">${inner}</svg>`);
+  const css = uri => `url("${uri}")`;
+
+  // Karelerin hepsini geçiş başlamadan çözdür. Yoksa bir kare ilk kez
+  // gösterilirken henüz hazır olmayabiliyor; o an maske "yüklenmemiş" sayılıp
+  // leke bir kare kayboluyordu. En fazla 400 ms beklenir.
+  function warm(uris) {
+    const all = Promise.all(uris.map(u => {
+      const img = new Image();
+      img.src = u;
+      return img.decode ? img.decode().catch(() => {}) : Promise.resolve();
+    }));
+    return Promise.race([all, new Promise(r => setTimeout(r, 400))]);
+  }
 
   // Yeni temanın maskesi: gövde + yarı saydam ıslak hale + sıçrantılar.
   const newMask = f =>
@@ -148,27 +163,35 @@
 
     const sh = shape(Date.now());
     const k = { old: [], pair: [], neu: [] };
+    const uris = [];
     for (let i = 0; i <= FRAMES; i++) {
       const p = i / FRAMES, f = frame(sh, p);
+      const u = { hole: hole(f), matter: matter(f, p < 0.85 ? 1 : 1 - (p - 0.85) / 0.15), neu: newMask(f) };
+      uris.push(u.hole, u.matter, u.neu);
       const sf = Math.max(1, S * ooze(Math.min(1, p / 0.82)));          // madde önde
       const sb = Math.max(1, S * ooze(Math.max(0, (p - 0.2) / 0.8)));   // yeni tema geriden
-      const glow = p < 0.85 ? 1 : 1 - (p - 0.85) / 0.15;
       const at = s => `${(ox - s / 2).toFixed(1)}px ${(oy - s / 2).toFixed(1)}px`;
-      k.old.push({ offset: p, maskImage: `linear-gradient(#000, #000), ${hole(f)}`, maskSize: `100% 100%, ${sf.toFixed(1)}px ${sf.toFixed(1)}px`, maskPosition: `0 0, ${at(sf)}` });
-      k.pair.push({ offset: p, backgroundImage: matter(f, glow), backgroundSize: `${sf.toFixed(1)}px ${sf.toFixed(1)}px`, backgroundPosition: at(sf) });
-      k.neu.push({ offset: p, maskImage: newMask(f), maskSize: `${sb.toFixed(1)}px ${sb.toFixed(1)}px`, maskPosition: at(sb) });
+      k.old.push({ offset: p, maskImage: `linear-gradient(#000, #000), ${css(u.hole)}`, maskSize: `100% 100%, ${sf.toFixed(1)}px ${sf.toFixed(1)}px`, maskPosition: `0 0, ${at(sf)}` });
+      k.pair.push({ offset: p, backgroundImage: css(u.matter), backgroundSize: `${sf.toFixed(1)}px ${sf.toFixed(1)}px`, backgroundPosition: at(sf) });
+      k.neu.push({ offset: p, maskImage: css(u.neu), maskSize: `${sb.toFixed(1)}px ${sb.toFixed(1)}px`, maskPosition: at(sb) });
     }
+    await warm(uris);
 
-    const t = document.startViewTransition(update);
+    root.classList.add('hv-run');
     try {
-      await t.ready;
-    } catch (e) {
-      return;   // geçiş atlandı (ör. sekme gizli); güncelleme yine de yapıldı
+      const t = document.startViewTransition(update);
+      try {
+        await t.ready;
+      } catch (e) {
+        return;   // geçiş atlandı (ör. sekme gizli); güncelleme yine de yapıldı
+      }
+      const opts = el => ({ duration: DURATION, easing: 'linear', fill: 'both', pseudoElement: `::view-transition-${el}(root)` });
+      root.animate(k.old, opts('old'));
+      root.animate(k.pair, opts('image-pair'));
+      root.animate(k.neu, opts('new'));
+      await t.finished;
+    } finally {
+      root.classList.remove('hv-run');
     }
-    const opts = el => ({ duration: DURATION, easing: 'linear', fill: 'both', pseudoElement: `::view-transition-${el}(root)` });
-    root.animate(k.old, opts('old'));
-    root.animate(k.pair, opts('image-pair'));
-    root.animate(k.neu, opts('new'));
-    await t.finished;
   }
 })();

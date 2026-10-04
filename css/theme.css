@@ -218,6 +218,10 @@ button {
   mix-blend-mode: normal;
 }
 ::view-transition-image-pair(root) { background-repeat: no-repeat; }
+/* Animasyonlar ready'den sonra bağlanıyor; arada bir kare geçerse yeni tema
+   maskesiz görünüp ekran bir anlık yanıp sönüyordu. Geçiş sürerken yeni
+   görüntü baştan gizli, Web Animations (fill: both) bunu ezince açılıyor. */
+html.hv-run::view-transition-new(root) { mask-image: linear-gradient(transparent, transparent); }
 ::view-transition-new(root) { mask-repeat: no-repeat; }
 /* Eski görüntü: tam kaplayan katman eksi delik. Safari'nin önekli adı xor. */
 ::view-transition-old(root) {
