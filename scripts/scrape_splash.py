@@ -62,6 +62,9 @@ def words(fname):
     'Sui' adı 'Shunsui'yi, 'Don' adı 'Dordoni'yi başka karakter sanıyordu."""
     base = fname[len("File:"):] if fname.startswith("File:") else fname
     base = re.sub(r"\.(png|jpe?g)$", "", base, flags=re.I)
+    # strip accents before the CamelCase split: "SuìFēng" did not split at "ìF"
+    # and slipped past as one unknown word, so a Suì-Fēng scene passed as Ggio's
+    base = "".join(c for c in unicodedata.normalize("NFD", base) if not unicodedata.combining(c))
     base = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", base)
     return {fold(w) for w in re.split(r"[^A-Za-zÀ-ÿĀ-ſ]+", base) if w}
 
@@ -104,7 +107,8 @@ def main():
     for i, c in enumerate(chars, 1):
         cid, name = c["id"], c["name"]
         dest = OUT_DIR / (re.sub(r"[^\w\-]", "_", name) + ".webp")
-        if cid in out and dest.exists():
+        # check the recorded path, not dest: dest follows the display name, which can change
+        if cid in out and (ROOT / out[cid]).exists():
             print(f"[{i}/{len(chars)}] {name}: var, atlandı"); continue
 
         prof_path = ROOT / (c.get("image") or "")

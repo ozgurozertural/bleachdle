@@ -57,6 +57,12 @@ def main():
         else:
             continue
 
+        # A release shared by two characters (Starrk and Lilynette are one Los Lobos)
+        # would have two right answers, so the first owner keeps it.
+        if any(e["name"] == entry["name"] for e in [*existing.values(), *out.values()]):
+            print(f"  = {c['name']}: {entry['name']} zaten havuzda, atlandı")
+            continue
+
         out[cid] = entry
         added.append(c["name"])
 

@@ -460,5 +460,55 @@
   "Masaki_Kurosaki": {
     "hair": "Orange",
     "age": 28
+  },
+  "Hiyori_Sarugaki": {
+    "hair": "Blonde",
+    "age_group": "101-1000"
+  },
+  "Lilynette_Gingerbuck": {
+    "hair": "Green",
+    "age_group": "101-1000"
+  },
+  "Emilou_Apacci": {
+    "hair": "Black",
+    "age_group": "101-1000"
+  },
+  "Franceska_Mila_Rose": {
+    "hair": "Brown",
+    "age_group": "101-1000"
+  },
+  "Cyan_Sung_Sun": {
+    "hair": "Green",
+    "age_group": "101-1000"
+  },
+  "Grand_Fisher": {
+    "hair": "Blonde",
+    "age_group": "101-1000",
+    "location": "Karakura Town"
+  },
+  "Ggio_Vega": {
+    "hair": "Black",
+    "age_group": "101-1000"
+  },
+  "Akon": {
+    "hair": "Black",
+    "age_group": "101-1000"
+  },
+  "Kiyone_Kotetsu": {
+    "hair": "Blonde",
+    "age_group": "61-100"
+  },
+  "Sentarō_Kotsubaki": {
+    "hair": "Black",
+    "age_group": "61-100"
+  },
+  "Moe_Shishigawara": {
+    "hair": "Black",
+    "age_group": "1-20",
+    "location": "Naruki City"
+  },
+  "Royd_Lloyd": {
+    "hair": "None",
+    "age_group": "101-1000"
   }
 }

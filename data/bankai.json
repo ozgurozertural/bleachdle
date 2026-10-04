@@ -254,5 +254,25 @@
     "name": "Shatatsu Karagara Shigarami no Tsuji",
     "type": "Bankai",
     "ability": "Shikai: Shigarami"
+  },
+  "Hiyori_Sarugaki": {
+    "name": "Kubikiri Orochi",
+    "type": "Shikai"
+  },
+  "Emilou_Apacci": {
+    "name": "Cierva",
+    "type": "Resurrección"
+  },
+  "Franceska_Mila_Rose": {
+    "name": "Leona",
+    "type": "Resurrección"
+  },
+  "Cyan_Sung_Sun": {
+    "name": "Anaconda",
+    "type": "Resurrección"
+  },
+  "Ggio_Vega": {
+    "name": "Tigre Estoque",
+    "type": "Resurrección"
   }
 }

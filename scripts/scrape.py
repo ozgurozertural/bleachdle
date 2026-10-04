@@ -69,6 +69,11 @@ CHARACTERS = [
     # Karakura Humans
     "Tatsuki Arisawa", "Keigo Asano", "Mizuiro Kojima",
     "Chizuru Honshō", "Don Kanonji", "Masaki Kurosaki",
+    # Added 2026-10 after the wiki audit
+    "Hiyori Sarugaki", "Lilynette Gingerbuck",
+    "Emilou Apacci", "Franceska Mila Rose", "Cyan Sung-Sun",
+    "Grand Fisher", "Ggio Vega", "Akon", "Kiyone Kotetsu", "Sentarō Kotsubaki",
+    "Moe Shishigawara", "Royd Lloyd",
 ]
 
 # Display names that differ from the page title. The title stays in CHARACTERS
