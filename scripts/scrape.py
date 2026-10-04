@@ -71,6 +71,13 @@ CHARACTERS = [
     "Chizuru Honshō", "Don Kanonji", "Masaki Kurosaki",
 ]
 
+# Display names that differ from the page title. The title stays in CHARACTERS
+# because the id is derived from it; these two were listed family name first.
+DISPLAY_NAMES = {
+    "Iba Tetsuzaemon": "Tetsuzaemon Iba",
+    "Hisagi Shūhei": "Shūhei Hisagi",
+}
+
 def api_get(params, retries=3):
     params = {**params, "format": "json"}
     url = API + "?" + urllib.parse.urlencode(params)
@@ -414,7 +421,7 @@ def scrape(merge=False):
 
         rec = {
             "id": re.sub(r"[^\w]", "_", title).strip("_"),
-            "name": title,
+            "name": DISPLAY_NAMES.get(title, title),
             "gender": norm_gender(params.get("gender", "")),
             "race": norm_race(params.get("race", ""), occupation),
             "affiliation": norm_affiliation(affiliation + " " + occupation),
