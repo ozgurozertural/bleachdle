@@ -136,7 +136,7 @@ const VALUES = {
   tr: {
     gender: { Male: 'Erkek', Female: 'Kadın', Unknown: 'Bilinmiyor' },
     race: {
-      Human: 'İnsan', 'Mod Soul': 'Mod Ruh', Unknown: 'Bilinmiyor',
+      Human: 'İnsan', Soul: 'Ruh', 'Mod Soul': 'Mod Ruh', Unknown: 'Bilinmiyor',
       // Shinigami / Quincy / Arrancar / Visored / Fullbringer: Türkçe kaynaklarda
       // da özel ad gibi kullanılıyor, çevrilmiyor.
     },

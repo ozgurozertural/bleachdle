@@ -155,11 +155,13 @@
   },
   "Ganju_Shiba": {
     "hair": "Black",
-    "age_group": "101-1000"
+    "age_group": "101-1000",
+    "race": "Soul"
   },
   "Kūkaku_Shiba": {
     "hair": "Black",
-    "age_group": "101-1000"
+    "age_group": "101-1000",
+    "race": "Soul"
   },
   "Kaien_Shiba": {
     "hair": "Black",
@@ -167,7 +169,8 @@
   },
   "Jidanbō_Ikkanzaka": {
     "hair": "Black",
-    "age_group": "101-1000"
+    "age_group": "101-1000",
+    "race": "Soul"
   },
   "Hachigen_Ushōda": {
     "hair": "Pink",
@@ -427,12 +430,12 @@
   "Ururu_Tsumugiya": {
     "hair": "Black",
     "age": 12,
-    "race": "Human"
+    "race": "Mod Soul"
   },
   "Jinta_Hanakari": {
     "hair": "Red",
     "age": 12,
-    "race": "Human"
+    "race": "Mod Soul"
   },
   "Tatsuki_Arisawa": {
     "hair": "Black",
