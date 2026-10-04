@@ -209,25 +209,40 @@ button {
    View Transitions eski ve yeni sayfanın birer görüntüsünü alıyor; ikisi
    ::view-transition-image-pair(root) içinde üst üste duruyor. Eskiye büyüyen
    bir delik açılıyor, yeni o deliğin biraz gerisinden açılıyor; aradaki
-   halkada ikisi de saydam, oradan çiftin kendi arka planı görünüyor: kızıl
-   haleli siyah madde. Lekenin şekli, boyutu ve konumu kare kare JS'ten
-   (Web Animations) geliyor; burada yalnız sabit kısımlar var. */
+   halkada ikisi de saydam, oradan çiftin kendi arka planı görünüyor: siyah
+   madde. Kızıl hale ayrı bir katman (.hv-rim, yalnız geçiş sürerken var):
+   lekenin kenarında bir halka, grubunda bulanıklık — filtre grupta, çünkü
+   kırpılan öğenin kendisine verilse kırpma kenarı keskin kalırdı.
+
+   Leke maske görseli değil clip-path: path(). Görselle yapılınca her kare
+   ayrı bir resim olarak eşzamansız yükleniyordu; zamanında hazır olmayan
+   karede maske "yok" sayılıp ekran ara ara yanıp sönüyordu. path() eşzamanlı
+   çiziliyor ve kareler aynı yapıda olduğu için aralarında yumuşak geçiyor.
+   Kareler JS'ten (Web Animations) geliyor; burada yalnız sabit kısımlar var. */
 ::view-transition-old(root),
-::view-transition-new(root) {
+::view-transition-new(root),
+::view-transition-group(hv-rim),
+::view-transition-new(hv-rim) {
   animation: none;
   mix-blend-mode: normal;
 }
-::view-transition-image-pair(root) { background-repeat: no-repeat; }
+::view-transition-image-pair(root) {
+  background: radial-gradient(circle at var(--hv-x, 50%) var(--hv-y, 50%), #2a0508, #050407 55%);
+}
+::view-transition-group(hv-rim) { filter: blur(7px); }
 /* Animasyonlar ready'den sonra bağlanıyor; arada bir kare geçerse yeni tema
-   maskesiz görünüp ekran bir anlık yanıp sönüyordu. Geçiş sürerken yeni
-   görüntü baştan gizli, Web Animations (fill: both) bunu ezince açılıyor. */
-html.hv-run::view-transition-new(root) { mask-image: linear-gradient(transparent, transparent); }
-::view-transition-new(root) { mask-repeat: no-repeat; }
-/* Eski görüntü: tam kaplayan katman eksi delik. Safari'nin önekli adı xor. */
-::view-transition-old(root) {
-  mask-repeat: no-repeat;
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+   kırpılmadan görünürdü. Geçiş sürerken yeni görüntü ve hale baştan gizli,
+   Web Animations (fill: both) bunu ezince açılıyor. */
+html.hv-run::view-transition-new(root),
+html.hv-run::view-transition-new(hv-rim) { clip-path: inset(50%); }
+
+.hv-rim {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  view-transition-name: hv-rim;
+  background: radial-gradient(circle at var(--hv-x, 50%) var(--hv-y, 50%), #ff5a2f, #c3120c 60%, #6d0408);
 }
 
 @media (prefers-reduced-motion: reduce) {

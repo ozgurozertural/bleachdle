@@ -32,30 +32,21 @@
   /* ---- 虚 Hollow maddesi ----
      Tema düğmesinden kızıl haleli siyah bir madde sızar, yeni tema onun
      içinden biraz geriden açılır. Prototipte seçildi (Ekim 2026). Katmanların
-     sırası ve sabit stiller css/theme.css'te; burada lekenin kareleri üretilip
-     Web Animations ile üç sözde öğeye veriliyor:
-       eski görüntü  — maskesinde büyüyen yumuşak kenarlı delik
-       çiftin zemini — madde + hale (delikle aynı ölçüde)
+     sırası ve sabit stiller css/theme.css'te; burada lekenin kareleri
+     clip-path yolları olarak üretilip Web Animations ile verilir:
+       eski görüntü  — ekran eksi leke (evenodd): büyüyen delik
+       çiftin zemini — delikten görünen siyah madde (CSS'te)
+       hale katmanı  — lekenin kenarında halka, grubunda bulanıklık
        yeni görüntü  — aynı leke, 0.2 geriden
      Hareket azaltma açıksa ya da tarayıcı desteklemiyorsa anlık geçiş. */
 
   const DURATION = 2100;
   const FRAMES = 36;
 
-  // Temaların arka plan eserleri (css/theme.css'teki --art ile aynı dosyalar).
-  // Gündüzünkü 1920 px / 217 KB: geçiş anında çözülmesi gerekince ilk
-  // kareler takılıyor, ekran bir an yanıp sönüyordu (yalnız gündüze geçerken).
-  // Sayfa boşa düşünce ikisi de önceden çözülüyor, geçişten önce de hedefinki.
-  const ART = { light: 'data/images/bg-gotei13.webp', dark: 'data/images/bg-espada.webp' };
-  // Image nesneleri burada tutuluyor: kimse tutmazsa tarayıcı çözülmüş hâli
-  // kısa sürede bellekten atabiliyor.
-  const kept = [];
-  (window.requestIdleCallback || (cb => setTimeout(cb, 1500)))(() => warm(Object.values(ART), kept));
-
   function canAnimate() {
     return typeof document.startViewTransition === 'function'
       && !matchMedia('(prefers-reduced-motion: reduce)').matches
-      && CSS.supports('mask-composite', 'exclude');
+      && CSS.supports('clip-path', 'path("M0 0")');
   }
 
   // Seed'li PRNG (game-core.js'teki mulberry32'nin aynısı; bu dosya ondan
@@ -103,106 +94,84 @@
     };
   }
 
-  // Bir kare: phase 0..1 boyunca dalgalar kayar, dokunaçlar uzayıp kısalır.
-  // Koordinatlar -1.5..1.5 kutusunda, gövde yarıçapı ~1.
-  function frame(sh, phase) {
-    const N = 160;
-    const rad = th => {
-      let r = 1;
-      for (const w of sh.waves) r += w.a * Math.sin(w.f * th + w.p + w.v * phase);
+  // Lekenin bir karesi, piksel cinsinden yol. phase 0..1 boyunca dalgalar
+  // kayar, dokunaçlar uzayıp kısalır. r gövde yarıçapı, scale halka için
+  // (ör. 1.045 hale dış kenarı). Komut yapısı her karede aynı, o yüzden
+  // tarayıcı kareler arasını yumuşak doldurabiliyor.
+  function blob(sh, phase, cx, cy, r, scale, drops) {
+    const N = 120;
+    const f = n => n.toFixed(1);
+    let d = '';
+    for (let i = 0; i <= N; i++) {
+      const th = i / N * 6.2832;
+      let k = 1;
+      for (const w of sh.waves) k += w.a * Math.sin(w.f * th + w.p + w.v * phase);
       for (const t of sh.tendrils) {
-        const d = Math.abs(((th - t.th - t.v * phase) % 6.2832 + 9.4248) % 6.2832 - 3.1416);
-        r += t.len * (0.75 + 0.25 * Math.sin(phase * 7 + t.br)) * Math.exp(-(d * d) / (2 * t.w * t.w));
+        const a = Math.abs(((th - t.th - t.v * phase) % 6.2832 + 9.4248) % 6.2832 - 3.1416);
+        k += t.len * (0.75 + 0.25 * Math.sin(phase * 7 + t.br)) * Math.exp(-(a * a) / (2 * t.w * t.w));
       }
-      return r;
-    };
-    const path = k => {
-      let d = '';
-      for (let i = 0; i <= N; i++) {
-        const th = i / N * 6.2832, r = 1 + (rad(th) - 1) * k;
-        d += (i ? 'L' : 'M') + (Math.cos(th) * r).toFixed(4) + ' ' + (Math.sin(th) * r).toFixed(4);
+      const rr = r * k * scale;
+      d += (i ? 'L' : 'M') + f(cx + Math.cos(th) * rr) + ' ' + f(cy + Math.sin(th) * rr);
+    }
+    d += 'Z';
+    if (drops) {
+      for (const p of sh.drops) {
+        const x = cx + Math.cos(p.th) * p.d * r, y = cy + Math.sin(p.th) * p.d * r;
+        const q = Math.max(0.1, p.r * r * (0.6 + 0.4 * Math.sin(phase * 5 + p.th)));
+        d += `M${f(x - q)} ${f(y)}a${f(q)} ${f(q)} 0 1 0 ${f(2 * q)} 0a${f(q)} ${f(q)} 0 1 0 ${f(-2 * q)} 0Z`;
       }
-      return d + 'Z';
-    };
-    const drops = sh.drops.map(p =>
-      `<circle cx="${(Math.cos(p.th) * p.d).toFixed(3)}" cy="${(Math.sin(p.th) * p.d).toFixed(3)}" r="${(p.r * (0.6 + 0.4 * Math.sin(phase * 5 + p.th))).toFixed(3)}"/>`
-    ).join('');
-    return { body: path(1), halo: path(1.15), drops };
+    }
+    return d;
   }
-
-  // Ham data: adresi; CSS'e url("...") ile sarılıp giriyor (css()), ön yükleme
-  // için de çıplak hâli lazım (warm()).
-  const svg = inner => 'data:image/svg+xml,' + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -1.5 3 3">${inner}</svg>`);
-  const css = uri => `url("${uri}")`;
-
-  // Karelerin hepsini geçiş başlamadan çözdür. Yoksa bir kare ilk kez
-  // gösterilirken henüz hazır olmayabiliyor; o an maske "yüklenmemiş" sayılıp
-  // leke bir kare kayboluyordu. En fazla 400 ms beklenir.
-  function warm(uris, keep) {
-    const all = Promise.all(uris.map(u => {
-      const img = new Image();
-      img.src = u;
-      if (keep) keep.push(img);
-      return img.decode ? img.decode().catch(() => {}) : Promise.resolve();
-    }));
-    return Promise.race([all, new Promise(r => setTimeout(r, 400))]);
-  }
-
-  // Yeni temanın maskesi: gövde + yarı saydam ıslak hale + sıçrantılar.
-  const newMask = f =>
-    svg(`<g fill="#000"><path d="${f.halo}" transform="scale(1.03)" fill-opacity=".45"/><path d="${f.body}"/>${f.drops}</g>`);
-
-  // Eski görüntüdeki delik: kenarı yumuşak (iç içe soluklaşan kopyalar), hale
-  // eskinin kenarına bu yumuşak bantta karışıyor.
-  const hole = f =>
-    svg(`<g fill="#000"><path d="${f.body}" transform="scale(1.06)" fill-opacity=".25"/><path d="${f.body}" transform="scale(1.035)" fill-opacity=".5"/><path d="${f.body}" transform="scale(1.015)" fill-opacity=".8"/><path d="${f.body}"/>${f.drops}</g>`);
-
-  // Madde: kızıl hale (dıştan içe koyulaşan halkalar) ve üstünde siyah gövde;
-  // gövdenin kenarına doğru koyu kızıl damar rengi. glow sona doğru söner.
-  const matter = (f, glow) =>
-    svg(`<defs><radialGradient id="m"><stop offset=".45" stop-color="#050407"/><stop offset="1" stop-color="#2a0508"/></radialGradient></defs>` +
-      `<g opacity="${glow.toFixed(3)}"><path d="${f.body}" transform="scale(1.06)" fill="#6d0408" fill-opacity=".55"/><path d="${f.body}" transform="scale(1.035)" fill="#c3120c" fill-opacity=".75"/><path d="${f.body}" transform="scale(1.015)" fill="#ff5a2f"/></g>` +
-      `<path d="${f.body}" fill="url(#m)"/><g fill="#050407">${f.drops}</g>`);
 
   async function hollow(button, update) {
     const b = button.getBoundingClientRect();
     const ox = b.left + b.width / 2, oy = b.top + b.height / 2;
     const W = innerWidth, H = innerHeight;
-    // Gövde yarıçapı kutunun 1/3'ü; en uzak köşeyi örtecek kadar büyüt.
-    const S = Math.max(Math.hypot(ox, oy), Math.hypot(W - ox, oy), Math.hypot(ox, H - oy), Math.hypot(W - ox, H - oy)) * 3.75;
+    // Gövde yarıçapı + en uzun dokunaç ~1.6 r; gövde en uzak köşeyi örtsün.
+    const Rmax = Math.max(Math.hypot(ox, oy), Math.hypot(W - ox, oy), Math.hypot(ox, H - oy), Math.hypot(W - ox, H - oy)) * 1.25;
+    const screen = `M-50 -50H${W + 50}V${H + 50}H-50Z`;
 
     const sh = shape(Date.now());
-    const k = { old: [], pair: [], neu: [] };
-    const uris = [];
+    const k = { old: [], rim: [], neu: [] };
     for (let i = 0; i <= FRAMES; i++) {
-      const p = i / FRAMES, f = frame(sh, p);
-      const u = { hole: hole(f), matter: matter(f, p < 0.85 ? 1 : 1 - (p - 0.85) / 0.15), neu: newMask(f) };
-      uris.push(u.hole, u.matter, u.neu);
-      const sf = Math.max(1, S * ooze(Math.min(1, p / 0.82)));          // madde önde
-      const sb = Math.max(1, S * ooze(Math.max(0, (p - 0.2) / 0.8)));   // yeni tema geriden
-      const at = s => `${(ox - s / 2).toFixed(1)}px ${(oy - s / 2).toFixed(1)}px`;
-      k.old.push({ offset: p, maskImage: `linear-gradient(#000, #000), ${css(u.hole)}`, maskSize: `100% 100%, ${sf.toFixed(1)}px ${sf.toFixed(1)}px`, maskPosition: `0 0, ${at(sf)}` });
-      k.pair.push({ offset: p, backgroundImage: css(u.matter), backgroundSize: `${sf.toFixed(1)}px ${sf.toFixed(1)}px`, backgroundPosition: at(sf) });
-      k.neu.push({ offset: p, maskImage: css(u.neu), maskSize: `${sb.toFixed(1)}px ${sb.toFixed(1)}px`, maskPosition: at(sb) });
+      const p = i / FRAMES;
+      const rf = Math.max(0.5, Rmax * ooze(Math.min(1, p / 0.82)));          // madde önde
+      const rb = Math.max(0.5, Rmax * ooze(Math.max(0, (p - 0.2) / 0.8)));   // yeni tema geriden
+      // Hale %80'den sonra söner, %93'te sıfır: katman ancak o zaman kaldırılıyor.
+      const glow = p < 0.8 ? 1 : Math.max(0, 1 - (p - 0.8) / 0.13);
+      k.old.push({ offset: p, clipPath: `path(evenodd, "${screen}${blob(sh, p, ox, oy, rf, 1, true)}")` });
+      k.rim.push({ offset: p, opacity: glow,
+        clipPath: `path(evenodd, "${blob(sh, p, ox, oy, rf, 1.05, false)}${blob(sh, p, ox, oy, rf, 0.995, false)}")` });
+      k.neu.push({ offset: p, clipPath: `path("${blob(sh, p, ox, oy, rb, 1, true)}")` });
     }
-    await warm(uris.concat(ART[button.dataset.setTheme]));
 
+    root.style.setProperty('--hv-x', ox + 'px');
+    root.style.setProperty('--hv-y', oy + 'px');
     root.classList.add('hv-run');
+    const rim = document.createElement('div');
+    rim.className = 'hv-rim';
+    rim.setAttribute('aria-hidden', 'true');
     try {
-      const t = document.startViewTransition(update);
+      // Hale yalnız yeni durumda var: güncellemeyle birlikte eklenir, geçiş
+      // bitmeden kaldırılır (bittiği karede gerçek sayfada görünmesin).
+      const t = document.startViewTransition(() => { update(); document.body.appendChild(rim); });
       try {
         await t.ready;
       } catch (e) {
         return;   // geçiş atlandı (ör. sekme gizli); güncelleme yine de yapıldı
       }
-      const opts = el => ({ duration: DURATION, easing: 'linear', fill: 'both', pseudoElement: `::view-transition-${el}(root)` });
-      root.animate(k.old, opts('old'));
-      root.animate(k.pair, opts('image-pair'));
-      root.animate(k.neu, opts('new'));
+      const opts = el => ({ duration: DURATION, easing: 'linear', fill: 'both', pseudoElement: `::view-transition-${el}` });
+      root.animate(k.old, opts('old(root)'));
+      root.animate(k.rim, opts('new(hv-rim)'));
+      root.animate(k.neu, opts('new(root)'));
+      setTimeout(() => rim.remove(), DURATION * 0.96);
       await t.finished;
     } finally {
+      rim.remove();
       root.classList.remove('hv-run');
+      root.style.removeProperty('--hv-x');
+      root.style.removeProperty('--hv-y');
     }
   }
 })();
