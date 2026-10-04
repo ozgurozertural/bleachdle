@@ -54,8 +54,7 @@
     "age": 200
   },
   "Retsu_Unohana": {
-    "hair": "Black",
-    "age": 800
+    "hair": "Black"
   },
   "Sajin_Komamura": {
     "hair": "Brown",
@@ -75,7 +74,8 @@
   },
   "Kaname_Tōsen": {
     "hair": "Purple",
-    "age": 200
+    "age": 200,
+    "race": "Shinigami"
   },
   "Tōshirō_Hitsugaya": {
     "hair": "White",
@@ -103,8 +103,7 @@
     "height_cm": 168
   },
   "Nanao_Ise": {
-    "hair": "Black",
-    "age": 100
+    "hair": "Black"
   },
   "Momo_Hinamori": {
     "hair": "Black",
@@ -131,8 +130,8 @@
     "age": 100
   },
   "Rangiku_Matsumoto": {
-    "hair": "Orange",
-    "age": 100
+    "hair": "Blonde",
+    "age_group": "101-1000"
   },
   "Yachiru_Kusajishi": {
     "hair": "Pink",
@@ -171,7 +170,7 @@
     "age_group": "101-1000"
   },
   "Hachigen_Ushōda": {
-    "hair": "Blonde",
+    "hair": "Pink",
     "age_group": "101-1000"
   },
   "Lisa_Yadōmaru": {
@@ -191,7 +190,7 @@
     "age_group": "101-1000"
   },
   "Baraggan_Louisenbairn": {
-    "hair": "None",
+    "hair": "White",
     "age_group": "101-1000"
   },
   "Tier_Harribel": {
@@ -211,7 +210,7 @@
     "age_group": "101-1000"
   },
   "Zommari_Rureaux": {
-    "hair": "Black",
+    "hair": "None",
     "age_group": "101-1000"
   },
   "Szayelaporro_Granz": {
@@ -220,7 +219,7 @@
     "age_group": "101-1000"
   },
   "Aaroniero_Arruruerie": {
-    "hair": "Black",
+    "hair": "None",
     "age_group": "101-1000"
   },
   "Yammy_Llargo": {
@@ -248,7 +247,7 @@
     "age_group": "101-1000"
   },
   "Luppi_Antenor": {
-    "hair": "Purple",
+    "hair": "Black",
     "age_group": "101-1000"
   },
   "Kūgo_Ginjō": {
@@ -260,7 +259,7 @@
     "age_group": "21-40"
   },
   "Giriko_Kutsuzawa": {
-    "hair": "Grey",
+    "hair": "Black",
     "age_group": "41-60"
   },
   "Jackie_Tristan": {
@@ -275,16 +274,14 @@
   },
   "Riruka_Dokugamine": {
     "hair": "Red",
-    "location": "Naruki City",
-    "age_group": "21-40"
+    "location": "Naruki City"
   },
   "Yhwach": {
     "hair": "Black",
     "age": 1200
   },
   "Jugram_Haschwalth": {
-    "hair": "Blonde",
-    "age": 1000
+    "hair": "Blonde"
   },
   "Bazz_B": {
     "hair": "Red"
@@ -302,11 +299,11 @@
     "age_group": "101-1000"
   },
   "Giselle_Gewelle": {
-    "hair": "Green",
+    "hair": "Black",
     "age_group": "101-1000"
   },
   "Meninas_McAllon": {
-    "hair": "Pink",
+    "hair": "Purple",
     "age_group": "101-1000"
   },
   "Liltotto_Lamperd": {
@@ -314,7 +311,7 @@
     "age_group": "101-1000"
   },
   "PePe_Waccabrada": {
-    "hair": "Purple",
+    "hair": "None",
     "age_group": "101-1000"
   },
   "Robert_Accutrone": {
@@ -322,11 +319,11 @@
     "age_group": "101-1000"
   },
   "NaNaNa_Najahkoop": {
-    "hair": "Blonde",
+    "hair": "Black",
     "age_group": "101-1000"
   },
   "Berenice_Gabrielli": {
-    "hair": "Orange",
+    "hair": "Blonde",
     "age_group": "101-1000"
   },
   "Driscoll_Berci": {
@@ -346,7 +343,7 @@
     "age_group": "101-1000"
   },
   "Quilge_Opie": {
-    "hair": "Blonde",
+    "hair": "Black",
     "age_group": "101-1000"
   },
   "Gerard_Valkyrie": {
@@ -354,7 +351,7 @@
     "age_group": "101-1000"
   },
   "Askin_Nakk_Le_Vaar": {
-    "hair": "White",
+    "hair": "Black",
     "age_group": "101-1000"
   },
   "Lille_Barro": {
@@ -366,7 +363,7 @@
     "gender": "Male"
   },
   "Nianzol_Weizol": {
-    "hair": "Blonde",
+    "hair": "Black",
     "age_group": "101-1000"
   },
   "Ryūken_Ishida": {
@@ -385,15 +382,11 @@
     "hair": "White",
     "age_group": "61-100"
   },
-  "Ganryū": {
-    "hair": "Black",
-    "age_group": "101-1000"
-  },
   "Chōjirō_Sasakibe": {
-    "hair": "Brown"
+    "hair": "Grey"
   },
   "Äs_Nödt": {
-    "hair": "White",
+    "hair": "Black",
     "age_group": "101-1000"
   },
   "Gin_Ichimaru": {
@@ -407,7 +400,7 @@
     "age_group": "101-1000"
   },
   "Ichibē_Hyōsube": {
-    "hair": "Black",
+    "hair": "None",
     "location": "Soul King Palace"
   },
   "Ōetsu_Nimaiya": {
@@ -415,11 +408,11 @@
     "location": "Soul King Palace"
   },
   "Kirio_Hikifune": {
-    "hair": "Blonde",
+    "hair": "Pink",
     "location": "Soul King Palace"
   },
   "Tenjirō_Kirinji": {
-    "hair": "Blonde",
+    "hair": "Black",
     "location": "Soul King Palace",
     "age_group": "1000+"
   },

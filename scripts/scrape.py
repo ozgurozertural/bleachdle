@@ -60,7 +60,7 @@ CHARACTERS = [
     "Lille Barro", "Pernida Parnkgjas", "Nianzol Weizol",
     # Others
     "Ryūken Ishida", "Karin Kurosaki", "Yuzu Kurosaki",
-    "Sōken Ishida", "Kūkaku Shiba", "Ganryū",
+    "Sōken Ishida", "Kūkaku Shiba",
     # Royal Guard (Zero Division)
     "Ichibē Hyōsube", "Ōetsu Nimaiya", "Kirio Hikifune",
     "Tenjirō Kirinji", "Senjumaru Shutara",
@@ -195,7 +195,8 @@ def parse_first_image(image_field):
 def norm_race(v, profession=""):
     full = clean_wikitext(v).lower()
     v = full.split("(")[0].strip()
-    p = clean_wikitext(profession).lower()
+    # "Leader of the Arrancar Army" is a post, not a race: it made Aizen and Tōsen "Arrancar"
+    p = clean_wikitext(profession).lower().replace("arrancar army", "")
     # Special-case: Fullbringer overrides Human when it's the profession identity
     if "fullbringer" in p or ("fullbringer" in full and "hybrid" not in full):
         return "Fullbringer"
@@ -333,6 +334,15 @@ def extract_ability_name(v):
     if m: return clean_wikitext(m.group(1))
     return clean_wikitext(v).split(",")[0].split("(")[0].strip() or None
 
+def parse_age(v):
+    """First number in the age field. "N+" means more than N, so it becomes N+1:
+    otherwise "1,000+" lands on the 101-1000 bucket boundary instead of 1000+."""
+    # drop thousands separators first, else "2,000+" would parse as 2
+    txt = clean_wikitext(v).replace(",", "")
+    m = re.search(r"(\d{1,5})(\+?)", txt)
+    if not m: return None
+    return int(m.group(1)) + (1 if m.group(2) else 0)
+
 # main
 def scrape(merge=False):
     """merge=True keeps characters already in characters.json and only scrapes titles
@@ -378,11 +388,8 @@ def scrape(merge=False):
         bankai = extract_ability_name(params.get("bankai", ""))
         resurreccion = extract_ability_name(params.get("resurrección", "") or params.get("resurreccion", ""))
 
-        # Age: first number
-        # drop thousands separators first, else "2,000+" would parse as 2
-        age_txt = clean_wikitext(params.get("age", "")).replace(",", "")
-        m = re.search(r"(\d{1,5})", age_txt)
-        age = int(m.group(1)) if m else None
+        # Age: first number ("N+" → N+1, see parse_age)
+        age = parse_age(params.get("age", ""))
 
         # Height: first cm number
         h_txt = clean_wikitext(params.get("height", ""))
