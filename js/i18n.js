@@ -48,7 +48,7 @@ const DICT = {
     'attempts': 'Kalan hak: <strong>{left}</strong> / {max}',
 
     'result.win': 'Bildin', 'result.lose': 'Kaybettin',
-    'result.found': "<strong>{name}</strong>'i <strong>{n}</strong> denemede buldun.",
+    'result.found': "<strong>{name}</strong>'{acc} <strong>{n}</strong> denemede buldun.",
     'result.answer': 'Doğru cevap: <strong>{name}</strong>',
     'result.stats': 'Seri: {streak} · Rekor: {best} · Oyun: {played}',
     'result.free': 'Serbest oyuna geç', 'result.again': 'Yeni oyun', 'result.home': 'Ana menü',
@@ -160,6 +160,32 @@ const VALUES = {
 function tv(field, value) {
   const table = VALUES[LANG][field];
   return (table && table[value]) || value;
+}
+
+// Türkçe belirtme hâli eki: "Ishida'yı", "Kon'u", "Aizen'i". Ünlü uyumu adın
+// yazılışından çıkarılıyor; okunuşu yazılışından ayrılan adlar istisnada.
+const ACC_EXCEPTIONS = {
+  Zommari_Rureaux: 'yu',        // Rüro
+  Gremmy_Thoumeaux: 'yu',       // Tumo
+  Mask_De_Masculine: 'i',       // Maskülin
+  BG9: 'u',                     // Bi Ci Dokuz
+  Bazz_B: 'yi',                 // Baz Bi
+  Grand_Fisher: 'ı',            // Fişır
+  Franceska_Mila_Rose: 'u',     // Rouz
+  Lilynette_Gingerbuck: 'ı',    // Cincırbak
+};
+
+function trAccusative(c) {
+  if (ACC_EXCEPTIONS[c.id]) return ACC_EXCEPTIONS[c.id];
+  // makron ve aksanlar düşer (ō → o), iki nokta (U+0308) kalır: ö/ü Türkçede
+  // ayrı ünlü ("Nödt'ü"), Almanca ä da e okunur
+  const w = c.name.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u0307\u0309-\u036f]/g, '').normalize('NFC')
+    .replace(/ä/g, 'e').replace(/[^a-zıöü]/g, '')
+    .replace(/(?<=[^aeıioöuü])y$/, 'i');   // Yammy, Gremmy: sondaki y "i" okunur
+  const vowels = w.match(/[aeıioöuü]/g) || ['e'];
+  const harmony = { a: 'ı', ı: 'ı', o: 'u', u: 'u', e: 'i', i: 'i', ö: 'ü', ü: 'ü' }[vowels.at(-1)];
+  return (/[aeıioöuü]$/.test(w) ? 'y' : '') + harmony;
 }
 
 document.documentElement.lang = LANG;

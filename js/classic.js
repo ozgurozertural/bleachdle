@@ -83,7 +83,7 @@
       <div class="result-panel ${won ? 'win' : 'lose'}">
         <h2>${won ? t('result.win') : t('result.lose')}</h2>
         <p>${won
-          ? t('result.found', { name: state.answer.name, n: state.guesses.length })
+          ? t('result.found', { name: state.answer.name, acc: trAccusative(state.answer), n: state.guesses.length })
           : t('result.answer', { name: state.answer.name })}</p>
         <p class="result-stats">
           ${t('result.stats', { streak: stats.streak, best: stats.maxStreak, played: stats.played })}
