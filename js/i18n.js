@@ -134,7 +134,7 @@ const LANG = DICT[localStorage.getItem(LANG_KEY)] ? localStorage.getItem(LANG_KE
 // çeviri eksik kalır ama tablo bozulmaz).
 const VALUES = {
   tr: {
-    gender: { Male: 'Erkek', Female: 'Kadın', Unknown: 'Bilinmiyor' },
+    gender: { Male: 'Erkek', Female: 'Kadın', Genderless: 'Cinsiyetsiz', Unknown: 'Bilinmiyor' },
     race: {
       Human: 'İnsan', Soul: 'Ruh', 'Mod Soul': 'Mod Ruh', Unknown: 'Bilinmiyor',
       // Shinigami / Quincy / Arrancar / Visored / Fullbringer: Türkçe kaynaklarda
