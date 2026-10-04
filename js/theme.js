@@ -36,7 +36,7 @@
      clip-path yolları olarak üretilip Web Animations ile verilir:
        eski görüntü  — ekran eksi leke (evenodd): büyüyen delik
        çiftin zemini — delikten görünen siyah madde (CSS'te)
-       hale katmanı  — lekenin kenarında halka, grubunda bulanıklık
+       hale katmanı  — lekenin kenarında ince kızıl halka
        yeni görüntü  — aynı leke, 0.2 geriden
      Hareket azaltma açıksa ya da tarayıcı desteklemiyorsa anlık geçiş. */
 
@@ -99,7 +99,7 @@
   // (ör. 1.045 hale dış kenarı). Komut yapısı her karede aynı, o yüzden
   // tarayıcı kareler arasını yumuşak doldurabiliyor.
   function blob(sh, phase, cx, cy, r, scale, drops) {
-    const N = 120;
+    const N = 90;
     const f = n => n.toFixed(1);
     let d = '';
     for (let i = 0; i <= N; i++) {
@@ -142,7 +142,7 @@
       const glow = p < 0.8 ? 1 : Math.max(0, 1 - (p - 0.8) / 0.13);
       k.old.push({ offset: p, clipPath: `path(evenodd, "${screen}${blob(sh, p, ox, oy, rf, 1, true)}")` });
       k.rim.push({ offset: p, opacity: glow,
-        clipPath: `path(evenodd, "${blob(sh, p, ox, oy, rf, 1.05, false)}${blob(sh, p, ox, oy, rf, 0.995, false)}")` });
+        clipPath: `path(evenodd, "${blob(sh, p, ox, oy, rf, 1.03, false)}${blob(sh, p, ox, oy, rf, 0.997, false)}")` });
       k.neu.push({ offset: p, clipPath: `path("${blob(sh, p, ox, oy, rb, 1, true)}")` });
     }
 

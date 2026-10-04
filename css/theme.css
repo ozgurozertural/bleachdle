@@ -211,8 +211,9 @@ button {
    bir delik açılıyor, yeni o deliğin biraz gerisinden açılıyor; aradaki
    halkada ikisi de saydam, oradan çiftin kendi arka planı görünüyor: siyah
    madde. Kızıl hale ayrı bir katman (.hv-rim, yalnız geçiş sürerken var):
-   lekenin kenarında bir halka, grubunda bulanıklık — filtre grupta, çünkü
-   kırpılan öğenin kendisine verilse kırpma kenarı keskin kalırdı.
+   lekenin kenarında ince bir halka. Bulanıklık bilerek yok: tam ekran bir
+   katmanda şekil her karede değişince her kare yeniden bulanıklaştırılıyor,
+   animasyon takılıyordu.
 
    Leke maske görseli değil clip-path: path(). Görselle yapılınca her kare
    ayrı bir resim olarak eşzamansız yükleniyordu; zamanında hazır olmayan
@@ -229,7 +230,6 @@ button {
 ::view-transition-image-pair(root) {
   background: radial-gradient(circle at var(--hv-x, 50%) var(--hv-y, 50%), #2a0508, #050407 55%);
 }
-::view-transition-group(hv-rim) { filter: blur(7px); }
 /* Animasyonlar ready'den sonra bağlanıyor; arada bir kare geçerse yeni tema
    kırpılmadan görünürdü. Geçiş sürerken yeni görüntü ve hale baştan gizli,
    Web Animations (fill: both) bunu ezince açılıyor. */
