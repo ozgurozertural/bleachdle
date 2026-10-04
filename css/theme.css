@@ -205,6 +205,27 @@ button {
 ::-webkit-scrollbar-thumb { background: var(--rule); }
 ::-webkit-scrollbar-thumb:hover { background: var(--seal); }
 
+/* Tema geçişi — 虚 Hollow maddesi (js/theme.js sürüyor).
+   View Transitions eski ve yeni sayfanın birer görüntüsünü alıyor; ikisi
+   ::view-transition-image-pair(root) içinde üst üste duruyor. Eskiye büyüyen
+   bir delik açılıyor, yeni o deliğin biraz gerisinden açılıyor; aradaki
+   halkada ikisi de saydam, oradan çiftin kendi arka planı görünüyor: kızıl
+   haleli siyah madde. Lekenin şekli, boyutu ve konumu kare kare JS'ten
+   (Web Animations) geliyor; burada yalnız sabit kısımlar var. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-image-pair(root) { background-repeat: no-repeat; }
+::view-transition-new(root) { mask-repeat: no-repeat; }
+/* Eski görüntü: tam kaplayan katman eksi delik. Safari'nin önekli adı xor. */
+::view-transition-old(root) {
+  mask-repeat: no-repeat;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
