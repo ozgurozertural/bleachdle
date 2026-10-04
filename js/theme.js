@@ -42,6 +42,16 @@
   const DURATION = 2100;
   const FRAMES = 36;
 
+  // Temaların arka plan eserleri (css/theme.css'teki --art ile aynı dosyalar).
+  // Gündüzünkü 1920 px / 217 KB: geçiş anında çözülmesi gerekince ilk
+  // kareler takılıyor, ekran bir an yanıp sönüyordu (yalnız gündüze geçerken).
+  // Sayfa boşa düşünce ikisi de önceden çözülüyor, geçişten önce de hedefinki.
+  const ART = { light: 'data/images/bg-gotei13.webp', dark: 'data/images/bg-espada.webp' };
+  // Image nesneleri burada tutuluyor: kimse tutmazsa tarayıcı çözülmüş hâli
+  // kısa sürede bellekten atabiliyor.
+  const kept = [];
+  (window.requestIdleCallback || (cb => setTimeout(cb, 1500)))(() => warm(Object.values(ART), kept));
+
   function canAnimate() {
     return typeof document.startViewTransition === 'function'
       && !matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -129,10 +139,11 @@
   // Karelerin hepsini geçiş başlamadan çözdür. Yoksa bir kare ilk kez
   // gösterilirken henüz hazır olmayabiliyor; o an maske "yüklenmemiş" sayılıp
   // leke bir kare kayboluyordu. En fazla 400 ms beklenir.
-  function warm(uris) {
+  function warm(uris, keep) {
     const all = Promise.all(uris.map(u => {
       const img = new Image();
       img.src = u;
+      if (keep) keep.push(img);
       return img.decode ? img.decode().catch(() => {}) : Promise.resolve();
     }));
     return Promise.race([all, new Promise(r => setTimeout(r, 400))]);
@@ -175,7 +186,7 @@
       k.pair.push({ offset: p, backgroundImage: css(u.matter), backgroundSize: `${sf.toFixed(1)}px ${sf.toFixed(1)}px`, backgroundPosition: at(sf) });
       k.neu.push({ offset: p, maskImage: css(u.neu), maskSize: `${sb.toFixed(1)}px ${sb.toFixed(1)}px`, maskPosition: at(sb) });
     }
-    await warm(uris);
+    await warm(uris.concat(ART[button.dataset.setTheme]));
 
     root.classList.add('hv-run');
     try {
