@@ -44,7 +44,7 @@
   // Aynı günün kaydedilmiş tahminlerini geri yükler; oyun bitmişse sonucu da gösterir
   // (istatistik ikinci kez işlenmez).
   function restoreDaily() {
-    const saved = loadDaily('classic', dayIndex());
+    const saved = loadDaily('classic', dayIndex(), state.answer.id);
     if (!saved) return;
     for (const id of saved.guesses) {
       const c = chars.find(x => x.id === id);
@@ -57,7 +57,7 @@
 
   function persist(finished, won) {
     if (state.mode !== 'daily') return;
-    saveDaily('classic', dayIndex(), state.guesses.map(g => g.id), finished, won);
+    saveDaily('classic', dayIndex(), state.answer.id, state.guesses.map(g => g.id), finished, won);
   }
 
   function onGuess(c) {

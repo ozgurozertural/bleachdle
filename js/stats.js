@@ -22,6 +22,9 @@ function getModeStats(mode) {
 function recordGame(mode, won, guesses, day) {
   const all = loadStats();
   const m = all[mode] || { streak: 0, maxStreak: 0, played: 0, wins: 0, guessSum: 0 };
+  // Bir gün bir kez sayılır. Havuz gün içinde değişip cevap yenilenirse (bkz.
+  // loadDaily) aynı gün ikinci kez oynanabiliyor; yoksa seri 1'e düşerdi.
+  if (m.lastDay === day) return m;
   m.played += 1;
   if (won) {
     m.wins += 1;
@@ -39,19 +42,22 @@ function recordGame(mode, won, guesses, day) {
 
 // Günün oyun durumu: sayfa yenilenince aynı gün kaldığı yerden devam eder,
 // bitmiş bir günlük tekrar oynanamaz.
+// Kayıt o günün cevabını da tutar: havuza karakter eklenince ya da çıkınca
+// günlük sıra baştan karışır ve cevap gün ortasında değişir. O zaman eski
+// tahminler yeni cevaba göre yanlış boyanırdı; kayıt yok sayılır.
 const DAILY_KEY = 'bleachdle-daily-v1';
 
-function loadDaily(mode, day) {
+function loadDaily(mode, day, answerId) {
   try {
     const d = (JSON.parse(localStorage.getItem(DAILY_KEY)) || {})[mode];
-    return d && d.day === day ? d : null;
+    return d && d.day === day && d.answer === answerId ? d : null;
   } catch { return null; }
 }
 
-function saveDaily(mode, day, guessIds, finished, won) {
+function saveDaily(mode, day, answerId, guessIds, finished, won) {
   let all;
   try { all = JSON.parse(localStorage.getItem(DAILY_KEY)) || {}; } catch { all = {}; }
-  all[mode] = { day, guesses: guessIds, finished, won };
+  all[mode] = { day, answer: answerId, guesses: guessIds, finished, won };
   localStorage.setItem(DAILY_KEY, JSON.stringify(all));
 }
 

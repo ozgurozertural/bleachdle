@@ -54,7 +54,7 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
   // Aynı günün kaydedilmiş tahminlerini geri yükler. onGuess bir kez çağrılır ki
   // moda özel ipucu durumu (splash bulanıklığı, bankai görseli) doğru seviyeye gelsin.
   function restoreDaily() {
-    const saved = loadDaily(modeKey, dayIndex());
+    const saved = loadDaily(modeKey, dayIndex(), state.answer.id);
     if (!saved) return;
     for (const id of saved.guesses) {
       const c = chars.find(x => x.id === id);
@@ -66,7 +66,7 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
 
   function persist(finished, won) {
     if (state.mode !== 'daily') return;
-    saveDaily(modeKey, dayIndex(), state.guesses.map(g => g.id), finished, won);
+    saveDaily(modeKey, dayIndex(), state.answer.id, state.guesses.map(g => g.id), finished, won);
   }
 
   function updateAttempts() {
