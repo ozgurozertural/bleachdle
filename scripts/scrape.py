@@ -397,7 +397,8 @@ def scrape(merge=False):
         division_field = params.get("division", "") + " " + params.get("previous division", "")
 
         shikai = extract_ability_name(params.get("shikai", ""))
-        bankai = extract_ability_name(params.get("bankai", ""))
+        # Ichibē's page names his Bankai "Shinuchi" and keeps it in its own field
+        bankai = extract_ability_name(params.get("bankai", "") or params.get("shinuchi", ""))
         resurreccion = extract_ability_name(params.get("resurrección", "") or params.get("resurreccion", ""))
 
         # Age: first number ("N+" → N+1, see parse_age)

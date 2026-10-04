@@ -10,9 +10,14 @@ Veriden üretiliyor ki bankai.json / quote_sources.json büyüdüğünde yeniden
 
 Mevcut dosyanın üstüne yazmaz: önce eski dosyadaki doldurulmuş satırları okur,
 id eşleşmesiyle geri taşır. Yani liste büyüse de girilen bilgi kaybolmaz.
+Veriyle eşleşmeyen her satır (sayfanın altına yazılmış notlar, listeden çıkmış
+karakterler) olduğu gibi sayfanın en altına taşınır, ve eski dosya her
+seferinde audio_in/yedek/ altına kopyalanır.
 """
 
 import json
+import shutil
+from datetime import datetime
 from pathlib import Path
 
 from openpyxl import Workbook, load_workbook
@@ -22,9 +27,11 @@ from openpyxl.worksheet.datavalidation import DataValidation
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "bleachdle-ses.xlsx"
+BACKUP_DIR = ROOT / "audio_in" / "yedek"   # audio_in/ gitignore'da
 
 # Ozgur'un dolduracağı sütunlar — yeniden üretimde bunlar korunur.
 FILL = ["durum", "kaynak", "başlangıç", "süre_sn", "notlar"]
+EXTRA_TITLE = "Elle eklenenler / listeden çıkanlar (korunuyor)"
 
 HDR_FILL = PatternFill("solid", fgColor="1F1F26")
 HDR_FONT = Font(color="F4F1E6", bold=True)
@@ -33,7 +40,9 @@ DONE_FILL = PatternFill("solid", fgColor="DDF0E2")
 
 
 def old_values(path):
-    """Eski dosyadaki doldurulmuş hücreleri {sayfa: {id: {sütun: değer}}} olarak döner."""
+    """Eski dosyadaki doldurulmuş hücreleri {sayfa: {id: {sütun: değer}}} olarak döner.
+    Her satır, id'si olsun olmasın, "_rows" altında da tutulur: id'si yeni veride
+    olmayanlar sheet() içinde sayfanın altına aynen taşınır."""
     if not path.exists():
         return {}
     wb = load_workbook(path)
@@ -49,6 +58,7 @@ def old_values(path):
             r[idx]: {c: r[i] for c, i in keep.items() if r[i] not in (None, "")}
             for r in rows[1:] if r[idx]
         }
+        out[ws.title]["_rows"] = [r for r in rows[1:] if any(v not in (None, "") for v in r)]
     return out
 
 
@@ -86,6 +96,20 @@ def sheet(wb, title, headers, rows, prev, note):
                 ws.cell(r, i).fill = LOCK_FILL
 
     ws.cell(len(rows) + 3, 1, note).font = Font(italic=True, color="65635B")
+
+    # Veriyle eşleşmeyen satırlar: elle yazılmış notlar ya da listeden çıkmış
+    # karakterler. Bunlar bir kez sessizce silindi; artık aynen taşınıyor.
+    ids = {row[0] for row in rows}
+    extra = [r for r in saved.get("_rows", [])
+             if r[0] not in ids and not (r[0] == note and not any(r[1:]))
+             and not (isinstance(r[0], str) and r[0].startswith(EXTRA_TITLE))]
+    if extra:
+        ws.cell(len(rows) + 5, 1, EXTRA_TITLE).font = Font(bold=True)
+        for i, r in enumerate(extra):
+            for j, v in enumerate(r, start=1):
+                if v not in (None, ""):
+                    ws.cell(len(rows) + 6 + i, j, v)
+        print(f"  {title}: veriyle eşleşmeyen {len(extra)} satır alta taşındı")
     return ws
 
 
@@ -163,6 +187,11 @@ def main():
     ws.column_dimensions["A"].width = 100
     ws.sheet_view.showGridLines = False
 
+    if OUT.exists():
+        BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+        bak = BACKUP_DIR / f"bleachdle-ses-{datetime.now():%Y%m%d-%H%M%S}.xlsx"
+        shutil.copy2(OUT, bak)
+        print(f"yedek: {bak.relative_to(ROOT)}")
     wb.save(OUT)
     print(f"yazıldı: {OUT.name}  (Bankai {len(rows_b)} satır, Quote {len(rows_q)} satır)")
 

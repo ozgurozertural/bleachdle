@@ -243,8 +243,9 @@
     "type": "Resurrección"
   },
   "Ichibē_Hyōsube": {
-    "name": "Ichimonji",
-    "type": "Shikai"
+    "name": "Shirafude Ichimonji",
+    "type": "Bankai",
+    "ability": "Shikai: Ichimonji"
   },
   "Tenjirō_Kirinji": {
     "name": "Kinpika",
