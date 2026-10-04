@@ -124,6 +124,17 @@
     return d;
   }
 
+  // Geçiş boyunca her kare boş bir requestAnimationFrame. Kırpma animasyonları
+  // ana iş parçacığında yürüyor ve sayfada her kare çalışmak isteyen başka bir
+  // şey yokken Chrome kare üretimini ara ara erteliyordu: geçiş takılıyordu.
+  // Ölçüm yapan test sayfasında (aynı kod + kare ölçen bir döngü) takılma
+  // yoktu; fark yalnız bu döngüydü, gerçek sayfaların ikisinde de vardı.
+  function pump() {
+    let on = true;
+    (function tick() { if (on) requestAnimationFrame(tick); })();
+    return () => { on = false; };
+  }
+
   async function hollow(button, update) {
     const b = button.getBoundingClientRect();
     const ox = b.left + b.width / 2, oy = b.top + b.height / 2;
@@ -149,6 +160,7 @@
     root.style.setProperty('--hv-x', ox + 'px');
     root.style.setProperty('--hv-y', oy + 'px');
     root.classList.add('hv-run');
+    const stopPump = pump();
     const rim = document.createElement('div');
     rim.className = 'hv-rim';
     rim.setAttribute('aria-hidden', 'true');
@@ -168,6 +180,7 @@
       setTimeout(() => rim.remove(), DURATION * 0.96);
       await t.finished;
     } finally {
+      stopPump();
       rim.remove();
       root.classList.remove('hv-run');
       root.style.removeProperty('--hv-x');
