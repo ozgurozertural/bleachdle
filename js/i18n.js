@@ -56,7 +56,7 @@ const DICT = {
     'hint': 'İpucu',
     'hint.manga': 'Manga, bölüm <strong>{ch}</strong>',
     'hint.anime': 'Anime, bölüm <strong>{ch}</strong>',
-    'audio.release': 'Salım çağrısını dinle',
+    'audio.release': 'Adını haykır',
     'audio.play': 'Sesi oynat', 'audio.pause': 'Sesi duraklat',
     'audio.error': 'Ses yüklenemedi.',
 
@@ -115,7 +115,7 @@ const DICT = {
     'hint': 'Hint',
     'hint.manga': 'Manga, chapter <strong>{ch}</strong>',
     'hint.anime': 'Anime, episode <strong>{ch}</strong>',
-    'audio.release': 'Hear the release call',
+    'audio.release': 'Call its name',
     'audio.play': 'Play audio', 'audio.pause': 'Pause audio',
     'audio.error': 'Audio failed to load.',
 
