@@ -17,7 +17,8 @@
   },
   "Uryū_Ishida": {
     "hair": "Black",
-    "age": 15
+    "age": 15,
+    "location": "Karakura Town"
   },
   "Yasutora_Sado": {
     "hair": "Brown",
@@ -251,7 +252,8 @@
   },
   "Luppi_Antenor": {
     "hair": "Black",
-    "age_group": "101-1000"
+    "age_group": "101-1000",
+    "location": "Hueco Mundo"
   },
   "Kūgo_Ginjō": {
     "hair": "Black",
@@ -443,7 +445,8 @@
   },
   "Keigo_Asano": {
     "hair": "Brown",
-    "age": 15
+    "age": 15,
+    "location": "Karakura Town"
   },
   "Mizuiro_Kojima": {
     "hair": "Black",
