@@ -168,7 +168,8 @@
    Düğmelerde lang="en" var: text-transform: uppercase dile duyarlı ve sayfa
    lang="tr" iken "Society"deki i, İ'ye dönüp "SOUL SOCİETY" oluyordu — mod
    adlarında daha önce yaşanan tuzağın aynısı. Metin zaten İngilizce özel ad. */
-.theme-toggle button::after {
+.theme-toggle button::after,
+.list-link::after {
   content: attr(data-flavor);
   position: absolute;
   top: calc(100% + 6px);
@@ -190,11 +191,33 @@
   transition: opacity 0.14s;
 }
 .theme-toggle button:hover::after,
-.theme-toggle button:focus-visible::after { opacity: 1; }
+.theme-toggle button:focus-visible::after,
+.list-link:hover::after,
+.list-link:focus-visible::after { opacity: 1; }
 
 /* Dokunmatikte hover yok, kutu kalıcı görünür hale gelmesin. */
 @media (hover: none) {
-  .theme-toggle button::after { content: none; }
+  .theme-toggle button::after,
+  .list-link::after { content: none; }
+}
+
+/* Karakter listesi kısayolu: tema hücreleriyle aynı dilde ayrı bir kutu.
+   名簿 (meibo) = isim defteri, kadro listesi. */
+.list-link {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0.4rem 0.55rem;
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  transition: color 0.16s, border-color 0.16s, background 0.16s;
+}
+.list-link:hover { color: var(--ink); border-color: var(--ink-3); }
+.list-link[aria-current] {
+  color: var(--on-seal);
+  background: var(--seal);
+  border-color: var(--seal);
 }
 
 
@@ -866,6 +889,99 @@
 }
 
 /* ---------- Dar ekran ---------- */
+/* ---------- Karakter listesi ---------- */
+.hub-link {
+  display: inline-block;
+  margin: -2rem 0 3.5rem;
+  padding-bottom: 0.3rem;
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border-bottom: 2px solid var(--rule);
+  transition: color 0.2s, border-color 0.2s;
+}
+.hub-link:hover { color: var(--seal); border-bottom-color: var(--seal); }
+
+.list-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.25rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.list-controls .search-box { flex: 1 1 260px; margin: 0; }
+.list-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+}
+.list-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.list-filter span {
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.list-filter select {
+  min-width: 7.5rem;
+  padding: 0.35rem 0.1rem;
+  font-family: var(--font-body);
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: none;
+  border-bottom: 3px solid var(--rule);
+  cursor: pointer;
+}
+.list-filter select:focus { outline: none; border-bottom-color: var(--seal); }
+.list-filter select.is-set { color: var(--ink); border-bottom-color: var(--seal); }
+
+.list-status {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+.list-count { margin: 0; font-size: var(--t-small); color: var(--ink-2); }
+.list-count strong { color: var(--ink); }
+.list-reset {
+  padding-bottom: 0.2rem;
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--seal);
+  border-bottom: 2px solid var(--seal);
+}
+.list-reset:hover { color: var(--ink); }
+.list-empty { margin: 1.5rem 0 0; color: var(--ink-3); font-size: var(--t-small); }
+
+/* Tablo classic'in tahmin tablosunun dili; ama 125 satır vuruşla girmesin,
+   ve doğru/yanlış rengi yok — burada değer yalnızca değer. */
+.char-table td { animation: none; height: 64px; color: var(--ink); }
+.char-table td .char-avatar { width: 58px; height: 58px; }
+.char-table th button {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  padding: 0;
+  white-space: nowrap;
+}
+.char-table th button:hover { color: var(--ink); }
+.char-table th[aria-sort="ascending"] button,
+.char-table th[aria-sort="descending"] button { color: var(--seal); }
+.char-table th[aria-sort="ascending"] button::after { content: ' ↑'; }
+.char-table th[aria-sort="descending"] button::after { content: ' ↓'; }
+
 @media (max-width: 640px) {
   .site-header { padding: 1rem 1.1rem 0.8rem; }
   .site-header, .site-footer { padding-left: 1.1rem; padding-right: 1.1rem; }

@@ -31,6 +31,7 @@ python3 -m http.server 8000
 
 ```
 index.html, classic.html, quote.html, splash.html, bankai.html
+characters.html    karakter listesi (yalnız Classic alanları, sırala/filtrele)
 css/theme.css      renk/tipografi jetonları (açık + koyu tema)
 css/game.css       bileşenler
 js/i18n.js         arayüz dili ve veri değerlerinin çevirisi (diğerlerinden önce yüklenir)
@@ -38,7 +39,7 @@ js/game-core.js    günlük seçim, autocomplete, sütun karşılaştırma
 js/data.js         characters.json + overrides.json birleştirme
 js/classic.js      Classic modu
 js/simple-mode.js  Quote/Splash/Bankai için ortak iskelet
-js/quote.js js/splash.js js/bankai.js js/index.js
+js/quote.js js/splash.js js/bankai.js js/index.js js/characters.js
 data/              karakter verisi ve görseller
 fonts/             alt kümelenmiş woff2 (kendi barındırmamızda)
 scripts/           veri kazıma ve üretim betikleri (Python)

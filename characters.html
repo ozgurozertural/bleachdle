@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Satır içi script ve stil yok: hepsi ayrı dosyada, o yüzden 'unsafe-inline'
+     gerekmiyor. Dış kaynak da yok (fontlar kendi barındırmamızda), o yüzden
+     her şey 'self'. Kazınan veri innerHTML'e giriyor — bu, js/i18n.js'teki
+     esc() kaçışının arkasındaki ikinci savunma hattı. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title data-i18n="title.characters">Bleachdle — Karakter Listesi</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="any">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e5e2d5">
+
+<meta name="description" content="Bleachdle Classic modundaki bütün Bleach karakterleri: cinsiyet, ırk, yaş, boy, saç, bölge ve ilk arc. Sırala, filtrele.">
+<link rel="canonical" href="https://ozgurozertural.github.io/bleachdle/characters.html">
+
+<!-- Paylaşım kartı. Tarayıcı-dışı kazıyıcılar JS çalıştırmaz, o yüzden burası
+     data-i18n'den bağımsız ve sabit Türkçe. og.jpg'yi scripts/make_og.py üretir. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bleachdle">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://ozgurozertural.github.io/bleachdle/characters.html">
+<meta property="og:title" content="Bleachdle — Karakter Listesi">
+<meta property="og:description" content="Bleachdle Classic modundaki bütün Bleach karakterleri: cinsiyet, ırk, yaş, boy, saç, bölge ve ilk arc. Sırala, filtrele.">
+<meta property="og:image" content="https://ozgurozertural.github.io/bleachdle/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bleachdle — Espada toplantısının önünde BLEACHDLE başlığı ve dört mod: Classic, Quote, Splash, Bankai">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" data-i18n-aria="brand.aria">
+    <span class="kanji">死</span><h1>BLEACHDLE</h1>
+  </a>
+  <nav class="mode-nav" data-i18n-aria="nav.aria">
+    <a href="classic.html"><span lang="en">Classic</span></a>
+    <a href="quote.html"><span lang="en">Quote</span></a>
+    <a href="splash.html"><span lang="en">Splash</span></a>
+    <a href="bankai.html"><span lang="en">Bankai</span></a>
+  </nav>
+  <div class="lang-select">
+    <button class="lang-btn" aria-haspopup="listbox" aria-expanded="false"
+            data-i18n="lang.short" data-i18n-aria="lang.aria">TR</button>
+    <ul class="lang-menu" role="listbox">
+      <li><button role="option" data-lang="tr" data-i18n="lang.tr">Türkçe</button></li>
+      <li><button role="option" data-lang="en" data-i18n="lang.en">English</button></li>
+    </ul>
+  </div>
+  <div class="theme-toggle" role="group" data-i18n-aria="theme.aria">
+    <button data-set-theme="light" data-i18n-aria="theme.light"
+            data-flavor="Soul Society" lang="en">昼</button>
+    <button data-set-theme="dark" data-i18n-aria="theme.dark"
+            data-flavor="Hueco Mundo" lang="en">夜</button>
+  </div>
+  <a class="list-link" href="characters.html" aria-current="page" data-i18n-aria="list.link"
+     data-flavor="Solver" lang="ja">名簿</a>
+</header>
+
+<main class="game-page list-page">
+  <a class="back-link" href="index.html" data-i18n="back">← Ana menü</a>
+  <h2 class="game-title" data-i18n="list.title">Karakter listesi</h2>
+  <p class="game-subtitle" data-i18n="list.sub"></p>
+
+  <div class="list-controls">
+    <div class="search-box">
+      <input id="list-search" type="search" autocomplete="off" data-i18n-placeholder="list.search" placeholder="İsimde ara...">
+    </div>
+    <div id="list-filters" class="list-filters"></div>
+  </div>
+
+  <div class="list-status">
+    <p id="list-count" class="list-count" aria-live="polite"></p>
+    <button id="list-reset" class="list-reset" type="button" data-i18n="list.reset" hidden></button>
+  </div>
+
+  <div class="guess-table-wrap">
+    <table class="guess-table char-table">
+      <thead>
+        <tr>
+          <th data-i18n="th.image"></th>
+          <th data-sort="name"><button type="button" data-i18n="th.name"></button></th>
+          <th data-sort="gender"><button type="button" data-i18n="th.gender"></button></th>
+          <th data-sort="race"><button type="button" data-i18n="th.race"></button></th>
+          <th data-sort="age_group"><button type="button" data-i18n="th.age"></button></th>
+          <th data-sort="height_cm"><button type="button" data-i18n="th.height"></button></th>
+          <th data-sort="hair"><button type="button" data-i18n="th.hair"></button></th>
+          <th data-sort="location"><button type="button" data-i18n="th.location"></button></th>
+          <th data-sort="first_arc"><button type="button" data-i18n="th.arc"></button></th>
+        </tr>
+      </thead>
+      <tbody id="list-body"></tbody>
+    </table>
+  </div>
+  <p id="list-empty" class="list-empty" data-i18n="list.none" hidden></p>
+</main>
+
+<footer class="site-footer">
+  <p data-i18n-html="footer.long"></p>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/game-core.js"></script>
+<script src="js/data.js"></script>
+<script src="js/characters.js"></script>
+</body>
+</html>

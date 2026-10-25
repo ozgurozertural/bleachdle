@@ -20,6 +20,7 @@ const DICT = {
     'title.quote': 'Bleachdle — Quote Mode',
     'title.splash': 'Bleachdle — Splash Mode',
     'title.bankai': 'Bleachdle — Bankai Mode',
+    'title.characters': 'Bleachdle — Karakter Listesi',
 
     'tagline': 'Her gün yeni bir <strong>Bleach</strong> karakteri. Kaç denemede bileceksin?',
     'card.classic': 'Karakter tahmin et. Her denemede özellik ipuçları al.',
@@ -28,8 +29,8 @@ const DICT = {
     'card.bankai': 'Bankai/Shikai formundan sahibini tahmin et.',
     'stats.title': 'İstatistiklerin',
     'stats.streak': 'Seri', 'stats.best': 'Rekor', 'stats.played': 'Oyun', 'stats.winrate': 'Kazanma',
-    'footer.long': `Fan proje · Karakter verisi ve görseller ${WIKI}'den · Tite Kubo &copy; Shueisha`,
-    'footer.short': `Fan proje · ${WIKI}`,
+    'footer.long': `Fan proje · <a href="characters.html">Karakter listesi</a> · Karakter verisi ve görseller ${WIKI}'den · Tite Kubo &copy; Shueisha`,
+    'footer.short': `Fan proje · <a href="characters.html">Karakter listesi</a> · ${WIKI}`,
 
     'sub.classic': 'Bir Bleach karakteri tahmin et. Her tahmin sana yeni ipuçları verir.',
     'sub.quote': 'Bu repliği kim söyledi?',
@@ -60,6 +61,15 @@ const DICT = {
     'audio.play': 'Sesi oynat', 'audio.pause': 'Sesi duraklat',
     'audio.error': 'Ses yüklenemedi.',
 
+    'list.link': 'Karakter listesi',
+    'list.title': 'Karakter listesi',
+    'list.sub': "Classic modundaki bütün karakterler ve oyunun onlar için kullandığı değerler. Takıldığında göz at; günün karakterini burada aramak sana kalmış.",
+    'list.search': 'İsimde ara...',
+    'list.all': 'Hepsi',
+    'list.count': '<strong>{n}</strong> / {total} karakter',
+    'list.reset': 'Filtreleri temizle',
+    'list.none': 'Bu filtrelere uyan karakter yok.',
+
     'quote.loading': 'Yükleniyor...',
     'quote.none': 'Bu karakter için replik verisi yok. Başka bir karakter seçiliyor...',
     'bankai.none': 'Bu karakter için bankai verisi yok.',
@@ -79,6 +89,7 @@ const DICT = {
     'title.quote': 'Bleachdle — Quote Mode',
     'title.splash': 'Bleachdle — Splash Mode',
     'title.bankai': 'Bleachdle — Bankai Mode',
+    'title.characters': 'Bleachdle — Character List',
 
     'tagline': 'A new <strong>Bleach</strong> character every day. How few guesses can you do it in?',
     'card.classic': 'Guess the character. Every guess reveals attribute clues.',
@@ -87,8 +98,8 @@ const DICT = {
     'card.bankai': 'Guess the owner from their Bankai or Shikai.',
     'stats.title': 'Your stats',
     'stats.streak': 'Streak', 'stats.best': 'Best', 'stats.played': 'Played', 'stats.winrate': 'Win rate',
-    'footer.long': `Fan project · Character data and images from ${WIKI} · Tite Kubo &copy; Shueisha`,
-    'footer.short': `Fan project · ${WIKI}`,
+    'footer.long': `Fan project · <a href="characters.html">Character list</a> · Character data and images from ${WIKI} · Tite Kubo &copy; Shueisha`,
+    'footer.short': `Fan project · <a href="characters.html">Character list</a> · ${WIKI}`,
 
     'sub.classic': 'Guess a Bleach character. Every guess gives you new clues.',
     'sub.quote': 'Who said this line?',
@@ -118,6 +129,15 @@ const DICT = {
     'audio.release': 'Call its name',
     'audio.play': 'Play audio', 'audio.pause': 'Pause audio',
     'audio.error': 'Audio failed to load.',
+
+    'list.link': 'Character list',
+    'list.title': 'Character list',
+    'list.sub': "Every character in Classic mode and the values the game uses for them. Peek when you're stuck; hunting for today's answer here is up to you.",
+    'list.search': 'Search by name...',
+    'list.all': 'All',
+    'list.count': '<strong>{n}</strong> / {total} characters',
+    'list.reset': 'Clear filters',
+    'list.none': 'No character matches these filters.',
 
     'quote.loading': 'Loading...',
     'quote.none': 'No quote data for this character. Picking another one...',
