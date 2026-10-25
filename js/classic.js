@@ -91,7 +91,7 @@
         </p>
         <div class="result-actions">
           ${state.mode === 'free'
-            ? `<button id="again">${t('result.again')}</button>`
+            ? `<button id="again" class="primary">${t('result.again')}</button>`
             : `<button id="again" class="secondary">${t('result.free')}</button>`}
           <a class="secondary" href="index.html">${t('result.home')}</a>
         </div>

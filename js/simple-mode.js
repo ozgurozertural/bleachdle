@@ -119,7 +119,7 @@ async function initSimpleMode({ modeKey, maxGuesses = 5, pool, loadPrompt, onGue
           </div>
         </div>
         <div class="result-actions">
-          <button id="again">${state.mode === 'daily' ? t('result.free') : t('result.again')}</button>
+          <button id="again"${state.mode === 'daily' ? '' : ' class="primary"'}>${state.mode === 'daily' ? t('result.free') : t('result.again')}</button>
           <a class="secondary" href="index.html">${t('result.home')}</a>
         </div>
       </div>

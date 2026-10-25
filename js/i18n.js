@@ -51,7 +51,7 @@ const DICT = {
     'result.found': "<strong>{name}</strong>'{acc} <strong>{n}</strong> denemede buldun.",
     'result.answer': 'Doğru cevap: <strong>{name}</strong>',
     'result.stats': 'Seri: {streak} · Rekor: {best} · Oyun: {played}',
-    'result.free': 'Serbest oyuna geç', 'result.again': 'Yeni oyun', 'result.home': 'Ana menü',
+    'result.free': 'Serbest oyuna geç', 'result.again': 'Tekrar oyna', 'result.home': 'Ana menü',
 
     'hint': 'İpucu',
     'hint.manga': 'Manga, bölüm <strong>{ch}</strong>',
@@ -110,7 +110,7 @@ const DICT = {
     'result.found': 'You found <strong>{name}</strong> in <strong>{n}</strong> guess{es}.',
     'result.answer': 'The answer was <strong>{name}</strong>',
     'result.stats': 'Streak: {streak} · Best: {best} · Played: {played}',
-    'result.free': 'Switch to free play', 'result.again': 'New game', 'result.home': 'Home',
+    'result.free': 'Switch to free play', 'result.again': 'Play again', 'result.home': 'Home',
 
     'hint': 'Hint',
     'hint.manga': 'Manga, chapter <strong>{ch}</strong>',

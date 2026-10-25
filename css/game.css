@@ -687,6 +687,19 @@
   transition: color 0.2s, border-color 0.2s;
 }
 .result-actions button:hover, .result-actions a:hover { color: var(--seal); }
+.result-actions .primary {
+  padding: 0.75rem 1.5rem 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--on-seal);
+  background: var(--seal);
+  border: none;
+  clip-path: polygon(var(--slash) 0, 100% 0, 100% calc(100% - var(--slash)), calc(100% - var(--slash)) 100%, 0 100%, 0 var(--slash));
+  transition: filter 0.15s;
+}
+.result-actions .primary:hover { color: var(--on-seal); filter: brightness(1.12); }
+.result-actions .primary:focus-visible { outline: 3px solid var(--ink); outline-offset: -6px; }
 .result-actions .secondary {
   color: var(--ink-2);
   border-bottom-color: var(--rule);
