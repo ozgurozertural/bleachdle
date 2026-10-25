@@ -53,9 +53,12 @@ const DICT = {
     'result.stats': 'Seri: {streak} · Rekor: {best} · Oyun: {played}',
     'result.free': 'Serbest oyuna geç', 'result.again': 'Yeni oyun', 'result.home': 'Ana menü',
 
-    'hint': 'İpucu', 'hint.last': 'Son ipucu',
+    'hint': 'İpucu',
     'hint.manga': 'Manga, bölüm <strong>{ch}</strong>',
     'hint.anime': 'Anime, bölüm <strong>{ch}</strong>',
+    'audio.release': 'Salım çağrısını dinle',
+    'audio.play': 'Sesi oynat', 'audio.pause': 'Sesi duraklat',
+    'audio.error': 'Ses yüklenemedi.',
 
     'quote.loading': 'Yükleniyor...',
     'quote.none': 'Bu karakter için replik verisi yok. Başka bir karakter seçiliyor...',
@@ -109,9 +112,12 @@ const DICT = {
     'result.stats': 'Streak: {streak} · Best: {best} · Played: {played}',
     'result.free': 'Switch to free play', 'result.again': 'New game', 'result.home': 'Home',
 
-    'hint': 'Hint', 'hint.last': 'Final hint',
+    'hint': 'Hint',
     'hint.manga': 'Manga, chapter <strong>{ch}</strong>',
     'hint.anime': 'Anime, episode <strong>{ch}</strong>',
+    'audio.release': 'Hear the release call',
+    'audio.play': 'Play audio', 'audio.pause': 'Pause audio',
+    'audio.error': 'Audio failed to load.',
 
     'quote.loading': 'Loading...',
     'quote.none': 'No quote data for this character. Picking another one...',

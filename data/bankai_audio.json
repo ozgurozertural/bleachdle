@@ -1,0 +1,297 @@
+{
+ "Aaroniero_Arruruerie": {
+  "dur": 3.9,
+  "file": "data/audio/bankai/Aaroniero_Arruruerie.m4a",
+  "source": null
+ },
+ "Baraggan_Louisenbairn": {
+  "dur": 3.6,
+  "file": "data/audio/bankai/Baraggan_Louisenbairn.m4a",
+  "source": null
+ },
+ "Byakuya_Kuchiki": {
+  "dur": 5.31,
+  "file": "data/audio/bankai/Byakuya_Kuchiki.m4a",
+  "source": null
+ },
+ "Chōjirō_Sasakibe": {
+  "dur": 3.9,
+  "file": "data/audio/bankai/Chōjirō_Sasakibe.m4a",
+  "source": null
+ },
+ "Cirucci_Sanderwicci": {
+  "dur": 6.14,
+  "file": "data/audio/bankai/Cirucci_Sanderwicci.m4a",
+  "source": null
+ },
+ "Coyote_Starrk": {
+  "dur": 2.68,
+  "file": "data/audio/bankai/Coyote_Starrk.m4a",
+  "source": null
+ },
+ "Cyan_Sung_Sun": {
+  "dur": 2.85,
+  "file": "data/audio/bankai/Cyan_Sung_Sun.m4a",
+  "source": null
+ },
+ "Dordoni_Alessandro_Del_Socaccio": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Dordoni_Alessandro_Del_Socaccio.m4a",
+  "source": null
+ },
+ "Emilou_Apacci": {
+  "dur": 2.6,
+  "file": "data/audio/bankai/Emilou_Apacci.m4a",
+  "source": null
+ },
+ "Findorr_Calius": {
+  "dur": 2.5,
+  "file": "data/audio/bankai/Findorr_Calius.m4a",
+  "source": null
+ },
+ "Franceska_Mila_Rose": {
+  "dur": 2.35,
+  "file": "data/audio/bankai/Franceska_Mila_Rose.m4a",
+  "source": null
+ },
+ "Genryūsai_Shigekuni_Yamamoto": {
+  "dur": 3.21,
+  "file": "data/audio/bankai/Genryūsai_Shigekuni_Yamamoto.m4a",
+  "source": null
+ },
+ "Ggio_Vega": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Ggio_Vega.m4a",
+  "source": null
+ },
+ "Gin_Ichimaru": {
+  "dur": 5.41,
+  "file": "data/audio/bankai/Gin_Ichimaru.m4a",
+  "source": null
+ },
+ "Grimmjow_Jaegerjaquez": {
+  "dur": 3.6,
+  "file": "data/audio/bankai/Grimmjow_Jaegerjaquez.m4a",
+  "source": null
+ },
+ "Hanatarō_Yamada": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Hanatarō_Yamada.m4a",
+  "source": null
+ },
+ "Hisagi_Shūhei": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Hisagi_Shūhei.m4a",
+  "source": null
+ },
+ "Hiyori_Sarugaki": {
+  "dur": 4.02,
+  "file": "data/audio/bankai/Hiyori_Sarugaki.m4a",
+  "source": null
+ },
+ "Ichibē_Hyōsube": {
+  "dur": 4.76,
+  "file": "data/audio/bankai/Ichibē_Hyōsube.m4a",
+  "source": null
+ },
+ "Ichigo_Kurosaki": {
+  "dur": 4.26,
+  "file": "data/audio/bankai/Ichigo_Kurosaki.m4a",
+  "source": null
+ },
+ "Ikkaku_Madarame": {
+  "dur": 5.82,
+  "file": "data/audio/bankai/Ikkaku_Madarame.m4a",
+  "source": null
+ },
+ "Isane_Kotetsu": {
+  "dur": 2.9,
+  "file": "data/audio/bankai/Isane_Kotetsu.m4a",
+  "source": null
+ },
+ "Isshin_Kurosaki": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Isshin_Kurosaki.m4a",
+  "source": null
+ },
+ "Izuru_Kira": {
+  "dur": 5.0,
+  "file": "data/audio/bankai/Izuru_Kira.m4a",
+  "source": null
+ },
+ "Jūshirō_Ukitake": {
+  "dur": 3.93,
+  "file": "data/audio/bankai/Jūshirō_Ukitake.m4a",
+  "source": null
+ },
+ "Kaien_Shiba": {
+  "dur": 6.0,
+  "file": "data/audio/bankai/Kaien_Shiba.m4a",
+  "source": null
+ },
+ "Kaname_Tōsen": {
+  "dur": 5.72,
+  "file": "data/audio/bankai/Kaname_Tōsen.m4a",
+  "source": null
+ },
+ "Kenpachi_Zaraki": {
+  "dur": 5.0,
+  "file": "data/audio/bankai/Kenpachi_Zaraki.m4a",
+  "source": null
+ },
+ "Kensei_Muguruma": {
+  "dur": 5.12,
+  "file": "data/audio/bankai/Kensei_Muguruma.m4a",
+  "source": null
+ },
+ "Kisuke_Urahara": {
+  "dur": 5.21,
+  "file": "data/audio/bankai/Kisuke_Urahara.m4a",
+  "source": null
+ },
+ "Lisa_Yadōmaru": {
+  "dur": 5.0,
+  "file": "data/audio/bankai/Lisa_Yadōmaru.m4a",
+  "source": null
+ },
+ "Love_Aikawa": {
+  "dur": 5.0,
+  "file": "data/audio/bankai/Love_Aikawa.m4a",
+  "source": null
+ },
+ "Luppi_Antenor": {
+  "dur": 3.0,
+  "file": "data/audio/bankai/Luppi_Antenor.m4a",
+  "source": null
+ },
+ "Marechiyo_Ōmaeda": {
+  "dur": 3.85,
+  "file": "data/audio/bankai/Marechiyo_Ōmaeda.m4a",
+  "source": null
+ },
+ "Mayuri_Kurotsuchi": {
+  "dur": 7.8,
+  "file": "data/audio/bankai/Mayuri_Kurotsuchi.m4a",
+  "source": null
+ },
+ "Momo_Hinamori": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Momo_Hinamori.m4a",
+  "source": null
+ },
+ "Nelliel_Tu_Odelschwanck": {
+  "dur": 3.0,
+  "file": "data/audio/bankai/Nelliel_Tu_Odelschwanck.m4a",
+  "source": null
+ },
+ "Nnoitra_Gilga": {
+  "dur": 3.29,
+  "file": "data/audio/bankai/Nnoitra_Gilga.m4a",
+  "source": null
+ },
+ "Rangiku_Matsumoto": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Rangiku_Matsumoto.m4a",
+  "source": null
+ },
+ "Renji_Abarai": {
+  "dur": 6.74,
+  "file": "data/audio/bankai/Renji_Abarai.m4a",
+  "source": null
+ },
+ "Retsu_Unohana": {
+  "dur": 8.3,
+  "file": "data/audio/bankai/Retsu_Unohana.m4a",
+  "source": null
+ },
+ "Rukia_Kuchiki": {
+  "dur": 5.05,
+  "file": "data/audio/bankai/Rukia_Kuchiki.m4a",
+  "source": null
+ },
+ "Rōjūrō_Ōtoribashi": {
+  "dur": 5.72,
+  "file": "data/audio/bankai/Rōjūrō_Ōtoribashi.m4a",
+  "source": null
+ },
+ "Sajin_Komamura": {
+  "dur": 7.75,
+  "file": "data/audio/bankai/Sajin_Komamura.m4a",
+  "source": null
+ },
+ "Senjumaru_Shutara": {
+  "dur": 12.29,
+  "file": "data/audio/bankai/Senjumaru_Shutara.m4a",
+  "source": null
+ },
+ "Shinji_Hirako": {
+  "dur": 7.44,
+  "file": "data/audio/bankai/Shinji_Hirako.m4a",
+  "source": null
+ },
+ "Shunsui_Kyōraku": {
+  "dur": 9.28,
+  "file": "data/audio/bankai/Shunsui_Kyōraku.m4a",
+  "source": null
+ },
+ "Sui_Feng": {
+  "dur": 5.77,
+  "file": "data/audio/bankai/Sui_Feng.m4a",
+  "source": null
+ },
+ "Szayelaporro_Granz": {
+  "dur": 4.74,
+  "file": "data/audio/bankai/Szayelaporro_Granz.m4a",
+  "source": null
+ },
+ "Sōsuke_Aizen": {
+  "dur": 3.0,
+  "file": "data/audio/bankai/Sōsuke_Aizen.m4a",
+  "source": null
+ },
+ "Tenjirō_Kirinji": {
+  "dur": 5.0,
+  "file": "data/audio/bankai/Tenjirō_Kirinji.m4a",
+  "source": null
+ },
+ "Tier_Harribel": {
+  "dur": 3.02,
+  "file": "data/audio/bankai/Tier_Harribel.m4a",
+  "source": null
+ },
+ "Tōshirō_Hitsugaya": {
+  "dur": 4.87,
+  "file": "data/audio/bankai/Tōshirō_Hitsugaya.m4a",
+  "source": null
+ },
+ "Ulquiorra_Cifer": {
+  "dur": 3.55,
+  "file": "data/audio/bankai/Ulquiorra_Cifer.m4a",
+  "source": null
+ },
+ "Wonderweiss_Margela": {
+  "dur": 3.0,
+  "file": "data/audio/bankai/Wonderweiss_Margela.m4a",
+  "source": null
+ },
+ "Yachiru_Kusajishi": {
+  "dur": 4.0,
+  "file": "data/audio/bankai/Yachiru_Kusajishi.m4a",
+  "source": null
+ },
+ "Yammy_Llargo": {
+  "dur": 3.36,
+  "file": "data/audio/bankai/Yammy_Llargo.m4a",
+  "source": null
+ },
+ "Yumichika_Ayasegawa": {
+  "dur": 5.0,
+  "file": "data/audio/bankai/Yumichika_Ayasegawa.m4a",
+  "source": null
+ },
+ "Zommari_Rureaux": {
+  "dur": 6.41,
+  "file": "data/audio/bankai/Zommari_Rureaux.m4a",
+  "source": null
+ }
+}

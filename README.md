@@ -9,7 +9,7 @@ Her gün yeni bir **Bleach** karakteri. Wordle/LoLdle tarzı, dört modlu günl�
 | **Classic** | Karakteri özellik ipuçlarıyla bul (cinsiyet, ırk, yaş, boy, saç, bölge, ilk arc) | 8 |
 | **Quote** | Bu repliği kim söyledi? Son üç hakta bölüm ipucu açılır | 7 |
 | **Splash** | Bulanık görsel her yanlışta biraz daha netleşir | 6 |
-| **Bankai** | Bu Bankai / Shikai / Resurrección kime ait? | 8 |
+| **Bankai** | Bu Bankai / Shikai / Resurrección kime ait? 3. yanlıştan sonra salım çağrısının sesi açılır | 8 |
 
 Günün cevabı herkeste aynı: tarih damgasından türeyen deterministik bir sırayla
 seçiliyor ve bir devir bitmeden hiçbir karakter tekrar etmiyor. İlerleme ve seri
